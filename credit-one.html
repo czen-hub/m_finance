@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gold Card — M Finance</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .page-hero {
+        min-height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 140px 40px 80px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .page-hero-bg {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 60% at 50% 50%,
+          rgba(201, 169, 110, 0.1) 0%,
+          transparent 70%
+        );
+      }
+
+      .page-hero h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 16px;
+        color: var(--accent);
+      }
+
+      .page-hero p {
+        font-size: 1rem;
+        color: var(--muted);
+        max-width: 480px;
+      }
+
+      .back-link {
+        position: absolute;
+        top: 100px;
+        left: 60px;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .back-link:hover {
+        color: var(--text);
+      }
+
+      .card-preview-section {
+        display: flex;
+        justify-content: center;
+        padding: 20px 40px 80px;
+      }
+
+      .card-preview-section .credit-card {
+        width: 380px;
+        height: 240px;
+      }
+
+      .details-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 60px;
+      }
+
+      .details-section h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 300;
+        margin-bottom: 48px;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+        margin-bottom: 80px;
+      }
+
+      .detail-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px 24px;
+      }
+
+      .detail-box .label {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+
+      .detail-box .value {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
+
+      .detail-box .note {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .benefits-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 60px 80px;
+      }
+
+      .benefits-section h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 300;
+        margin-bottom: 40px;
+      }
+
+      .benefits-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px 24px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        transition: border-color 0.3s;
+      }
+
+      .benefit-item:hover {
+        border-color: rgba(201, 169, 110, 0.4);
+      }
+
+      .benefit-icon {
+        font-size: 1.3rem;
+        margin-top: 2px;
+      }
+
+      .benefit-text h4 {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .benefit-text p {
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .apply-section {
+        text-align: center;
+        padding: 80px 40px;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+      }
+
+      .apply-section h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 300;
+        margin-bottom: 12px;
+      }
+
+      .apply-section p {
+        color: var(--muted);
+        margin-bottom: 36px;
+      }
+
+      .btn-apply {
+        display: inline-block;
+        padding: 18px 56px;
+        background: var(--accent);
+        color: #0a0a0f;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition:
+          opacity 0.3s,
+          transform 0.2s;
+      }
+
+      .btn-apply:hover {
+        opacity: 0.85;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        .back-link {
+          left: 24px;
+        }
+        .details-section,
+        .benefits-section {
+          padding: 40px 24px;
+        }
+        .card-preview-section .credit-card {
+          width: 100%;
+          max-width: 340px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="index.html" class="nav-logo">M Finance</a>
+      <ul class="nav-links">
+        <li><a href="index.html#cards">Cards</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="page-hero-bg"></div>
+      <a href="index.html#cards" class="back-link">← Back to Cards</a>
+      <p class="section-label">M Finance</p>
+      <h1>Gold Card</h1>
+      <p>More rewards, more freedom. Built for those who spend smarter.</p>
+    </section>
+
+    <!-- CARD PREVIEW -->
+    <div class="card-preview-section">
+      <div class="credit-card gold">
+        <div class="card-top">
+          <span class="card-type-name">Gold</span>
+          <div class="card-chip"></div>
+        </div>
+        <div class="card-number">**** **** **** 0002</div>
+        <div class="card-bottom">
+          <div class="card-details">
+            <div class="card-detail">
+              <span class="detail-label">Annual Fee</span>
+              <span class="detail-value">$99</span>
+            </div>
+            <div class="card-detail">
+              <span class="detail-label">Cashback</span>
+              <span class="detail-value">3%</span>
+            </div>
+            <div class="card-detail">
+              <span class="detail-label">Limit</span>
+              <span class="detail-value">$15,000</span>
+            </div>
+          </div>
+          <span class="card-brand">M Finance</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAILS GRID -->
+    <section class="details-section">
+      <h2 class="reveal">Card details</h2>
+      <div class="details-grid">
+        <div class="detail-box reveal">
+          <div class="label">Annual Fee</div>
+          <div class="value">$99</div>
+          <div class="note">Billed once per year</div>
+        </div>
+        <div class="detail-box reveal">
+          <div class="label">Cashback Rate</div>
+          <div class="value">3%</div>
+          <div class="note">On all purchases</div>
+        </div>
+        <div class="detail-box reveal">
+          <div class="label">Credit Limit</div>
+          <div class="value">$15K</div>
+          <div class="note">Up to $15,000</div>
+        </div>
+        <div class="detail-box reveal">
+          <div class="label">Interest Rate</div>
+          <div class="value">15%</div>
+          <div class="note">APR per year</div>
+        </div>
+        <div class="detail-box reveal">
+          <div class="label">Min. Credit Score</div>
+          <div class="value">670</div>
+          <div class="note">Good credit required</div>
+        </div>
+        <div class="detail-box reveal">
+          <div class="label">Late Fee</div>
+          <div class="value">$35</div>
+          <div class="note">Per missed payment</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits-section">
+      <h2 class="reveal">What's included</h2>
+      <div class="benefits-list">
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-text">
+            <h4>3% Cashback on All Purchases</h4>
+            <p>
+              Triple the rewards on every dollar you spend, automatically
+              applied.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">✈️</div>
+          <div class="benefit-text">
+            <h4>No Foreign Transaction Fees</h4>
+            <p>
+              Use your card internationally without paying extra fees on every
+              purchase.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">🎁</div>
+          <div class="benefit-text">
+            <h4>Welcome Bonus — $200 Cash</h4>
+            <p>
+              Spend $1,000 in your first 3 months and earn a $200 cash bonus.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">🏨</div>
+          <div class="benefit-text">
+            <h4>Hotel & Travel Discounts</h4>
+            <p>
+              Access exclusive rates at 500+ partner hotels and travel booking
+              platforms.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">🛡️</div>
+          <div class="benefit-text">
+            <h4>Purchase Protection</h4>
+            <p>
+              Eligible items are covered against damage or theft for 90 days
+              after purchase.
+            </p>
+          </div>
+        </div>
+        <div class="benefit-item reveal">
+          <div class="benefit-icon">📱</div>
+          <div class="benefit-text">
+            <h4>Full Mobile App Access</h4>
+            <p>
+              Manage everything — spending, rewards, statements — from your
+              phone.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPLY -->
+    <section class="apply-section">
+      <h2>Ready to apply?</h2>
+      <p>
+        Takes less than 5 minutes. No impact on your credit score to check
+        eligibility.
+      </p>
+      <a href="apply.html?card=standard" class="btn-apply">Apply Now</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <a href="index.html" class="footer-logo">M Finance</a>
+      <p>&copy; 2026 M Finance. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>
