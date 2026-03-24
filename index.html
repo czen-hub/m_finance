@@ -16,7 +16,6 @@
         margin: 0;
         padding: 0;
       }
-
       :root {
         --bg: #09090a;
         --surface: #111110;
@@ -33,8 +32,9 @@
         --red-dim: rgba(229, 115, 115, 0.1);
         --green: #81c784;
         --green-dim: rgba(129, 199, 132, 0.1);
+        --purple: #b39ddb;
+        --purple-dim: rgba(179, 157, 219, 0.1);
       }
-
       body {
         background: var(--bg);
         color: var(--text);
@@ -42,7 +42,7 @@
         min-height: 100vh;
       }
 
-      /* ── NAV ── */
+      /* NAV */
       nav {
         display: flex;
         justify-content: space-between;
@@ -83,7 +83,7 @@
         color: var(--accent);
       }
 
-      /* ── HERO ── */
+      /* HERO */
       .page-hero {
         text-align: center;
         padding: 64px 40px 44px;
@@ -119,7 +119,7 @@
         font-size: 0.92rem;
       }
 
-      /* ── SUMMARY STRIP ── */
+      /* SUMMARY */
       .summary-strip {
         max-width: 1140px;
         margin: 0 auto 48px;
@@ -188,14 +188,12 @@
         color: var(--muted);
       }
 
-      /* ── MAIN LAYOUT ── */
+      /* MAIN */
       .main-wrap {
         max-width: 1140px;
         margin: 0 auto;
         padding: 0 48px 80px;
       }
-
-      /* ── SECTION HEADER ── */
       .section-hdr {
         display: flex;
         justify-content: space-between;
@@ -228,14 +226,13 @@
         border-color: var(--accent);
       }
 
-      /* ── CARDS GRID ── */
+      /* CARDS GRID */
       .cards-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
         gap: 20px;
         margin-bottom: 48px;
       }
-
       .card-item {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -261,15 +258,9 @@
         transform: translateY(-2px);
       }
 
-      /* visual card strip at top */
+      /* card color strips */
       .card-visual {
         height: 7px;
-        background: linear-gradient(
-          90deg,
-          var(--accent),
-          #e8c87a,
-          var(--accent)
-        );
         background-size: 200%;
         animation: shimmer 3s linear infinite;
       }
@@ -283,37 +274,32 @@
       }
       .card-visual.navy {
         background: linear-gradient(90deg, #1a3a6b, #2d5aa0, #1a3a6b);
-        background-size: 200%;
       }
       .card-visual.paypal {
         background: linear-gradient(90deg, #003087, #009cde, #003087);
-        background-size: 200%;
       }
       .card-visual.capital {
         background: linear-gradient(90deg, #8b0000, #cc2200, #8b0000);
-        background-size: 200%;
       }
       .card-visual.amex {
         background: linear-gradient(90deg, #007bc1, #00a8e0, #007bc1);
-        background-size: 200%;
       }
       .card-visual.discover {
         background: linear-gradient(90deg, #e07000, #ff8c00, #e07000);
-        background-size: 200%;
       }
       .card-visual.auto {
         background: linear-gradient(90deg, #1a3320, #2e6644, #1a3320);
-        background-size: 200%;
+      }
+      .card-visual.personal {
+        background: linear-gradient(90deg, #3d2060, #7c4dbd, #3d2060);
       }
       .card-visual.custom {
         background: linear-gradient(90deg, #4a4845, #6b6760, #4a4845);
-        background-size: 200%;
       }
 
       .card-body {
         padding: 22px 22px 18px;
       }
-
       .card-header-row {
         display: flex;
         justify-content: space-between;
@@ -361,7 +347,6 @@
         color: var(--red);
       }
 
-      /* balance display */
       .balance-row {
         display: flex;
         align-items: baseline;
@@ -380,7 +365,6 @@
         color: var(--muted);
       }
 
-      /* utilization bar */
       .util-bar-wrap {
         height: 4px;
         background: var(--border);
@@ -402,8 +386,10 @@
       .util-bar.high {
         background: var(--red);
       }
+      .util-bar.purple {
+        background: var(--purple);
+      }
 
-      /* stats row */
       .stats-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -435,8 +421,10 @@
       .stat-val.green {
         color: var(--green);
       }
+      .stat-val.purple {
+        color: var(--purple);
+      }
 
-      /* payoff estimate */
       .payoff-row {
         display: flex;
         justify-content: space-between;
@@ -455,7 +443,6 @@
         font-weight: 600;
       }
 
-      /* priority badge */
       .priority-badge {
         display: inline-flex;
         align-items: center;
@@ -483,7 +470,73 @@
         border: 1px solid rgba(129, 199, 132, 0.2);
       }
 
-      /* ── AVALANCHE SECTION ── */
+      /* purpose tag */
+      .purpose-tag {
+        margin-top: 4px;
+        font-size: 0.65rem;
+        color: var(--purple);
+        background: var(--purple-dim);
+        border: 1px solid rgba(179, 157, 219, 0.2);
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 12px;
+        letter-spacing: 0.06em;
+      }
+
+      /* interest breakdown */
+      .interest-breakdown {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin-bottom: 16px;
+      }
+      .interest-breakdown-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .interest-lbl {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted2);
+      }
+      .interest-amount {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+      .interest-bar-track {
+        height: 6px;
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        margin-bottom: 8px;
+        background: var(--border);
+      }
+      .interest-bar-principal {
+        height: 100%;
+        background: rgba(255, 255, 255, 0.15);
+        transition: width 0.6s ease;
+      }
+      .interest-bar-interest {
+        height: 100%;
+        transition: width 0.6s ease;
+        opacity: 0.85;
+      }
+      .interest-bar-legend {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: var(--muted);
+      }
+      .interest-bar-legend strong {
+        font-weight: 500;
+      }
+
+      /* AVALANCHE */
       .avalanche-section {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -503,7 +556,6 @@
         color: var(--muted);
         margin-bottom: 24px;
       }
-
       .avalanche-list {
         display: flex;
         flex-direction: column;
@@ -561,7 +613,7 @@
         font-size: 0.95rem;
       }
 
-      /* ── MODAL ── */
+      /* MODAL */
       .modal-overlay {
         position: fixed;
         inset: 0;
@@ -579,7 +631,6 @@
         opacity: 1;
         pointer-events: all;
       }
-
       .modal {
         background: var(--surface);
         border: 1px solid rgba(201, 169, 110, 0.2);
@@ -594,13 +645,47 @@
       .modal-overlay.open .modal {
         transform: translateY(0);
       }
-
       .modal h2 {
         font-family: "Cormorant Garamond", serif;
         font-size: 1.8rem;
         font-weight: 300;
         color: var(--accent);
         margin-bottom: 28px;
+      }
+
+      /* 3-way type toggle */
+      .type-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .mode-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 12px 8px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s;
+      }
+      .mode-btn:hover {
+        border-color: var(--border-hover);
+        color: var(--text);
+      }
+      .mode-btn.active {
+        background: var(--accent-dim);
+        border-color: rgba(201, 169, 110, 0.4);
+        color: var(--accent);
+      }
+      .mode-btn.active.personal-btn {
+        background: var(--purple-dim);
+        border-color: rgba(179, 157, 219, 0.4);
+        color: var(--purple);
       }
 
       .form-row {
@@ -669,6 +754,10 @@
       .btn-save:hover {
         opacity: 0.88;
       }
+      .btn-save.personal-save {
+        background: var(--purple);
+        color: #0a0010;
+      }
       .btn-cancel {
         padding: 14px 24px;
         background: transparent;
@@ -685,7 +774,6 @@
         color: var(--text);
       }
 
-      /* empty state */
       .empty-state {
         text-align: center;
         padding: 64px 24px;
@@ -758,6 +846,9 @@
         .form-row {
           grid-template-columns: 1fr;
         }
+        .type-toggle {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -774,15 +865,17 @@
     <section class="page-hero">
       <p class="section-label">Personal Finance</p>
       <h1>My Cards</h1>
-      <p>Track balances, interest, and payoff plans across all your cards.</p>
+      <p>
+        Track balances, interest, and payoff plans across all your cards and
+        loans.
+      </p>
     </section>
 
-    <!-- SUMMARY -->
     <div class="summary-strip" id="summary-strip">
       <div class="summary-card">
         <div class="s-label">Total Debt</div>
         <div class="s-value danger" id="sum-debt">$0</div>
-        <div class="s-sub" id="sum-cards">0 cards</div>
+        <div class="s-sub" id="sum-cards">0 accounts</div>
       </div>
       <div class="summary-card">
         <div class="s-label">Monthly Min. Due</div>
@@ -802,7 +895,6 @@
     </div>
 
     <div class="main-wrap">
-      <!-- CARDS -->
       <div class="section-hdr">
         <h2>Your Accounts</h2>
         <button class="btn-add" onclick="openModal()">＋ Add Account</button>
@@ -810,7 +902,6 @@
 
       <div class="cards-grid" id="cards-grid"></div>
 
-      <!-- AVALANCHE -->
       <div
         class="avalanche-section"
         id="avalanche-section"
@@ -818,8 +909,8 @@
       >
         <h3>🏔 Debt Avalanche Strategy</h3>
         <p class="avalanche-desc">
-          Pay minimums on all cards, then throw extra money at the highest APR
-          first. This saves the most in interest over time.
+          Pay minimums on all accounts, then throw extra money at the highest
+          APR first. This saves the most in interest over time.
         </p>
         <div class="avalanche-list" id="avalanche-list"></div>
       </div>
@@ -837,18 +928,10 @@
       onclick="closeModalOutside(event)"
     >
       <div class="modal">
-        <h2 id="modal-title">Add a Card</h2>
-        <input type="hidden" id="edit-id" value="" />
+        <h2 id="modal-title">Add an Account</h2>
 
-        <!-- Type toggle -->
-        <div
-          style="
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 24px;
-          "
-        >
+        <!-- 3-way type toggle -->
+        <div class="type-toggle">
           <button
             type="button"
             class="mode-btn active"
@@ -868,6 +951,16 @@
             <span style="font-size: 1.1rem; display: block; margin-bottom: 3px"
               >🚗</span
             >Auto Loan
+          </button>
+          <button
+            type="button"
+            class="mode-btn personal-btn"
+            id="type-btn-personal"
+            onclick="setEntryType('personal')"
+          >
+            <span style="font-size: 1.1rem; display: block; margin-bottom: 3px"
+              >🏦</span
+            >Personal Loan
           </button>
         </div>
 
@@ -890,6 +983,7 @@
               <option value="amex">American Express</option>
               <option value="discover">Discover</option>
               <option value="auto">Auto Lender</option>
+              <option value="personal">Personal Loan Lender</option>
               <option value="custom">Other</option>
             </select>
           </div>
@@ -910,7 +1004,6 @@
               step="0.01"
             />
           </div>
-          <!-- Credit card: limit. Auto loan: original loan amount -->
           <div class="form-group" id="limit-group">
             <label id="f-limit-label">Credit Limit ($)</label>
             <input
@@ -940,14 +1033,14 @@
             <input
               type="number"
               id="f-min"
-              placeholder="35"
+              placeholder="Auto (2% of balance)"
               min="0"
               step="0.01"
             />
           </div>
         </div>
 
-        <!-- Auto loan only: remaining months -->
+        <!-- Loans only: remaining term -->
         <div class="form-group" id="term-group" style="display: none">
           <label>Remaining Term (months)</label>
           <input
@@ -960,16 +1053,27 @@
           />
         </div>
 
+        <!-- Personal loan only: purpose -->
+        <div class="form-group" id="purpose-group" style="display: none">
+          <label>Loan Purpose (optional)</label>
+          <input
+            type="text"
+            id="f-purpose"
+            placeholder="e.g. Debt consolidation, home improvement"
+          />
+        </div>
+
         <div class="modal-actions">
           <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-          <button class="btn-save" onclick="saveCard()">Save Card</button>
+          <button class="btn-save" id="btn-save-main" onclick="saveCard()">
+            Save Account
+          </button>
         </div>
       </div>
     </div>
 
     <script>
       const STORAGE_KEY = "mfinance_cards_v1";
-
       let cards = [];
       let currentEntryType = "card";
 
@@ -981,11 +1085,9 @@
           cards = [];
         }
       }
-
       function saveCards() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
       }
-
       function uid() {
         return Date.now().toString(36) + Math.random().toString(36).slice(2);
       }
@@ -1000,7 +1102,6 @@
           })
         );
       }
-
       function fmtShort(n) {
         if (n >= 1000000) return "$" + (n / 1000000).toFixed(1) + "M";
         if (n >= 1000) return "$" + (n / 1000).toFixed(1) + "K";
@@ -1018,7 +1119,7 @@
         );
       }
 
-      function autoMonthlyPayment(principal, apr, termMonths) {
+      function loanMonthlyPayment(principal, apr, termMonths) {
         const r = apr / 100 / 12;
         if (r === 0) return principal / termMonths;
         return (
@@ -1043,7 +1144,8 @@
         return "high";
       }
 
-      function issuerColor(issuer) {
+      function issuerColor(issuer, type) {
+        if (type === "personal") return "personal";
         const map = {
           navy: "navy",
           capital: "capital",
@@ -1051,6 +1153,7 @@
           amex: "amex",
           discover: "discover",
           auto: "auto",
+          personal: "personal",
           custom: "custom",
         };
         return map[issuer] || "custom";
@@ -1063,7 +1166,8 @@
           paypal: "PayPal / Synchrony",
           amex: "American Express",
           discover: "Discover",
-          auto: "Auto Loan",
+          auto: "Auto Lender",
+          personal: "Personal Loan Lender",
           custom: "Other",
         };
         return map[issuer] || "Other";
@@ -1078,31 +1182,57 @@
         document
           .getElementById("type-btn-auto")
           .classList.toggle("active", type === "auto");
+        document
+          .getElementById("type-btn-personal")
+          .classList.toggle("active", type === "personal");
 
-        const isAuto = type === "auto";
-        document.getElementById("f-name-label").textContent = isAuto
+        const isAuto = type === "auto",
+          isPersonal = type === "personal",
+          isLoan = isAuto || isPersonal;
+
+        document.getElementById("f-name-label").textContent = isPersonal
           ? "Loan Name"
-          : "Card Name";
-        document.getElementById("f-name").placeholder = isAuto
-          ? "e.g. Toyota Camry Loan"
-          : "e.g. Navy Federal Cash Rewards";
-        document.getElementById("f-issuer-label").textContent = isAuto
+          : isAuto
+            ? "Loan Name"
+            : "Card Name";
+        document.getElementById("f-name").placeholder = isPersonal
+          ? "e.g. SoFi Personal Loan"
+          : isAuto
+            ? "e.g. Toyota Camry Loan"
+            : "e.g. Navy Federal Cash Rewards";
+        document.getElementById("f-issuer-label").textContent = isLoan
           ? "Lender"
           : "Issuer / Bank";
-        document.getElementById("f-issuer").value = isAuto ? "auto" : "navy";
-        document.getElementById("f-limit-label").textContent = isAuto
+        document.getElementById("f-issuer").value = isPersonal
+          ? "personal"
+          : isAuto
+            ? "auto"
+            : "navy";
+        document.getElementById("f-limit-label").textContent = isLoan
           ? "Original Loan Amount ($)"
           : "Credit Limit ($)";
-        document.getElementById("f-limit").placeholder = isAuto
-          ? "25000"
-          : "5000";
-        document.getElementById("f-min-label").textContent = isAuto
+        document.getElementById("f-limit").placeholder = isPersonal
+          ? "15000"
+          : isAuto
+            ? "25000"
+            : "5000";
+        document.getElementById("f-min-label").textContent = isLoan
           ? "Monthly Payment ($)"
           : "Min. Monthly Payment ($)";
-        document.getElementById("f-apr").placeholder = isAuto ? "7.5" : "22.99";
-        document.getElementById("term-group").style.display = isAuto
+        document.getElementById("f-apr").placeholder = isPersonal
+          ? "11.99"
+          : isAuto
+            ? "7.5"
+            : "22.99";
+        document.getElementById("term-group").style.display = isLoan
           ? "block"
           : "none";
+        document.getElementById("purpose-group").style.display = isPersonal
+          ? "block"
+          : "none";
+
+        const saveBtn = document.getElementById("btn-save-main");
+        saveBtn.classList.toggle("personal-save", isPersonal);
       }
 
       // ── RENDER ──
@@ -1116,13 +1246,14 @@
         const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0);
         const totalLimit = cards.reduce((s, c) => s + (c.limit || 0), 0);
         const totalMin = cards.reduce((s, c) => {
-          if (c.type === "auto")
+          const bal = c.balance || 0;
+          if (c.type === "auto" || c.type === "personal")
             return (
-              s +
-              (c.min ||
-                autoMonthlyPayment(c.balance || 0, c.apr || 0, c.term || 60))
+              s + (c.min || loanMonthlyPayment(bal, c.apr || 0, c.term || 60))
             );
-          return s + (c.min || 0);
+          const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0;
+          const rawMin = c.min || 0;
+          return s + (rawMin > 0 && rawMin < bal ? rawMin : autoMin);
         }, 0);
         const weightedApr =
           totalDebt > 0
@@ -1145,33 +1276,38 @@
       function renderCards() {
         const grid = document.getElementById("cards-grid");
         if (cards.length === 0) {
-          grid.innerHTML = `
-        <div class="empty-state" style="grid-column:1/-1">
-          <div class="empty-icon">💳</div>
-          <h3>No accounts yet</h3>
-          <p>Add a credit card or auto loan to start tracking balances and payoff timelines.</p>
-          <button class="btn-add" onclick="openModal()" style="margin:0 auto">＋ Add Your First Account</button>
-        </div>`;
+          grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+            <div class="empty-icon">💳</div>
+            <h3>No accounts yet</h3>
+            <p>Add a credit card, auto loan, or personal loan to start tracking balances and payoff timelines.</p>
+            <button class="btn-add" onclick="openModal()" style="margin:0 auto">＋ Add Your First Account</button>
+          </div>`;
           return;
         }
 
         const sorted = [...cards].sort((a, b) => (b.apr || 0) - (a.apr || 0));
-        const firstId = sorted[0]?.id;
-        const secondId = sorted[1]?.id;
+        const firstId = sorted[0]?.id,
+          secondId = sorted[1]?.id;
 
         grid.innerHTML = cards
           .map((c) => {
-            const isAuto = c.type === "auto";
-            const balance = c.balance || 0;
-            const limit = c.limit || 0;
-            const apr = c.apr || 0;
-            const term = c.term || 60;
-            const monthlyPayment = isAuto
-              ? c.min || autoMonthlyPayment(balance, apr, term)
-              : c.min || 0;
+            const isAuto = c.type === "auto",
+              isPersonal = c.type === "personal",
+              isLoan = isAuto || isPersonal;
+            const balance = c.balance || 0,
+              limit = c.limit || 0,
+              apr = c.apr || 0,
+              term = c.term || 60;
+            const autoMin = balance > 0 ? Math.max(25, balance * 0.02) : 0;
+            const rawMin = c.min || 0;
+            const monthlyPayment = isLoan
+              ? rawMin || loanMonthlyPayment(balance, apr, term)
+              : rawMin > 0 && rawMin < balance
+                ? rawMin
+                : autoMin;
             const util = limit > 0 ? (balance / limit) * 100 : 0;
-            const months = isAuto
-              ? term
+            const months = isLoan
+              ? monthsToPayoff(balance, apr, monthlyPayment)
               : monthsToPayoff(balance, apr, monthlyPayment);
             const payDate = payoffDate(months);
             const monthlyInt = balance * (apr / 100 / 12);
@@ -1189,72 +1325,136 @@
               badge = `<span class="priority-badge good-standing">✓ Paid Off</span>`;
             }
 
-            // Auto loan shows remaining term bar instead of credit utilization
             let barHtml = "";
-            if (isAuto) {
-              const origTerm = c.origTerm || term;
-              const elapsed = origTerm - term;
+            if (isLoan) {
+              const origTerm = c.origTerm || term,
+                elapsed = origTerm - term;
               const pct = origTerm > 0 ? (elapsed / origTerm) * 100 : 0;
-              barHtml = `
-          <div style="margin-bottom:6px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Loan Progress</div>
-          <div class="util-bar-wrap">
-            <div class="util-bar low" style="width:${Math.min(pct, 100).toFixed(1)}%"></div>
-          </div>`;
+              const barClass = isPersonal ? "purple" : "low";
+              barHtml = `<div style="margin-bottom:6px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Loan Progress</div>
+              <div class="util-bar-wrap"><div class="util-bar ${barClass}" style="width:${Math.min(pct, 100).toFixed(1)}%"></div></div>`;
             } else if (limit > 0) {
-              barHtml = `
-          <div class="util-bar-wrap">
-            <div class="util-bar ${utilClass(util)}" style="width:${Math.min(util, 100).toFixed(1)}%"></div>
-          </div>`;
+              barHtml = `<div class="util-bar-wrap"><div class="util-bar ${utilClass(util)}" style="width:${Math.min(util, 100).toFixed(1)}%"></div></div>`;
             } else {
               barHtml = '<div style="margin-bottom:18px"></div>';
             }
 
-            return `
-        <div class="card-item">
-          <div class="card-visual ${issuerColor(c.issuer)}"></div>
-          <div class="card-body">
-            <div class="card-header-row">
-              <div>
-                <div class="card-name">${c.name || (isAuto ? "Auto Loan" : "Unnamed Card")}${last4}</div>
-                <div class="card-issuer">${isAuto ? "🚗 Auto Loan · " : ""}${issuerLabel(c.issuer)}</div>
+            const typeIcon = isPersonal
+              ? "🏦 Personal Loan · "
+              : isAuto
+                ? "🚗 Auto Loan · "
+                : "";
+            const purposeTag =
+              isPersonal && c.purpose
+                ? `<div class="purpose-tag">${c.purpose}</div>`
+                : "";
+            const aprClass = isPersonal ? "purple" : "red";
+            const thirdLbl = isLoan ? "Months Left" : "Monthly Int.";
+            const thirdVal = isLoan
+              ? months < 9999
+                ? months + " mo"
+                : "∞"
+              : fmt(monthlyInt);
+            const thirdClass = isPersonal ? "purple" : isAuto ? "" : "red";
+
+            // Total interest — simulate month by month for accuracy
+            function calcTotalInterest(bal, annualApr, payment) {
+              if (!bal || bal <= 0 || !payment || payment <= 0) return 0;
+              const r = annualApr / 100 / 12;
+              let b = bal,
+                interest = 0,
+                guard = 0;
+              while (b > 0.005 && guard++ < 1200) {
+                const intCharge = b * r;
+                interest += intCharge;
+                b = b + intCharge - payment;
+                if (b < 0) b = 0;
+              }
+              return guard >= 1200 ? 0 : Math.max(0, interest);
+            }
+            let totalInterest =
+              balance > 0 && monthlyPayment > 0
+                ? calcTotalInterest(balance, apr, monthlyPayment)
+                : 0;
+            const interestPct =
+              balance > 0 ? Math.min((totalInterest / balance) * 100, 999) : 0;
+            const interestBarW = Math.min(
+              (totalInterest / (balance + totalInterest)) * 100,
+              100,
+            );
+            const interestColor = isPersonal
+              ? "var(--purple)"
+              : isAuto
+                ? "var(--green)"
+                : interestPct > 50
+                  ? "var(--red)"
+                  : interestPct > 25
+                    ? "var(--accent)"
+                    : "var(--green)";
+            const interestLabelColor = isPersonal
+              ? "purple"
+              : isAuto
+                ? "green"
+                : interestPct > 50
+                  ? "red"
+                  : interestPct > 25
+                    ? ""
+                    : "green";
+
+            return `<div class="card-item">
+            <div class="card-visual ${issuerColor(c.issuer, c.type)}"></div>
+            <div class="card-body">
+              <div class="card-header-row">
+                <div>
+                  <div class="card-name">${c.name || (isPersonal ? "Personal Loan" : isAuto ? "Auto Loan" : "Unnamed Card")}${last4}</div>
+                  <div class="card-issuer">${typeIcon}${issuerLabel(c.issuer)}</div>
+                  ${purposeTag}
+                </div>
+                <div class="card-actions">
+                  <button class="icon-btn" onclick="openModal('${c.id}')" title="Edit">✎</button>
+                  <button class="icon-btn delete" onclick="deleteCard('${c.id}')" title="Delete">✕</button>
+                </div>
               </div>
-              <div class="card-actions">
-                <button class="icon-btn" onclick="openModal('${c.id}')" title="Edit">✎</button>
-                <button class="icon-btn delete" onclick="deleteCard('${c.id}')" title="Delete">✕</button>
+              <div class="balance-row">
+                <div class="balance-amount">${fmtShort(balance)}</div>
+                ${limit > 0 ? `<div class="balance-of">${isLoan ? "original " : "of "}${fmtShort(limit)}</div>` : ""}
+              </div>
+              ${barHtml}
+              <div class="stats-row">
+                <div class="stat-box"><div class="stat-lbl">APR</div><div class="stat-val ${aprClass}">${apr}%</div></div>
+                <div class="stat-box"><div class="stat-lbl">${isLoan ? "Payment" : "Min. Payment"}</div><div class="stat-val">${fmt(monthlyPayment)}</div></div>
+                <div class="stat-box"><div class="stat-lbl">${thirdLbl}</div><div class="stat-val ${thirdClass}">${thirdVal}</div></div>
+              </div>
+
+              ${
+                balance > 0 && months < 9999
+                  ? `
+              <div class="interest-breakdown">
+                <div class="interest-breakdown-header">
+                  <span class="interest-lbl">Total Interest Cost</span>
+                  <span class="interest-amount" style="color:${interestColor}">${fmt(totalInterest)}</span>
+                </div>
+                <div class="interest-bar-track">
+                  <div class="interest-bar-principal" style="width:${100 - interestBarW}%"></div>
+                  <div class="interest-bar-interest" style="width:${interestBarW}%;background:${interestColor}"></div>
+                </div>
+                <div class="interest-bar-legend">
+                  <span>Principal <strong>${fmt(balance)}</strong></span>
+                  <span>Interest <strong style="color:${interestColor}">${fmt(totalInterest)}</strong></span>
+                </div>
+              </div>`
+                  : ""
+              }
+
+              <div class="payoff-row">
+                <div>${badge}</div>
+                <div style="text-align:right">
+                  <div class="payoff-label">${isLoan ? "Payoff date" : "Payoff at min"}</div>
+                  <div class="payoff-value">${balance > 0 ? payDate : "—"}</div>
+                </div>
               </div>
             </div>
-
-            <div class="balance-row">
-              <div class="balance-amount">${fmtShort(balance)}</div>
-              ${limit > 0 ? `<div class="balance-of">${isAuto ? "original " : "of "}${fmtShort(limit)}</div>` : ""}
-            </div>
-
-            ${barHtml}
-
-            <div class="stats-row">
-              <div class="stat-box">
-                <div class="stat-lbl">APR</div>
-                <div class="stat-val red">${apr}%</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-lbl">${isAuto ? "Payment" : "Min. Payment"}</div>
-                <div class="stat-val">${fmt(monthlyPayment)}</div>
-              </div>
-              <div class="stat-box">
-                <div class="stat-lbl">${isAuto ? "Months Left" : "Monthly Int."}</div>
-                <div class="stat-val ${isAuto ? "" : "red"}">${isAuto ? term + " mo" : fmt(monthlyInt)}</div>
-              </div>
-            </div>
-
-            <div class="payoff-row">
-              <div>${badge}</div>
-              <div style="text-align:right">
-                <div class="payoff-label">${isAuto ? "Payoff date" : "Payoff at min"}</div>
-                <div class="payoff-value">${balance > 0 ? payDate : "—"}</div>
-              </div>
-            </div>
-          </div>
-        </div>`;
+          </div>`;
           })
           .join("");
       }
@@ -1271,24 +1471,32 @@
         const sorted = [...cards]
           .filter((c) => (c.balance || 0) > 0)
           .sort((a, b) => (b.apr || 0) - (a.apr || 0));
-        const list = document.getElementById("avalanche-list");
-
-        list.innerHTML = sorted
+        document.getElementById("avalanche-list").innerHTML = sorted
           .map((c, i) => {
-            const isAuto = c.type === "auto";
-            const months = isAuto
-              ? c.term || 60
-              : monthsToPayoff(c.balance || 0, c.apr || 0, c.min || 0);
-            return `
-        <div class="av-row">
-          <div class="av-rank ${i === 0 ? "first" : ""}">${i + 1}</div>
-          <div class="av-name">${isAuto ? "🚗 " : ""}${c.name || "Unnamed"}</div>
-          <div class="av-apr">${c.apr || 0}% APR</div>
-          <div class="av-balance">${fmtShort(c.balance || 0)}</div>
-          <div class="av-action">
-            ${i === 0 ? "<strong>Pay extra here</strong>highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>${isAuto ? "remaining" : "at minimum"}`}
-          </div>
-        </div>`;
+            const isAuto = c.type === "auto",
+              isPersonal = c.type === "personal",
+              isLoan = isAuto || isPersonal;
+            const bal = c.balance || 0,
+              apr = c.apr || 0,
+              term = c.term || 60;
+            const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0;
+            const rawMin = c.min || 0;
+            const payment = isLoan
+              ? rawMin || loanMonthlyPayment(bal, apr, term)
+              : rawMin > 0 && rawMin < bal
+                ? rawMin
+                : autoMin;
+            const months = monthsToPayoff(bal, apr, payment);
+            const icon = isPersonal ? "🏦 " : isAuto ? "🚗 " : "";
+            return `<div class="av-row">
+            <div class="av-rank ${i === 0 ? "first" : ""}">${i + 1}</div>
+            <div class="av-name">${icon}${c.name || "Unnamed"}</div>
+            <div class="av-apr">${c.apr || 0}% APR</div>
+            <div class="av-balance">${fmtShort(c.balance || 0)}</div>
+            <div class="av-action">
+              ${i === 0 ? "<strong>Pay extra here</strong>highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>to pay off`}
+            </div>
+          </div>`;
           })
           .join("");
       }
@@ -1298,7 +1506,6 @@
 
       function openModal(id) {
         editingId = id || null;
-        const overlay = document.getElementById("modal-overlay");
         document.getElementById("modal-title").textContent = id
           ? "Edit Account"
           : "Add an Account";
@@ -1306,17 +1513,24 @@
         if (id) {
           const c = cards.find((x) => x.id === id);
           if (c) {
-            const isAuto = c.type === "auto";
-            setEntryType(isAuto ? "auto" : "card");
+            setEntryType(c.type || "card");
             document.getElementById("f-name").value = c.name || "";
             document.getElementById("f-issuer").value =
-              c.issuer || (isAuto ? "auto" : "custom");
+              c.issuer ||
+              (c.type === "auto"
+                ? "auto"
+                : c.type === "personal"
+                  ? "personal"
+                  : "custom");
             document.getElementById("f-last4").value = c.last4 || "";
             document.getElementById("f-balance").value = c.balance || "";
             document.getElementById("f-limit").value = c.limit || "";
             document.getElementById("f-apr").value = c.apr || "";
             document.getElementById("f-min").value = c.min || "";
-            if (isAuto) document.getElementById("f-term").value = c.term || "";
+            if (c.type === "auto" || c.type === "personal")
+              document.getElementById("f-term").value = c.term || "";
+            if (c.type === "personal")
+              document.getElementById("f-purpose").value = c.purpose || "";
           }
         } else {
           setEntryType("card");
@@ -1328,13 +1542,13 @@
             "f-apr",
             "f-min",
             "f-term",
+            "f-purpose",
           ].forEach((fid) => {
             const el = document.getElementById(fid);
             if (el) el.value = "";
           });
         }
-
-        overlay.classList.add("open");
+        document.getElementById("modal-overlay").classList.add("open");
       }
 
       function closeModal() {
@@ -1353,12 +1567,14 @@
           return;
         }
 
-        const isAuto = currentEntryType === "auto";
+        const isAuto = currentEntryType === "auto",
+          isPersonal = currentEntryType === "personal",
+          isLoan = isAuto || isPersonal;
         const termVal = parseInt(document.getElementById("f-term").value) || 60;
 
         const card = {
           id: editingId || uid(),
-          type: isAuto ? "auto" : "card",
+          type: currentEntryType,
           name,
           issuer: document.getElementById("f-issuer").value,
           last4: document.getElementById("f-last4").value.trim(),
@@ -1368,15 +1584,18 @@
           min: parseFloat(document.getElementById("f-min").value) || 0,
         };
 
-        if (isAuto) {
+        if (isLoan) {
           card.term = termVal;
-          // preserve original term for progress bar
           if (editingId) {
             const existing = cards.find((c) => c.id === editingId);
             card.origTerm = existing?.origTerm || termVal;
           } else {
             card.origTerm = termVal;
           }
+        }
+
+        if (isPersonal) {
+          card.purpose = document.getElementById("f-purpose").value.trim();
         }
 
         if (editingId) {
@@ -1398,7 +1617,6 @@
         render();
       }
 
-      // ── INIT ──
       loadCards();
       render();
     </script>
