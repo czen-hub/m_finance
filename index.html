@@ -34,6 +34,8 @@
         --green-dim: rgba(129, 199, 132, 0.1);
         --purple: #b39ddb;
         --purple-dim: rgba(179, 157, 219, 0.1);
+        --blue: #64b5f6;
+        --blue-dim: rgba(100, 181, 246, 0.1);
       }
       body {
         background: var(--bg);
@@ -42,7 +44,6 @@
         min-height: 100vh;
       }
 
-      /* NAV */
       nav {
         display: flex;
         justify-content: space-between;
@@ -83,7 +84,6 @@
         color: var(--accent);
       }
 
-      /* HERO */
       .page-hero {
         text-align: center;
         padding: 64px 40px 44px;
@@ -119,10 +119,10 @@
         font-size: 0.92rem;
       }
 
-      /* SUMMARY */
+      /* SUMMARY STRIP */
       .summary-strip {
         max-width: 1140px;
-        margin: 0 auto 48px;
+        margin: 0 auto 24px;
         padding: 0 48px;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -188,6 +188,315 @@
         color: var(--muted);
       }
 
+      /* ── NET WORTH PANEL ── */
+      .net-worth-wrap {
+        max-width: 1140px;
+        margin: 0 auto 40px;
+        padding: 0 48px;
+      }
+      .net-worth-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .net-worth-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--blue),
+          var(--green),
+          transparent
+        );
+        opacity: 0.6;
+      }
+      .nw-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .nw-title-block {
+      }
+      .nw-label {
+        font-size: 0.67rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .nw-value {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.6rem;
+        font-weight: 600;
+        line-height: 1;
+        transition: color 0.4s;
+      }
+      .nw-value.positive {
+        color: var(--green);
+      }
+      .nw-value.negative {
+        color: var(--red);
+      }
+      .nw-value.neutral {
+        color: var(--muted);
+      }
+      .nw-sub {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .nw-pillars {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+      }
+      .nw-pillar {
+        text-align: right;
+      }
+      .nw-pillar-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 4px;
+      }
+      .nw-pillar-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      .nw-pillar-val.savings-val {
+        color: var(--green);
+      }
+      .nw-pillar-val.debt-val {
+        color: var(--red);
+      }
+      .nw-divider {
+        width: 1px;
+        height: 44px;
+        background: var(--border);
+        flex-shrink: 0;
+      }
+
+      /* balance bar */
+      .nw-bar-wrap {
+        margin-bottom: 20px;
+      }
+      .nw-bar-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .nw-bar-track {
+        height: 10px;
+        background: var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+        display: flex;
+      }
+      .nw-bar-savings {
+        height: 100%;
+        background: linear-gradient(90deg, var(--green), #a8e6a8);
+        border-radius: 10px 0 0 10px;
+        transition: width 0.8s ease;
+        min-width: 0;
+      }
+      .nw-bar-debt {
+        height: 100%;
+        background: linear-gradient(90deg, #e57373, #ef9a9a);
+        border-radius: 0 10px 10px 0;
+        transition: width 0.8s ease;
+        min-width: 0;
+      }
+
+      /* ratio + insights row */
+      .nw-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .nw-metric {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 16px;
+        transition: border-color 0.2s;
+      }
+      .nw-metric:hover {
+        border-color: var(--border-hover);
+      }
+      .nw-metric-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 6px;
+      }
+      .nw-metric-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+      .nw-metric-sub {
+        font-size: 0.68rem;
+        color: var(--muted);
+        line-height: 1.4;
+      }
+
+      /* payoff slider card */
+      .payoff-slider-card {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px 14px;
+        margin-bottom: 4px;
+      }
+      .psc-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .psc-label {
+        font-size: 0.67rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .psc-presets {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .psc-preset-btn {
+        background: var(--accent-dim);
+        border: 1px solid rgba(201, 169, 110, 0.25);
+        border-radius: 20px;
+        color: var(--accent);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.68rem;
+        padding: 3px 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .psc-preset-btn:hover {
+        background: rgba(201, 169, 110, 0.2);
+        border-color: var(--accent);
+      }
+      .psc-slider-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .psc-slider-row input[type="range"] {
+        flex: 1;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 4px;
+        background: var(--border);
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+      }
+      .psc-slider-row input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: 2px solid var(--surface);
+        box-shadow: 0 0 0 2px var(--accent);
+      }
+      .psc-slider-row input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: var(--accent);
+        cursor: pointer;
+        border: 2px solid var(--surface);
+        box-shadow: 0 0 0 2px var(--accent);
+      }
+      .psc-daily-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--accent);
+        min-width: 110px;
+        text-align: right;
+        line-height: 1;
+      }
+      .psc-bar-wrap {
+        margin-top: 14px;
+      }
+      .psc-bar-track {
+        height: 6px;
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        background: var(--border);
+        margin-bottom: 6px;
+      }
+      .psc-bar-principal {
+        height: 100%;
+        background: rgba(255, 255, 255, 0.18);
+        transition: width 0.3s;
+      }
+      .psc-bar-interest {
+        height: 100%;
+        background: var(--red);
+        opacity: 0.75;
+        transition: width 0.3s;
+      }
+      .psc-bar-legend {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: var(--muted);
+      }
+
+      /* no-savings notice */
+      .nw-notice {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 16px;
+      }
+      .nw-notice a {
+        color: var(--accent);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+      }
+      .nw-notice a:hover {
+        border-color: var(--accent);
+      }
+
       /* MAIN */
       .main-wrap {
         max-width: 1140px;
@@ -226,7 +535,6 @@
         border-color: var(--accent);
       }
 
-      /* CARDS GRID */
       .cards-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -258,7 +566,6 @@
         transform: translateY(-2px);
       }
 
-      /* card color strips */
       .card-visual {
         height: 7px;
         background-size: 200%;
@@ -364,7 +671,6 @@
         font-size: 0.8rem;
         color: var(--muted);
       }
-
       .util-bar-wrap {
         height: 4px;
         background: var(--border);
@@ -470,7 +776,6 @@
         border: 1px solid rgba(129, 199, 132, 0.2);
       }
 
-      /* purpose tag */
       .purpose-tag {
         margin-top: 4px;
         font-size: 0.65rem;
@@ -483,7 +788,6 @@
         letter-spacing: 0.06em;
       }
 
-      /* interest breakdown */
       .interest-breakdown {
         background: var(--surface2);
         border: 1px solid var(--border);
@@ -536,7 +840,6 @@
         font-weight: 500;
       }
 
-      /* AVALANCHE */
       .avalanche-section {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -652,8 +955,6 @@
         color: var(--accent);
         margin-bottom: 28px;
       }
-
-      /* 3-way type toggle */
       .type-toggle {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -687,7 +988,6 @@
         border-color: rgba(179, 157, 219, 0.4);
         color: var(--purple);
       }
-
       .form-row {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -731,7 +1031,35 @@
       .form-group select option {
         background: #1a1a18;
       }
-
+      .dp-preview {
+        background: var(--surface2);
+        border: 1px solid rgba(201, 169, 110, 0.2);
+        border-radius: 12px;
+        padding: 14px 16px;
+        margin-bottom: 20px;
+      }
+      .dp-preview-title {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted2);
+        margin-bottom: 12px;
+      }
+      .dp-preview-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+      }
+      .dp-stat-lbl {
+        font-size: 0.62rem;
+        color: var(--muted);
+        margin-bottom: 3px;
+      }
+      .dp-stat-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
       .modal-actions {
         display: flex;
         gap: 12px;
@@ -825,11 +1153,20 @@
           grid-template-columns: 1fr 1fr;
           padding: 0 20px;
         }
+        .net-worth-wrap {
+          padding: 0 20px;
+        }
         .main-wrap {
           padding: 0 20px 60px;
         }
         .cards-grid {
           grid-template-columns: 1fr;
+        }
+        .nw-pillars {
+          flex-wrap: wrap;
+        }
+        .nw-metrics {
+          grid-template-columns: 1fr 1fr;
         }
         footer {
           padding: 28px 20px;
@@ -849,6 +1186,12 @@
         .type-toggle {
           grid-template-columns: 1fr;
         }
+        .dp-preview-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .nw-metrics {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -856,9 +1199,9 @@
     <nav>
       <a href="index.html" class="nav-logo">M Finance</a>
       <ul class="nav-links">
-        <li><a href="index.html#cards">Cards</a></li>
+        <li><a href="index.html#cards" class="active">Cards</a></li>
         <li><a href="loan-calculator.html">Calculator</a></li>
-        <li><a href="my-cards.html" class="active">My Cards</a></li>
+        <li><a href="savings.html">Savings</a></li>
       </ul>
     </nav>
 
@@ -871,7 +1214,7 @@
       </p>
     </section>
 
-    <div class="summary-strip" id="summary-strip">
+    <div class="summary-strip">
       <div class="summary-card">
         <div class="s-label">Total Debt</div>
         <div class="s-value danger" id="sum-debt">$0</div>
@@ -894,14 +1237,106 @@
       </div>
     </div>
 
-    <div class="main-wrap">
+    <!-- ── NET WORTH PANEL ── -->
+    <div class="net-worth-wrap">
+      <div class="net-worth-card">
+        <div class="nw-header">
+          <div class="nw-title-block">
+            <div class="nw-label">Net Worth Snapshot</div>
+            <div class="nw-value neutral" id="nw-value">$0</div>
+            <div class="nw-sub" id="nw-sub">
+              Add accounts &amp; savings to see your full picture
+            </div>
+          </div>
+          <div class="nw-pillars">
+            <div class="nw-pillar">
+              <div class="nw-pillar-label">💰 Savings</div>
+              <div class="nw-pillar-val savings-val" id="nw-savings">$0</div>
+            </div>
+            <div class="nw-divider"></div>
+            <div class="nw-pillar">
+              <div class="nw-pillar-label">💳 Total Debt</div>
+              <div class="nw-pillar-val debt-val" id="nw-debt">$0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- savings vs debt bar -->
+        <div class="nw-bar-wrap">
+          <div class="nw-bar-labels">
+            <span id="nw-bar-savings-pct">Savings 0%</span>
+            <span id="nw-bar-debt-pct">Debt 0%</span>
+          </div>
+          <div class="nw-bar-track">
+            <div
+              class="nw-bar-savings"
+              id="nw-bar-savings"
+              style="width: 0%"
+            ></div>
+            <div class="nw-bar-debt" id="nw-bar-debt" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- interactive payoff slider -->
+        <div class="payoff-slider-card" id="payoff-slider-card">
+          <div class="psc-top">
+            <div class="psc-label">Daily payment</div>
+            <div class="psc-presets" id="psc-presets"></div>
+          </div>
+          <div class="psc-slider-row">
+            <input
+              type="range"
+              id="psc-slider"
+              min="1"
+              max="300"
+              step="1"
+              value="10"
+              oninput="onSliderInput()"
+            />
+            <div class="psc-daily-val" id="psc-daily-val">$10/day</div>
+          </div>
+          <div class="nw-metrics" style="margin-top: 14px">
+            <div class="nw-metric">
+              <div class="nw-metric-label">Months to pay off</div>
+              <div class="nw-metric-val" id="psc-months">—</div>
+              <div class="nw-metric-sub" id="psc-date">—</div>
+            </div>
+            <div class="nw-metric">
+              <div class="nw-metric-label">Total interest paid</div>
+              <div class="nw-metric-val" id="psc-interest">—</div>
+              <div class="nw-metric-sub" id="psc-interest-sub">—</div>
+            </div>
+            <div class="nw-metric">
+              <div class="nw-metric-label">Total you'll pay</div>
+              <div class="nw-metric-val" id="psc-total">—</div>
+              <div class="nw-metric-sub" id="psc-total-sub">—</div>
+            </div>
+          </div>
+          <div class="psc-bar-wrap" id="psc-bar-wrap">
+            <div class="psc-bar-track">
+              <div class="psc-bar-principal" id="psc-bar-p"></div>
+              <div class="psc-bar-interest" id="psc-bar-i"></div>
+            </div>
+            <div class="psc-bar-legend">
+              <span id="psc-bar-p-lbl"></span><span id="psc-bar-i-lbl"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="nw-notice" id="nw-notice">
+          ℹ️ Savings data is read from your
+          <a href="savings.html">Savings page</a>. Add income entries there to
+          see your full net worth here.
+        </div>
+      </div>
+    </div>
+
+    <div class="main-wrap" id="cards">
       <div class="section-hdr">
         <h2>Your Accounts</h2>
         <button class="btn-add" onclick="openModal()">＋ Add Account</button>
       </div>
-
       <div class="cards-grid" id="cards-grid"></div>
-
       <div
         class="avalanche-section"
         id="avalanche-section"
@@ -929,8 +1364,6 @@
     >
       <div class="modal">
         <h2 id="modal-title">Add an Account</h2>
-
-        <!-- 3-way type toggle -->
         <div class="type-toggle">
           <button
             type="button"
@@ -963,7 +1396,6 @@
             >Personal Loan
           </button>
         </div>
-
         <div class="form-group">
           <label id="f-name-label">Card Name</label>
           <input
@@ -972,7 +1404,6 @@
             placeholder="e.g. Navy Federal Cash Rewards"
           />
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label id="f-issuer-label">Issuer / Bank</label>
@@ -992,7 +1423,6 @@
             <input type="text" id="f-last4" placeholder="0000" maxlength="4" />
           </div>
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label>Current Balance ($)</label>
@@ -1002,6 +1432,7 @@
               placeholder="2500"
               min="0"
               step="0.01"
+              oninput="updateDownPaymentPreview()"
             />
           </div>
           <div class="form-group" id="limit-group">
@@ -1015,7 +1446,6 @@
             />
           </div>
         </div>
-
         <div class="form-row">
           <div class="form-group">
             <label>APR (%)</label>
@@ -1026,6 +1456,7 @@
               min="0"
               max="100"
               step="0.01"
+              oninput="updateDownPaymentPreview()"
             />
           </div>
           <div class="form-group" id="min-group">
@@ -1039,8 +1470,6 @@
             />
           </div>
         </div>
-
-        <!-- Loans only: remaining term -->
         <div class="form-group" id="term-group" style="display: none">
           <label>Remaining Term (months)</label>
           <input
@@ -1050,10 +1479,67 @@
             min="1"
             max="360"
             step="1"
+            oninput="updateDownPaymentPreview()"
           />
         </div>
-
-        <!-- Personal loan only: purpose -->
+        <div class="form-group" id="downpayment-group" style="display: none">
+          <label
+            >Down Payment ($)
+            <span
+              style="
+                color: var(--muted);
+                font-size: 0.65rem;
+                letter-spacing: 0;
+                text-transform: none;
+                font-weight: 400;
+              "
+              >optional</span
+            ></label
+          >
+          <input
+            type="number"
+            id="f-downpayment"
+            placeholder="0"
+            min="0"
+            step="1"
+            oninput="updateDownPaymentPreview()"
+          />
+        </div>
+        <div class="dp-preview" id="dp-preview" style="display: none">
+          <div class="dp-preview-title">⚡ Down Payment Impact</div>
+          <div class="dp-preview-grid">
+            <div>
+              <div class="dp-stat-lbl">Amount Financed</div>
+              <div
+                class="dp-stat-val"
+                id="dp-financed"
+                style="color: var(--text)"
+              >
+                —
+              </div>
+            </div>
+            <div>
+              <div class="dp-stat-lbl">Monthly Payment</div>
+              <div
+                class="dp-stat-val"
+                id="dp-monthly"
+                style="color: var(--accent)"
+              >
+                —
+              </div>
+            </div>
+            <div>
+              <div class="dp-stat-lbl">Interest Saved</div>
+              <div
+                class="dp-stat-val"
+                id="dp-saved"
+                style="color: var(--green)"
+              >
+                —
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="form-group" id="purpose-group" style="display: none">
           <label>Loan Purpose (optional)</label>
           <input
@@ -1062,7 +1548,6 @@
             placeholder="e.g. Debt consolidation, home improvement"
           />
         </div>
-
         <div class="modal-actions">
           <button class="btn-cancel" onclick="closeModal()">Cancel</button>
           <button class="btn-save" id="btn-save-main" onclick="saveCard()">
@@ -1074,13 +1559,13 @@
 
     <script>
       const STORAGE_KEY = "mfinance_cards_v1";
+      const SAVINGS_KEY = "mfinance_savings_v1";
       let cards = [];
       let currentEntryType = "card";
 
       function loadCards() {
         try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          cards = raw ? JSON.parse(raw) : [];
+          cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         } catch (e) {
           cards = [];
         }
@@ -1103,8 +1588,8 @@
         );
       }
       function fmtShort(n) {
-        if (n >= 1000000) return "$" + (n / 1000000).toFixed(1) + "M";
-        if (n >= 1000) return "$" + (n / 1000).toFixed(1) + "K";
+        if (n >= 1_000_000) return "$" + (n / 1_000_000).toFixed(1) + "M";
+        if (n >= 1_000) return "$" + (n / 1_000).toFixed(1) + "K";
         return "$" + Math.round(n);
       }
 
@@ -1118,7 +1603,6 @@
           -Math.log(1 - (balance * r) / minPayment) / Math.log(1 + r),
         );
       }
-
       function loanMonthlyPayment(principal, apr, termMonths) {
         const r = apr / 100 / 12;
         if (r === 0) return principal / termMonths;
@@ -1127,7 +1611,20 @@
           (Math.pow(1 + r, termMonths) - 1)
         );
       }
-
+      function calcTotalInterest(bal, annualApr, payment) {
+        if (!bal || bal <= 0 || !payment || payment <= 0) return 0;
+        const r = annualApr / 100 / 12;
+        let b = bal,
+          interest = 0,
+          guard = 0;
+        while (b > 0.005 && guard++ < 1200) {
+          const ic = b * r;
+          interest += ic;
+          b = b + ic - payment;
+          if (b < 0) b = 0;
+        }
+        return guard >= 1200 ? 0 : Math.max(0, interest);
+      }
       function payoffDate(months) {
         if (months >= 9999) return "Never (increase payment)";
         const d = new Date();
@@ -1137,43 +1634,79 @@
           year: "numeric",
         });
       }
-
       function utilClass(pct) {
-        if (pct < 30) return "low";
-        if (pct < 60) return "mid";
-        return "high";
+        return pct < 30 ? "low" : pct < 60 ? "mid" : "high";
       }
-
       function issuerColor(issuer, type) {
         if (type === "personal") return "personal";
-        const map = {
-          navy: "navy",
-          capital: "capital",
-          paypal: "paypal",
-          amex: "amex",
-          discover: "discover",
-          auto: "auto",
-          personal: "personal",
-          custom: "custom",
-        };
-        return map[issuer] || "custom";
+        return (
+          {
+            navy: "navy",
+            capital: "capital",
+            paypal: "paypal",
+            amex: "amex",
+            discover: "discover",
+            auto: "auto",
+            personal: "personal",
+            custom: "custom",
+          }[issuer] || "custom"
+        );
       }
-
       function issuerLabel(issuer) {
-        const map = {
-          navy: "Navy Federal Credit Union",
-          capital: "Capital One",
-          paypal: "PayPal / Synchrony",
-          amex: "American Express",
-          discover: "Discover",
-          auto: "Auto Lender",
-          personal: "Personal Loan Lender",
-          custom: "Other",
-        };
-        return map[issuer] || "Other";
+        return (
+          {
+            navy: "Navy Federal Credit Union",
+            capital: "Capital One",
+            paypal: "PayPal / Synchrony",
+            amex: "American Express",
+            discover: "Discover",
+            auto: "Auto Lender",
+            personal: "Personal Loan Lender",
+            custom: "Other",
+          }[issuer] || "Other"
+        );
       }
 
-      // ── MODAL TYPE TOGGLE ──
+      // ── READ SAVINGS FROM localStorage ──
+      function getTotalSavings() {
+        try {
+          const entries = JSON.parse(localStorage.getItem(SAVINGS_KEY)) || [];
+          return entries.reduce((s, e) => s + (e.amount || 0), 0);
+        } catch (e) {
+          return 0;
+        }
+      }
+
+      function updateDownPaymentPreview() {
+        const isLoan =
+          currentEntryType === "auto" || currentEntryType === "personal";
+        if (!isLoan) return;
+        const balance =
+          parseFloat(document.getElementById("f-balance").value) || 0;
+        const apr = parseFloat(document.getElementById("f-apr").value) || 0;
+        const term = parseInt(document.getElementById("f-term").value) || 0;
+        const dp =
+          parseFloat(document.getElementById("f-downpayment").value) || 0;
+        const preview = document.getElementById("dp-preview");
+        if (!balance || !apr || !term) {
+          preview.style.display = "none";
+          return;
+        }
+        const financed = Math.max(0, balance - dp);
+        const monthlyNoDp = loanMonthlyPayment(balance, apr, term);
+        const monthlyWith =
+          dp > 0 ? loanMonthlyPayment(financed, apr, term) : monthlyNoDp;
+        const intNoDp = calcTotalInterest(balance, apr, monthlyNoDp);
+        const intWith =
+          dp > 0 ? calcTotalInterest(financed, apr, monthlyWith) : intNoDp;
+        const saved = Math.max(0, intNoDp - intWith);
+        document.getElementById("dp-financed").textContent = fmt(financed);
+        document.getElementById("dp-monthly").textContent = fmt(monthlyWith);
+        document.getElementById("dp-saved").textContent =
+          dp > 0 ? fmt(saved) : "$0";
+        preview.style.display = "block";
+      }
+
       function setEntryType(type) {
         currentEntryType = type;
         document
@@ -1185,16 +1718,12 @@
         document
           .getElementById("type-btn-personal")
           .classList.toggle("active", type === "personal");
-
         const isAuto = type === "auto",
           isPersonal = type === "personal",
           isLoan = isAuto || isPersonal;
-
-        document.getElementById("f-name-label").textContent = isPersonal
+        document.getElementById("f-name-label").textContent = isLoan
           ? "Loan Name"
-          : isAuto
-            ? "Loan Name"
-            : "Card Name";
+          : "Card Name";
         document.getElementById("f-name").placeholder = isPersonal
           ? "e.g. SoFi Personal Loan"
           : isAuto
@@ -1227,17 +1756,23 @@
         document.getElementById("term-group").style.display = isLoan
           ? "block"
           : "none";
+        document.getElementById("downpayment-group").style.display = isLoan
+          ? "block"
+          : "none";
         document.getElementById("purpose-group").style.display = isPersonal
           ? "block"
           : "none";
-
-        const saveBtn = document.getElementById("btn-save-main");
-        saveBtn.classList.toggle("personal-save", isPersonal);
+        if (!isLoan)
+          document.getElementById("dp-preview").style.display = "none";
+        document
+          .getElementById("btn-save-main")
+          .classList.toggle("personal-save", isPersonal);
+        updateDownPaymentPreview();
       }
 
-      // ── RENDER ──
       function render() {
         renderSummary();
+        renderNetWorth();
         renderCards();
         renderAvalanche();
       }
@@ -1261,7 +1796,6 @@
               totalDebt
             : 0;
         const util = totalLimit > 0 ? (totalDebt / totalLimit) * 100 : 0;
-
         document.getElementById("sum-debt").textContent = fmtShort(totalDebt);
         document.getElementById("sum-min").textContent = fmtShort(totalMin);
         document.getElementById("sum-apr").textContent =
@@ -1273,22 +1807,254 @@
           util.toFixed(0) + "% utilized";
       }
 
+      // ── NET WORTH ──
+      function renderNetWorth() {
+        const savings = getTotalSavings();
+        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0);
+        const netWorth = savings - totalDebt;
+        const hasSavings = savings > 0;
+        const hasDebt = totalDebt > 0;
+
+        // net worth value
+        const nwEl = document.getElementById("nw-value");
+        nwEl.textContent = (netWorth >= 0 ? "+" : "") + fmt(netWorth);
+        nwEl.className =
+          "nw-value " +
+          (netWorth > 0 ? "positive" : netWorth < 0 ? "negative" : "neutral");
+
+        document.getElementById("nw-savings").textContent = fmt(savings);
+        document.getElementById("nw-debt").textContent = fmt(totalDebt);
+
+        // sub text
+        const subEl = document.getElementById("nw-sub");
+        if (!hasSavings && !hasDebt) {
+          subEl.textContent = "Add accounts & savings to see your full picture";
+        } else if (netWorth >= 0) {
+          subEl.textContent = "Your savings exceed your debt — great position.";
+        } else {
+          subEl.textContent =
+            "Your debt exceeds savings by " + fmt(Math.abs(netWorth)) + ".";
+        }
+
+        // bar
+        const total = savings + totalDebt;
+        const savingsPct = total > 0 ? (savings / total) * 100 : 0;
+        const debtPct = total > 0 ? (totalDebt / total) * 100 : 0;
+        document.getElementById("nw-bar-savings").style.width =
+          savingsPct.toFixed(1) + "%";
+        document.getElementById("nw-bar-debt").style.width =
+          debtPct.toFixed(1) + "%";
+        document.getElementById("nw-bar-savings-pct").textContent =
+          "Savings " + savingsPct.toFixed(0) + "%";
+        document.getElementById("nw-bar-debt-pct").textContent =
+          "Debt " + debtPct.toFixed(0) + "%";
+
+        // ── PAYOFF SLIDER ──
+        initPayoffSlider(totalDebt, hasDebt);
+
+        // notice
+        document.getElementById("nw-notice").style.display = hasSavings
+          ? "none"
+          : "flex";
+      }
+
+      function calcTotalInterestSim(bal, annualApr, monthly) {
+        if (!bal || bal <= 0 || !monthly || monthly <= 0) return Infinity;
+        const r = annualApr / 100 / 12;
+        if (r > 0 && monthly <= bal * r) return Infinity;
+        let b = bal,
+          interest = 0,
+          guard = 0;
+        while (b > 0.005 && guard++ < 2400) {
+          const ic = b * r;
+          interest += ic;
+          b = b + ic - monthly;
+          if (b < 0) b = 0;
+        }
+        return guard >= 2400 ? Infinity : Math.max(0, interest);
+      }
+
+      function initPayoffSlider(totalDebt, hasDebt) {
+        const weightedApr =
+          totalDebt > 0
+            ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
+              totalDebt
+            : 20;
+
+        const totalMin = cards.reduce((s, c) => {
+          const bal = c.balance || 0;
+          if (c.type === "auto" || c.type === "personal")
+            return (
+              s + (c.min || loanMonthlyPayment(bal, c.apr || 0, c.term || 60))
+            );
+          const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0;
+          const rawMin = c.min || 0;
+          return s + (rawMin > 0 && rawMin < bal ? rawMin : autoMin);
+        }, 0);
+
+        const minDaily = Math.max(1, Math.ceil(totalMin / 30.4));
+        const daily1yr =
+          totalDebt > 0
+            ? Math.ceil(loanMonthlyPayment(totalDebt, weightedApr, 12) / 30.4)
+            : 30;
+        const daily2yr =
+          totalDebt > 0
+            ? Math.ceil(loanMonthlyPayment(totalDebt, weightedApr, 24) / 30.4)
+            : 15;
+        const sliderMax = Math.max(300, daily1yr * 2);
+
+        const slider = document.getElementById("psc-slider");
+        slider.min = 1;
+        slider.max = sliderMax;
+        slider.value = minDaily;
+
+        // build preset buttons
+        const presetsEl = document.getElementById("psc-presets");
+        presetsEl.innerHTML = "";
+        if (hasDebt) {
+          [
+            { label: "Min payments", val: minDaily },
+            { label: "2-year payoff", val: daily2yr },
+            { label: "1-year payoff", val: daily1yr },
+          ].forEach((p) => {
+            const btn = document.createElement("button");
+            btn.className = "psc-preset-btn";
+            btn.textContent = p.label + " · $" + p.val + "/day";
+            btn.onclick = () => {
+              slider.value = Math.min(p.val, sliderMax);
+              updatePayoffSlider(totalDebt, weightedApr);
+            };
+            presetsEl.appendChild(btn);
+          });
+        }
+
+        slider.oninput = () => updatePayoffSlider(totalDebt, weightedApr);
+        updatePayoffSlider(totalDebt, weightedApr);
+      }
+
+      function onSliderInput() {
+        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0);
+        const weightedApr =
+          totalDebt > 0
+            ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
+              totalDebt
+            : 20;
+        updatePayoffSlider(totalDebt, weightedApr);
+      }
+
+      function updatePayoffSlider(totalDebt, weightedApr) {
+        const daily = parseFloat(document.getElementById("psc-slider").value);
+        const monthly = daily * 30.4;
+        document.getElementById("psc-daily-val").textContent =
+          "$" +
+          daily.toLocaleString("en-US", {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 2,
+          }) +
+          "/day";
+
+        if (!totalDebt) {
+          document.getElementById("psc-months").textContent = "—";
+          document.getElementById("psc-date").textContent =
+            "Add accounts to calculate";
+          document.getElementById("psc-interest").textContent = "—";
+          document.getElementById("psc-interest-sub").textContent = "";
+          document.getElementById("psc-total").textContent = "—";
+          document.getElementById("psc-total-sub").textContent = "";
+          return;
+        }
+
+        const months = monthsToPayoff(totalDebt, weightedApr, monthly);
+        const interest = calcTotalInterestSim(totalDebt, weightedApr, monthly);
+        const total = isFinite(interest) ? totalDebt + interest : Infinity;
+
+        // months / date
+        const mEl = document.getElementById("psc-months");
+        const dEl = document.getElementById("psc-date");
+        if (months >= 9999 || !isFinite(interest)) {
+          mEl.textContent = "Never";
+          mEl.style.color = "var(--red)";
+          dEl.textContent = "Payment too low — raise it";
+        } else {
+          mEl.textContent = months + " mo";
+          mEl.style.color =
+            months <= 12
+              ? "var(--green)"
+              : months <= 36
+                ? "var(--accent)"
+                : "var(--red)";
+          const d = new Date();
+          d.setMonth(d.getMonth() + months);
+          dEl.textContent =
+            d.toLocaleDateString("en-US", { month: "short", year: "numeric" }) +
+            " · " +
+            (months / 12).toFixed(1) +
+            " yrs";
+        }
+
+        // interest
+        const iEl = document.getElementById("psc-interest");
+        const isEl = document.getElementById("psc-interest-sub");
+        if (!isFinite(interest)) {
+          iEl.textContent = "∞";
+          iEl.style.color = "var(--red)";
+          isEl.textContent = "Interest exceeds payment";
+        } else {
+          const ratio = interest / totalDebt;
+          iEl.textContent = "$" + Math.round(interest).toLocaleString();
+          iEl.style.color =
+            ratio < 0.1
+              ? "var(--green)"
+              : ratio < 0.4
+                ? "var(--accent)"
+                : "var(--red)";
+          isEl.textContent = Math.round(ratio * 100) + "% of principal";
+        }
+
+        // total
+        const tEl = document.getElementById("psc-total");
+        const tsEl = document.getElementById("psc-total-sub");
+        if (!isFinite(total)) {
+          tEl.textContent = "∞";
+          tEl.style.color = "var(--red)";
+          tsEl.textContent = "";
+        } else {
+          tEl.textContent = "$" + Math.round(total).toLocaleString();
+          tEl.style.color = "var(--text)";
+          tsEl.textContent =
+            "$" +
+            Math.round(monthly).toLocaleString() +
+            "/mo · $" +
+            daily +
+            "/day";
+        }
+
+        // bar
+        if (isFinite(interest) && total > 0) {
+          const pPct = Math.round((totalDebt / total) * 100);
+          const iPct = 100 - pPct;
+          document.getElementById("psc-bar-p").style.width = pPct + "%";
+          document.getElementById("psc-bar-i").style.width = iPct + "%";
+          document.getElementById("psc-bar-p-lbl").textContent =
+            "$" + Math.round(totalDebt).toLocaleString() + " principal";
+          document.getElementById("psc-bar-i-lbl").textContent =
+            "$" + Math.round(interest).toLocaleString() + " interest";
+        }
+      }
+
       function renderCards() {
         const grid = document.getElementById("cards-grid");
-        if (cards.length === 0) {
+        if (!cards.length) {
           grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-            <div class="empty-icon">💳</div>
-            <h3>No accounts yet</h3>
+            <div class="empty-icon">💳</div><h3>No accounts yet</h3>
             <p>Add a credit card, auto loan, or personal loan to start tracking balances and payoff timelines.</p>
             <button class="btn-add" onclick="openModal()" style="margin:0 auto">＋ Add Your First Account</button>
           </div>`;
           return;
         }
-
         const sorted = [...cards].sort((a, b) => (b.apr || 0) - (a.apr || 0));
         const firstId = sorted[0]?.id,
           secondId = sorted[1]?.id;
-
         grid.innerHTML = cards
           .map((c) => {
             const isAuto = c.type === "auto",
@@ -1306,13 +2072,10 @@
                 ? rawMin
                 : autoMin;
             const util = limit > 0 ? (balance / limit) * 100 : 0;
-            const months = isLoan
-              ? monthsToPayoff(balance, apr, monthlyPayment)
-              : monthsToPayoff(balance, apr, monthlyPayment);
+            const months = monthsToPayoff(balance, apr, monthlyPayment);
             const payDate = payoffDate(months);
             const monthlyInt = balance * (apr / 100 / 12);
-            const last4 = c.last4 ? ` ···· ${c.last4}` : "";
-
+            const last4 = c.last4 ? " ···· " + c.last4 : "";
             let badge = "";
             if (balance > 0) {
               if (c.id === firstId)
@@ -1321,24 +2084,18 @@
                 badge = `<span class="priority-badge pay-next">⚡ Pay Next</span>`;
               else
                 badge = `<span class="priority-badge good-standing">✓ On Track</span>`;
-            } else {
+            } else
               badge = `<span class="priority-badge good-standing">✓ Paid Off</span>`;
-            }
-
             let barHtml = "";
             if (isLoan) {
               const origTerm = c.origTerm || term,
                 elapsed = origTerm - term;
               const pct = origTerm > 0 ? (elapsed / origTerm) * 100 : 0;
-              const barClass = isPersonal ? "purple" : "low";
               barHtml = `<div style="margin-bottom:6px;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)">Loan Progress</div>
-              <div class="util-bar-wrap"><div class="util-bar ${barClass}" style="width:${Math.min(pct, 100).toFixed(1)}%"></div></div>`;
+              <div class="util-bar-wrap"><div class="util-bar ${isPersonal ? "purple" : "low"}" style="width:${Math.min(pct, 100).toFixed(1)}%"></div></div>`;
             } else if (limit > 0) {
               barHtml = `<div class="util-bar-wrap"><div class="util-bar ${utilClass(util)}" style="width:${Math.min(util, 100).toFixed(1)}%"></div></div>`;
-            } else {
-              barHtml = '<div style="margin-bottom:18px"></div>';
-            }
-
+            } else barHtml = '<div style="margin-bottom:18px"></div>';
             const typeIcon = isPersonal
               ? "🏦 Personal Loan · "
               : isAuto
@@ -1356,22 +2113,6 @@
                 : "∞"
               : fmt(monthlyInt);
             const thirdClass = isPersonal ? "purple" : isAuto ? "" : "red";
-
-            // Total interest — simulate month by month for accuracy
-            function calcTotalInterest(bal, annualApr, payment) {
-              if (!bal || bal <= 0 || !payment || payment <= 0) return 0;
-              const r = annualApr / 100 / 12;
-              let b = bal,
-                interest = 0,
-                guard = 0;
-              while (b > 0.005 && guard++ < 1200) {
-                const intCharge = b * r;
-                interest += intCharge;
-                b = b + intCharge - payment;
-                if (b < 0) b = 0;
-              }
-              return guard >= 1200 ? 0 : Math.max(0, interest);
-            }
             let totalInterest =
               balance > 0 && monthlyPayment > 0
                 ? calcTotalInterest(balance, apr, monthlyPayment)
@@ -1391,16 +2132,10 @@
                   : interestPct > 25
                     ? "var(--accent)"
                     : "var(--green)";
-            const interestLabelColor = isPersonal
-              ? "purple"
-              : isAuto
-                ? "green"
-                : interestPct > 50
-                  ? "red"
-                  : interestPct > 25
-                    ? ""
-                    : "green";
-
+            const dpBadge =
+              c.downpayment > 0
+                ? `<div style="margin-top:4px;font-size:0.65rem;color:var(--green);background:var(--green-dim);border:1px solid rgba(129,199,132,0.2);display:inline-block;padding:2px 8px;border-radius:12px;letter-spacing:0.06em">↓ ${fmt(c.downpayment)} down</div>`
+                : "";
             return `<div class="card-item">
             <div class="card-visual ${issuerColor(c.issuer, c.type)}"></div>
             <div class="card-body">
@@ -1408,7 +2143,7 @@
                 <div>
                   <div class="card-name">${c.name || (isPersonal ? "Personal Loan" : isAuto ? "Auto Loan" : "Unnamed Card")}${last4}</div>
                   <div class="card-issuer">${typeIcon}${issuerLabel(c.issuer)}</div>
-                  ${purposeTag}
+                  ${purposeTag}${dpBadge}
                 </div>
                 <div class="card-actions">
                   <button class="icon-btn" onclick="openModal('${c.id}')" title="Edit">✎</button>
@@ -1425,7 +2160,6 @@
                 <div class="stat-box"><div class="stat-lbl">${isLoan ? "Payment" : "Min. Payment"}</div><div class="stat-val">${fmt(monthlyPayment)}</div></div>
                 <div class="stat-box"><div class="stat-lbl">${thirdLbl}</div><div class="stat-val ${thirdClass}">${thirdVal}</div></div>
               </div>
-
               ${
                 balance > 0 && months < 9999
                   ? `
@@ -1445,7 +2179,6 @@
               </div>`
                   : ""
               }
-
               <div class="payoff-row">
                 <div>${badge}</div>
                 <div style="text-align:right">
@@ -1461,13 +2194,11 @@
 
       function renderAvalanche() {
         const section = document.getElementById("avalanche-section");
-        const hasDebt = cards.some((c) => (c.balance || 0) > 0);
-        if (!hasDebt || cards.length === 0) {
+        if (!cards.some((c) => (c.balance || 0) > 0) || !cards.length) {
           section.style.display = "none";
           return;
         }
         section.style.display = "block";
-
         const sorted = [...cards]
           .filter((c) => (c.balance || 0) > 0)
           .sort((a, b) => (b.apr || 0) - (a.apr || 0));
@@ -1493,23 +2224,18 @@
             <div class="av-name">${icon}${c.name || "Unnamed"}</div>
             <div class="av-apr">${c.apr || 0}% APR</div>
             <div class="av-balance">${fmtShort(c.balance || 0)}</div>
-            <div class="av-action">
-              ${i === 0 ? "<strong>Pay extra here</strong>highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>to pay off`}
-            </div>
+            <div class="av-action">${i === 0 ? "<strong>Pay extra here</strong>highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>to pay off`}</div>
           </div>`;
           })
           .join("");
       }
 
-      // ── MODAL ──
       let editingId = null;
-
       function openModal(id) {
         editingId = id || null;
         document.getElementById("modal-title").textContent = id
           ? "Edit Account"
           : "Add an Account";
-
         if (id) {
           const c = cards.find((x) => x.id === id);
           if (c) {
@@ -1527,10 +2253,14 @@
             document.getElementById("f-limit").value = c.limit || "";
             document.getElementById("f-apr").value = c.apr || "";
             document.getElementById("f-min").value = c.min || "";
-            if (c.type === "auto" || c.type === "personal")
+            if (c.type === "auto" || c.type === "personal") {
               document.getElementById("f-term").value = c.term || "";
+              document.getElementById("f-downpayment").value =
+                c.downpayment || "";
+            }
             if (c.type === "personal")
               document.getElementById("f-purpose").value = c.purpose || "";
+            updateDownPaymentPreview();
           }
         } else {
           setEntryType("card");
@@ -1542,20 +2272,20 @@
             "f-apr",
             "f-min",
             "f-term",
+            "f-downpayment",
             "f-purpose",
           ].forEach((fid) => {
             const el = document.getElementById(fid);
             if (el) el.value = "";
           });
+          document.getElementById("dp-preview").style.display = "none";
         }
         document.getElementById("modal-overlay").classList.add("open");
       }
-
       function closeModal() {
         document.getElementById("modal-overlay").classList.remove("open");
         editingId = null;
       }
-
       function closeModalOutside(e) {
         if (e.target === document.getElementById("modal-overlay")) closeModal();
       }
@@ -1566,12 +2296,12 @@
           document.getElementById("f-name").focus();
           return;
         }
-
         const isAuto = currentEntryType === "auto",
           isPersonal = currentEntryType === "personal",
           isLoan = isAuto || isPersonal;
         const termVal = parseInt(document.getElementById("f-term").value) || 60;
-
+        const dp =
+          parseFloat(document.getElementById("f-downpayment").value) || 0;
         const card = {
           id: editingId || uid(),
           type: currentEntryType,
@@ -1583,28 +2313,21 @@
           apr: parseFloat(document.getElementById("f-apr").value) || 0,
           min: parseFloat(document.getElementById("f-min").value) || 0,
         };
-
         if (isLoan) {
+          card.balance = Math.max(0, card.balance - dp);
+          card.downpayment = dp;
           card.term = termVal;
           if (editingId) {
-            const existing = cards.find((c) => c.id === editingId);
-            card.origTerm = existing?.origTerm || termVal;
-          } else {
-            card.origTerm = termVal;
-          }
+            const ex = cards.find((c) => c.id === editingId);
+            card.origTerm = ex?.origTerm || termVal;
+          } else card.origTerm = termVal;
         }
-
-        if (isPersonal) {
+        if (isPersonal)
           card.purpose = document.getElementById("f-purpose").value.trim();
-        }
-
         if (editingId) {
           const idx = cards.findIndex((c) => c.id === editingId);
           if (idx > -1) cards[idx] = card;
-        } else {
-          cards.push(card);
-        }
-
+        } else cards.push(card);
         saveCards();
         closeModal();
         render();

@@ -16,7 +16,6 @@
         margin: 0;
         padding: 0;
       }
-
       :root {
         --bg: #09090a;
         --surface: #111110;
@@ -27,15 +26,12 @@
         --accent-dim: rgba(201, 169, 110, 0.12);
         --red: #e57373;
       }
-
       body {
         background: var(--bg);
         color: var(--text);
         font-family: "DM Sans", sans-serif;
         min-height: 100vh;
       }
-
-      /* NAV */
       nav {
         display: flex;
         justify-content: space-between;
@@ -72,8 +68,9 @@
       .nav-links a:hover {
         color: var(--text);
       }
-
-      /* HERO */
+      .nav-links a.active {
+        color: var(--accent);
+      }
       .page-hero {
         text-align: center;
         padding: 80px 40px 50px;
@@ -110,8 +107,6 @@
         max-width: 420px;
         margin: 0 auto;
       }
-
-      /* CALCULATOR LAYOUT */
       .calculator-wrapper {
         max-width: 1100px;
         margin: 0 auto;
@@ -121,8 +116,6 @@
         gap: 48px;
         align-items: start;
       }
-
-      /* INPUTS PANEL */
       .inputs-panel {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -136,7 +129,6 @@
         margin-bottom: 36px;
         color: var(--accent);
       }
-
       .input-group {
         margin-bottom: 28px;
       }
@@ -148,8 +140,6 @@
         color: var(--muted);
         margin-bottom: 10px;
       }
-
-      /* Typed input field */
       .field-wrap {
         position: relative;
         display: flex;
@@ -170,7 +160,6 @@
       .field-suffix {
         right: 16px;
       }
-
       input[type="number"],
       input[type="text"] {
         width: 100%;
@@ -192,31 +181,22 @@
       input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
       }
-
       input[type="number"]:focus,
       input[type="text"]:focus {
         border-color: var(--accent);
         box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.12);
       }
-      input[type="number"]:focus ~ .field-prefix,
-      input[type="number"]:focus ~ .field-suffix {
-        color: var(--accent);
-      }
-
       .no-prefix {
         padding-left: 20px;
       }
       .has-suffix {
         padding-right: 50px;
       }
-
       .hint {
         margin-top: 7px;
         font-size: 0.72rem;
         color: var(--muted);
       }
-
-      /* Also keep sliders for rate */
       input[type="range"] {
         width: 100%;
         height: 2px;
@@ -253,8 +233,6 @@
         color: var(--text);
         margin-bottom: 4px;
       }
-
-      /* Mode toggle */
       .mode-toggle {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -289,8 +267,6 @@
         background: var(--accent-dim);
         color: var(--accent);
       }
-
-      /* Reverse result box */
       .reverse-result {
         background: linear-gradient(135deg, #0d1a00, #0a0f0a);
         border: 1px solid rgba(120, 200, 80, 0.25);
@@ -332,8 +308,6 @@
       .rev-warning.visible {
         display: block;
       }
-
-      /* Loan type toggle */
       .loan-type-toggle {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -362,14 +336,11 @@
         background: var(--accent-dim);
         color: var(--accent);
       }
-
-      /* RESULTS PANEL */
       .results-panel {
         display: flex;
         flex-direction: column;
         gap: 20px;
       }
-
       .monthly-hero {
         background: linear-gradient(135deg, #1a1500, #0f0f0a);
         border: 1px solid rgba(201, 169, 110, 0.25);
@@ -397,7 +368,6 @@
         font-size: 0.82rem;
         color: var(--muted);
       }
-
       .breakdown-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -425,7 +395,6 @@
       .breakdown-box.highlight .b-value {
         color: var(--red);
       }
-
       .amort-section {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -474,8 +443,6 @@
       .dot-interest {
         background: var(--red);
       }
-
-      /* SCHEDULE */
       .schedule-section {
         max-width: 1100px;
         margin: 0 auto 80px;
@@ -513,7 +480,6 @@
       .schedule-table td.interest-cell {
         color: var(--red);
       }
-
       .show-more-btn {
         display: block;
         width: 100%;
@@ -534,8 +500,6 @@
         border-color: var(--accent);
         color: var(--accent);
       }
-
-      /* error state */
       .input-error {
         border-color: var(--red) !important;
         box-shadow: 0 0 0 3px rgba(229, 115, 115, 0.12) !important;
@@ -549,7 +513,6 @@
       .error-msg.visible {
         display: block;
       }
-
       footer {
         border-top: 1px solid var(--border);
         padding: 40px 60px;
@@ -567,7 +530,6 @@
         font-size: 0.78rem;
         color: var(--muted);
       }
-
       @media (max-width: 900px) {
         nav {
           padding: 20px 24px;
@@ -593,11 +555,11 @@
   </head>
   <body>
     <nav>
-      <a href="#" class="nav-logo">M Finance</a>
+      <a href="index.html" class="nav-logo">M Finance</a>
       <ul class="nav-links">
-        <li><a href="#">Cards</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.html#cards">Cards</a></li>
+        <li><a href="loan-calculator.html" class="active">Calculator</a></li>
+        <li><a href="savings.html">Savings</a></li>
       </ul>
     </nav>
 
@@ -610,11 +572,9 @@
     </section>
 
     <div class="calculator-wrapper">
-      <!-- INPUTS -->
       <div class="inputs-panel">
         <h2 id="panel-title">Adjust your loan</h2>
 
-        <!-- Mode toggle -->
         <div class="mode-toggle">
           <button
             class="mode-btn active"
@@ -632,7 +592,6 @@
           </button>
         </div>
 
-        <!-- Loan Amount — typed input -->
         <div class="input-group">
           <label>Loan Amount</label>
           <div class="field-wrap">
@@ -654,7 +613,29 @@
           <p class="hint">Type any exact dollar amount</p>
         </div>
 
-        <!-- Loan Term — shown in standard mode -->
+        <div class="input-group">
+          <label>Down Payment (Optional)</label>
+          <div class="field-wrap">
+            <input
+              type="number"
+              id="down-payment"
+              min="0"
+              max="10000000"
+              step="100"
+              value=""
+              oninput="calculate()"
+              placeholder="2000"
+            />
+            <span class="field-prefix">$</span>
+          </div>
+          <div class="error-msg" id="down-error">
+            Down payment can't be more than the loan amount
+          </div>
+          <p class="hint">
+            Paid upfront and subtracted from the amount financed
+          </p>
+        </div>
+
         <div class="input-group" id="term-group">
           <label>Loan Term</label>
           <div class="field-wrap">
@@ -678,7 +659,6 @@
           <p class="hint">e.g. 12, 36, 60, 120 months</p>
         </div>
 
-        <!-- Monthly Payment target — shown in reverse mode -->
         <div class="input-group" id="payment-group" style="display: none">
           <label>Monthly Payment I Can Afford</label>
           <div class="field-wrap">
@@ -697,7 +677,6 @@
             Payment must be greater than monthly interest
           </div>
           <p class="hint">Type your max monthly budget</p>
-          <!-- Reverse result shown here -->
           <div class="reverse-result" id="reverse-result">
             <div class="rev-label">Months to Pay Off</div>
             <div class="rev-value" id="rev-months">—</div>
@@ -709,7 +688,6 @@
           </div>
         </div>
 
-        <!-- Interest Rate — slider (kept for rate since it's more nuanced) -->
         <div class="input-group">
           <label>Interest Rate (APR)</label>
           <div class="rate-display"><span id="display-rate">8</span>%</div>
@@ -725,7 +703,6 @@
           <div class="range-labels"><span>0.1%</span><span>30%</span></div>
         </div>
 
-        <!-- Loan Type -->
         <div class="input-group">
           <label>Loan Type</label>
           <div class="loan-type-toggle">
@@ -742,25 +719,27 @@
         </div>
       </div>
 
-      <!-- RESULTS -->
       <div class="results-panel">
         <div class="monthly-hero">
           <div class="monthly-label">Monthly Payment</div>
           <div class="monthly-amount" id="monthly-payment">$0.00</div>
           <div class="monthly-sub">Estimated based on your inputs</div>
         </div>
-
         <div class="breakdown-grid">
           <div class="breakdown-box">
-            <div class="b-label">Principal</div>
+            <div class="b-label">Amount Financed</div>
             <div class="b-value" id="total-principal">$0</div>
+          </div>
+          <div class="breakdown-box">
+            <div class="b-label">Down Payment</div>
+            <div class="b-value" id="down-payment-total">$0</div>
           </div>
           <div class="breakdown-box highlight">
             <div class="b-label">Total Interest</div>
             <div class="b-value" id="total-interest">$0</div>
           </div>
           <div class="breakdown-box">
-            <div class="b-label">Total Cost</div>
+            <div class="b-label">Total Paid</div>
             <div class="b-value" id="total-cost">$0</div>
           </div>
           <div class="breakdown-box">
@@ -768,9 +747,8 @@
             <div class="b-value" id="payoff-date">—</div>
           </div>
         </div>
-
         <div class="amort-section">
-          <div class="amort-title">Principal vs Interest</div>
+          <div class="amort-title">Financed vs Interest</div>
           <div class="amort-bar-wrap">
             <div
               class="amort-bar-principal"
@@ -781,7 +759,7 @@
           <div class="amort-legend">
             <div class="legend-item">
               <div class="legend-dot dot-principal"></div>
-              <span id="principal-pct">— Principal</span>
+              <span id="principal-pct">— Financed</span>
             </div>
             <div class="legend-item">
               <div class="legend-dot dot-interest"></div>
@@ -792,7 +770,6 @@
       </div>
     </div>
 
-    <!-- SCHEDULE -->
     <div class="schedule-section">
       <h2>Amortization Schedule</h2>
       <table class="schedule-table">
@@ -817,14 +794,14 @@
     </div>
 
     <footer>
-      <a href="#" class="footer-logo">M Finance</a>
+      <a href="index.html" class="footer-logo">M Finance</a>
       <p>&copy; 2026 M Finance. All rights reserved.</p>
     </footer>
 
     <script>
-      let showAll = false;
-      let fullSchedule = [];
-      let currentMode = "standard";
+      let showAll = false,
+        fullSchedule = [],
+        currentMode = "standard";
 
       function fmt(n) {
         return "$" + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -837,29 +814,18 @@
 
       function setMode(mode) {
         currentMode = mode;
-        const termGroup = document.getElementById("term-group");
-        const paymentGroup = document.getElementById("payment-group");
-        const stdBtn = document.getElementById("mode-standard");
-        const revBtn = document.getElementById("mode-reverse");
-        const title = document.getElementById("panel-title");
-
-        if (mode === "standard") {
-          termGroup.style.display = "block";
-          paymentGroup.style.display = "none";
-          stdBtn.classList.add("active");
-          revBtn.classList.remove("active");
-          title.textContent = "Adjust your loan";
-          // restore normal results panel visibility
-          document
-            .getElementById("monthly-payment")
-            .closest(".monthly-hero").style.display = "block";
-        } else {
-          termGroup.style.display = "none";
-          paymentGroup.style.display = "block";
-          revBtn.classList.add("active");
-          stdBtn.classList.remove("active");
-          title.textContent = "How long will it take?";
-        }
+        document.getElementById("term-group").style.display =
+          mode === "standard" ? "block" : "none";
+        document.getElementById("payment-group").style.display =
+          mode === "reverse" ? "block" : "none";
+        document
+          .getElementById("mode-standard")
+          .classList.toggle("active", mode === "standard");
+        document
+          .getElementById("mode-reverse")
+          .classList.toggle("active", mode === "reverse");
+        document.getElementById("panel-title").textContent =
+          mode === "standard" ? "Adjust your loan" : "How long will it take?";
         calculate();
       }
 
@@ -872,19 +838,74 @@
         calculate();
       }
 
+      function updateMonthlySub(financedAmount, downPayment) {
+        const sub = document.querySelector(".monthly-sub");
+        if (financedAmount <= 0 && downPayment > 0) {
+          sub.textContent = "No financing needed after your down payment";
+          return;
+        }
+        if (downPayment > 0) {
+          sub.textContent = `Based on ${fmt(financedAmount)} financed after ${fmt(downPayment)} down`;
+          return;
+        }
+        sub.textContent = "Estimated based on your inputs";
+      }
+
+      function setBreakdown(P, dp, totalInterest, totalPaid, payoffText) {
+        document.getElementById("total-principal").textContent = fmtShort(P);
+        document.getElementById("down-payment-total").textContent =
+          fmtShort(dp);
+        document.getElementById("total-interest").textContent =
+          fmtShort(totalInterest);
+        document.getElementById("total-cost").textContent = fmtShort(totalPaid);
+        document.getElementById("payoff-date").textContent = payoffText;
+      }
+
+      function setAmortization(P, totalInterest, totalLoanCost) {
+        if (!totalLoanCost || totalLoanCost <= 0) {
+          document.getElementById("amort-bar").style.width = "0%";
+          document.getElementById("principal-pct").textContent = "0% Financed";
+          document.getElementById("interest-pct").textContent = "0% Interest";
+          return;
+        }
+        const fp = ((P / totalLoanCost) * 100).toFixed(1),
+          ip = ((totalInterest / totalLoanCost) * 100).toFixed(1);
+        document.getElementById("amort-bar").style.width = fp + "%";
+        document.getElementById("principal-pct").textContent =
+          fp + "% Financed";
+        document.getElementById("interest-pct").textContent = ip + "% Interest";
+      }
+
+      function renderPaidInFull(totalAmount, downPayment) {
+        document.getElementById("reverse-result").classList.remove("visible");
+        document.getElementById("rev-warning").classList.remove("visible");
+        if (currentMode === "reverse") {
+          document.getElementById("rev-months").textContent = "0 months";
+          document.getElementById("rev-years-sub").textContent =
+            "No financing needed";
+          document.getElementById("reverse-result").classList.add("visible");
+        }
+        document.getElementById("monthly-payment").textContent = fmt(0);
+        setBreakdown(0, downPayment, 0, totalAmount, "Paid upfront");
+        setAmortization(0, 0, 0);
+        fullSchedule = [];
+        renderSchedule();
+      }
+
       function calculate() {
-        const amountEl = document.getElementById("loan-amount");
-        const amountErr = document.getElementById("amount-error");
-        const P = parseFloat(amountEl.value);
+        const amountEl = document.getElementById("loan-amount"),
+          amountErr = document.getElementById("amount-error");
+        const downEl = document.getElementById("down-payment"),
+          downErr = document.getElementById("down-error");
+        const totalAmount = parseFloat(amountEl.value);
+        const downPayment = downEl.value === "" ? 0 : parseFloat(downEl.value);
         const annualRate = parseFloat(
           document.getElementById("interest-rate").value,
         );
-
         document.getElementById("display-rate").textContent =
           annualRate.toFixed(1);
 
-        // Validate amount
-        if (!P || P < 100 || isNaN(P)) {
+        if (!totalAmount || totalAmount < 100 || isNaN(totalAmount)) {
           amountEl.classList.add("input-error");
           amountErr.classList.add("visible");
           return;
@@ -892,21 +913,35 @@
           amountEl.classList.remove("input-error");
           amountErr.classList.remove("visible");
         }
-
-        const r = annualRate / 100 / 12;
-
-        if (currentMode === "reverse") {
-          calculateReverse(P, r, annualRate);
+        if (
+          isNaN(downPayment) ||
+          downPayment < 0 ||
+          downPayment > totalAmount
+        ) {
+          downEl.classList.add("input-error");
+          downErr.classList.add("visible");
+          return;
         } else {
-          calculateStandard(P, r, annualRate);
+          downEl.classList.remove("input-error");
+          downErr.classList.remove("visible");
         }
+
+        const financedAmount = Math.max(0, totalAmount - downPayment);
+        updateMonthlySub(financedAmount, downPayment);
+        if (financedAmount === 0) {
+          renderPaidInFull(totalAmount, downPayment);
+          return;
+        }
+        const r = annualRate / 100 / 12;
+        if (currentMode === "reverse")
+          calculateReverse(financedAmount, r, downPayment);
+        else calculateStandard(financedAmount, r, downPayment);
       }
 
-      function calculateStandard(P, r, annualRate) {
-        const termEl = document.getElementById("loan-term");
-        const termErr = document.getElementById("term-error");
+      function calculateStandard(P, r, downPayment) {
+        const termEl = document.getElementById("loan-term"),
+          termErr = document.getElementById("term-error");
         const n = parseInt(termEl.value);
-
         if (!n || n < 1 || n > 600 || isNaN(n)) {
           termEl.classList.add("input-error");
           termErr.classList.add("visible");
@@ -915,87 +950,70 @@
           termEl.classList.remove("input-error");
           termErr.classList.remove("visible");
         }
-
-        let monthly;
-        if (r === 0) {
-          monthly = P / n;
-        } else {
-          monthly = (P * (r * Math.pow(1 + r, n))) / (Math.pow(1 + r, n) - 1);
-        }
-
-        const totalCost = monthly * n;
-        const totalInterest = totalCost - P;
-
+        const monthly =
+          r === 0
+            ? P / n
+            : (P * (r * Math.pow(1 + r, n))) / (Math.pow(1 + r, n) - 1);
+        const totalLoanCost = monthly * n,
+          totalInterest = totalLoanCost - P,
+          totalPaid = totalLoanCost + downPayment;
         document.getElementById("monthly-payment").textContent = fmt(monthly);
-        document.getElementById("total-principal").textContent = fmtShort(P);
-        document.getElementById("total-interest").textContent =
-          fmtShort(totalInterest);
-        document.getElementById("total-cost").textContent = fmtShort(totalCost);
-
         const payoff = new Date();
         payoff.setMonth(payoff.getMonth() + n);
-        document.getElementById("payoff-date").textContent =
+        setBreakdown(
+          P,
+          downPayment,
+          totalInterest,
+          totalPaid,
           payoff.toLocaleDateString("en-US", {
             month: "short",
             year: "numeric",
-          });
-
-        const principalPct = ((P / totalCost) * 100).toFixed(1);
-        const interestPct = ((totalInterest / totalCost) * 100).toFixed(1);
-        document.getElementById("amort-bar").style.width = principalPct + "%";
-        document.getElementById("principal-pct").textContent =
-          principalPct + "% Principal";
-        document.getElementById("interest-pct").textContent =
-          interestPct + "% Interest";
-
+          }),
+        );
+        setAmortization(P, totalInterest, totalLoanCost);
         fullSchedule = [];
         let balance = P;
         for (let i = 1; i <= n; i++) {
-          const interestPayment = balance * r;
-          const principalPayment = monthly - interestPayment;
-          balance -= principalPayment;
+          const ip = balance * r,
+            pp = monthly - ip;
+          balance -= pp;
           fullSchedule.push({
             month: i,
             payment: monthly,
-            principal: principalPayment,
-            interest: interestPayment,
+            principal: pp,
+            interest: ip,
             balance: Math.max(0, balance),
           });
         }
         renderSchedule();
       }
 
-      function calculateReverse(P, r, annualRate) {
-        const paymentEl = document.getElementById("target-payment");
-        const paymentErr = document.getElementById("payment-error");
-        const reverseResult = document.getElementById("reverse-result");
-        const revWarning = document.getElementById("rev-warning");
-
+      function calculateReverse(P, r, downPayment) {
+        const paymentEl = document.getElementById("target-payment"),
+          paymentErr = document.getElementById("payment-error");
+        const reverseResult = document.getElementById("reverse-result"),
+          revWarning = document.getElementById("rev-warning");
         const M = parseFloat(paymentEl.value);
-
         if (!M || M <= 0 || isNaN(M)) {
           paymentEl.classList.remove("input-error");
           paymentErr.classList.remove("visible");
           reverseResult.classList.remove("visible");
           revWarning.classList.remove("visible");
-          // Clear standard results too
           document.getElementById("monthly-payment").textContent = fmt(M || 0);
           document.getElementById("total-principal").textContent = fmtShort(P);
-          document.getElementById("total-interest").textContent = "—";
-          document.getElementById("total-cost").textContent = "—";
-          document.getElementById("payoff-date").textContent = "—";
+          document.getElementById("down-payment-total").textContent =
+            fmtShort(downPayment);
+          ["total-interest", "total-cost", "payoff-date"].forEach(
+            (id) => (document.getElementById(id).textContent = "—"),
+          );
           document.getElementById("amort-bar").style.width = "50%";
-          document.getElementById("principal-pct").textContent = "— Principal";
+          document.getElementById("principal-pct").textContent = "— Financed";
           document.getElementById("interest-pct").textContent = "— Interest";
           document.getElementById("schedule-body").innerHTML = "";
           document.getElementById("show-more-btn").style.display = "none";
           return;
         }
-
-        const monthlyInterest = P * r;
-
-        // Payment must exceed monthly interest charge
-        if (r > 0 && M <= monthlyInterest) {
+        if (r > 0 && M <= P * r) {
           paymentEl.classList.add("input-error");
           paymentErr.classList.add("visible");
           reverseResult.classList.remove("visible");
@@ -1006,86 +1024,60 @@
           paymentErr.classList.remove("visible");
           revWarning.classList.remove("visible");
         }
-
-        // n = -log(1 - (P*r)/M) / log(1+r)
-        let n;
-        if (r === 0) {
-          n = Math.ceil(P / M);
-        } else {
-          n = Math.ceil(-Math.log(1 - (P * r) / M) / Math.log(1 + r));
-        }
-
-        const totalCost =
-          M * (n - 1) +
-          (P * Math.pow(1 + r, n - 1) * (1 + r) -
-            (P * Math.pow(1 + r, n - 1) * r * (Math.pow(1 + r, n - 1) - 1)) /
-              r);
-        // simpler: compute real last payment
-        let balance = P;
-        let actualTotal = 0;
-        let lastPayment = M;
+        let n =
+          r === 0
+            ? Math.ceil(P / M)
+            : Math.ceil(-Math.log(1 - (P * r) / M) / Math.log(1 + r));
+        let balance = P,
+          actualTotal = 0;
         for (let i = 1; i <= n; i++) {
-          const interestPayment = balance * r;
-          const principalPayment = Math.min(M - interestPayment, balance);
-          lastPayment = principalPayment + interestPayment;
-          balance -= principalPayment;
-          actualTotal += lastPayment;
+          const ip = balance * r,
+            pp = Math.min(M - ip, balance);
+          balance -= pp;
+          actualTotal += pp + ip;
           if (balance <= 0.005) {
             n = i;
             break;
           }
         }
         const totalInterest = actualTotal - P;
-
-        // Show months result
-        const years = Math.floor(n / 12);
-        const months = n % 12;
-        let yearsSub = "";
-        if (years > 0 && months > 0) yearsSub = `${years} yr ${months} mo`;
-        else if (years > 0) yearsSub = `${years} year${years > 1 ? "s" : ""}`;
-        else yearsSub = `${months} month${months > 1 ? "s" : ""}`;
-
+        const years = Math.floor(n / 12),
+          months = n % 12;
+        let yearsSub =
+          years > 0 && months > 0
+            ? `${years} yr ${months} mo`
+            : years > 0
+              ? `${years} year${years > 1 ? "s" : ""}`
+              : `${months} month${months > 1 ? "s" : ""}`;
         document.getElementById("rev-months").textContent = n + " months";
         document.getElementById("rev-years-sub").textContent = yearsSub;
         reverseResult.classList.add("visible");
-
-        // Update right panel with this info
         document.getElementById("monthly-payment").textContent = fmt(M);
-        document.getElementById("total-principal").textContent = fmtShort(P);
-        document.getElementById("total-interest").textContent =
-          fmtShort(totalInterest);
-        document.getElementById("total-cost").textContent =
-          fmtShort(actualTotal);
-
         const payoff = new Date();
         payoff.setMonth(payoff.getMonth() + n);
-        document.getElementById("payoff-date").textContent =
+        setBreakdown(
+          P,
+          downPayment,
+          totalInterest,
+          actualTotal + downPayment,
           payoff.toLocaleDateString("en-US", {
             month: "short",
             year: "numeric",
-          });
-
-        const principalPct = ((P / actualTotal) * 100).toFixed(1);
-        const interestPct = ((totalInterest / actualTotal) * 100).toFixed(1);
-        document.getElementById("amort-bar").style.width = principalPct + "%";
-        document.getElementById("principal-pct").textContent =
-          principalPct + "% Principal";
-        document.getElementById("interest-pct").textContent =
-          interestPct + "% Interest";
-
-        // Build schedule
+          }),
+        );
+        setAmortization(P, totalInterest, actualTotal);
         fullSchedule = [];
         balance = P;
         for (let i = 1; i <= n; i++) {
-          const interestPayment = balance * r;
-          const principalPayment = Math.min(M - interestPayment, balance);
-          const payment = principalPayment + interestPayment;
-          balance -= principalPayment;
+          const ip = balance * r,
+            pp = Math.min(M - ip, balance),
+            payment = pp + ip;
+          balance -= pp;
           fullSchedule.push({
             month: i,
             payment,
-            principal: principalPayment,
-            interest: interestPayment,
+            principal: pp,
+            interest: ip,
             balance: Math.max(0, balance),
           });
           if (balance <= 0.005) break;
@@ -1094,31 +1086,22 @@
       }
 
       function renderSchedule() {
-        const tbody = document.getElementById("schedule-body");
         const rows = showAll ? fullSchedule : fullSchedule.slice(0, 6);
-        tbody.innerHTML = rows
+        document.getElementById("schedule-body").innerHTML = rows
           .map(
-            (r) => `
-          <tr>
-            <td>${r.month}</td>
-            <td>${fmt(r.payment)}</td>
-            <td>${fmt(r.principal)}</td>
-            <td class="interest-cell">${fmt(r.interest)}</td>
-            <td>${fmt(r.balance)}</td>
-          </tr>
-        `,
+            (r) =>
+              `<tr><td>${r.month}</td><td>${fmt(r.payment)}</td><td>${fmt(r.principal)}</td><td class="interest-cell">${fmt(r.interest)}</td><td>${fmt(r.balance)}</td></tr>`,
           )
           .join("");
-
         const btn = document.getElementById("show-more-btn");
         if (fullSchedule.length <= 6) {
           btn.style.display = "none";
-        } else {
-          btn.style.display = "block";
-          btn.textContent = showAll
-            ? "Show Less ↑"
-            : `Show All ${fullSchedule.length} Months ↓`;
+          return;
         }
+        btn.style.display = "block";
+        btn.textContent = showAll
+          ? "Show Less ↑"
+          : `Show All ${fullSchedule.length} Months ↓`;
       }
 
       function toggleSchedule() {
