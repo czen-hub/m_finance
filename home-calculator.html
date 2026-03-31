@@ -2,131 +2,206 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nepal Loan Strategy — Multi-Currency</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Home Loan Strategy — M Finance</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;500;700&family=Syne+Mono&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
-      :root {
-        --bg: #0e1012;
-        --surface: #161a1e;
-        --card: #1c2128;
-        --card2: #222831;
-        --border: #2d3540;
-        --border-l: #26303c;
-        --ink: #e8edf2;
-        --ink-mid: #9aa5b4;
-        --ink-muted: #5c6b7a;
-        --gold: #e6b84a;
-        --gold-d: #c49a2a;
-        --gold-bg: rgba(230, 184, 74, 0.09);
-        --green: #3ecf8e;
-        --green-d: #28a870;
-        --green-bg: rgba(62, 207, 142, 0.08);
-        --red: #f06e6e;
-        --red-bg: rgba(240, 110, 110, 0.08);
-        --blue: #5b9cf6;
-        --blue-bg: rgba(91, 156, 246, 0.08);
-        --teal: #38bdf8;
-        --purple: #a78bfa;
-        --purple-bg: rgba(167, 139, 250, 0.08);
-        --orange: #fb923c;
-        --orange-bg: rgba(251, 146, 60, 0.08);
-      }
-      * {
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
-      html {
-        font-size: 16px;
+      :root {
+        --bg: #f2f2f2;
+        --surface: #ffffff;
+        --surface2: #f8f8f8;
+        --border: #d8d8d8;
+        --border-strong: #bbbbbb;
+        --text: #111111;
+        --muted: #555555;
+        --muted2: #888888;
+        --accent: #8a6a30;
+        --accent-dim: rgba(138, 106, 48, 0.08);
+        --green: #1a6b3c;
+        --green-dim: rgba(26, 107, 60, 0.07);
+        --red: #b91c1c;
+        --red-dim: rgba(185, 28, 28, 0.07);
+        --blue: #1a4a8a;
+        --blue-dim: rgba(26, 74, 138, 0.07);
+        --purple: #5b3f8a;
+        --purple-dim: rgba(91, 63, 138, 0.07);
+        --teal: #0e6b6b;
+        --orange: #a04a10;
       }
       body {
         background: var(--bg);
-        color: var(--ink);
-        font-family: "Syne", sans-serif;
-        font-weight: 300;
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
         min-height: 100vh;
-        padding: 0 0 6rem;
+        font-size: 15px;
         line-height: 1.5;
       }
 
-      /* ── MASTHEAD ── */
-      .masthead {
-        background: linear-gradient(135deg, #0d1821 0%, #1a2535 100%);
+      /* ── NAV ── */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 60px;
+        height: 64px;
+        background: #fff;
         border-bottom: 1px solid var(--border);
-        padding: 2.5rem 2rem 2rem;
-        position: relative;
-        overflow: hidden;
+        position: sticky;
+        top: 0;
+        z-index: 200;
       }
-      .masthead::before {
-        content: "रु/$€₩د";
-        position: absolute;
-        right: 1rem;
-        top: -2rem;
-        font-family: "Playfair Display", serif;
-        font-size: 8rem;
-        opacity: 0.04;
-        pointer-events: none;
-        line-height: 1;
-        color: var(--gold);
+      .nav-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: none;
+        letter-spacing: 0.04em;
       }
-      .masthead-inner {
-        max-width: 1100px;
-        margin: 0 auto;
+      .nav-links {
+        display: flex;
+        gap: 0;
+        list-style: none;
       }
-      .masthead-tag {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.7rem;
-        letter-spacing: 0.22em;
+      .nav-links li a {
+        display: block;
+        padding: 0 18px;
+        height: 64px;
+        line-height: 64px;
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 0.7rem;
-        opacity: 0.9;
+        color: var(--muted);
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+        transition:
+          color 0.15s,
+          border-color 0.15s;
       }
-      .masthead h1 {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(2rem, 4.5vw, 3rem);
-        font-weight: 400;
-        line-height: 1.1;
-        margin-bottom: 0.5rem;
-        color: #fff;
+      .nav-links li a:hover {
+        color: var(--text);
+        border-bottom-color: var(--border-strong);
       }
-      .masthead h1 em {
+      .nav-links li a.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      /* ── HERO ── */
+      .page-hero {
+        text-align: center;
+        padding: 48px 40px 36px;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+      }
+      .section-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .page-hero h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .page-hero h1 em {
         font-style: italic;
-        color: var(--gold);
+        color: var(--accent);
       }
-      .masthead-sub {
-        font-size: 0.95rem;
-        color: rgba(232, 237, 242, 0.45);
-        max-width: 620px;
+      .page-hero p {
+        color: var(--muted);
+        font-size: 0.9rem;
       }
-      .auto-badge {
+
+      /* ── CURRENCY BAR ── */
+      .currency-wrap {
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        padding: 14px 60px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .currency-wrap-label {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-right: 4px;
+      }
+      .cur-pill {
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
-        background: rgba(230, 184, 74, 0.12);
-        border: 1px solid var(--gold-d);
-        color: var(--gold);
+        gap: 6px;
+        padding: 5px 14px;
         border-radius: 20px;
-        padding: 0.35rem 1rem;
         font-size: 0.75rem;
-        font-family: "Syne Mono", monospace;
-        letter-spacing: 0.08em;
-        margin-top: 1rem;
+        font-weight: 500;
+        border: 1px solid var(--border);
         cursor: pointer;
-        transition: background 0.15s;
+        transition: all 0.15s;
+        color: var(--muted);
+        background: transparent;
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 0.02em;
       }
-      .auto-badge:hover {
-        background: rgba(230, 184, 74, 0.22);
+      .cur-pill:hover {
+        border-color: var(--border-strong);
+        color: var(--text);
+      }
+      .cur-pill.active {
+        border-color: var(--accent);
+        background: var(--accent-dim);
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .cur-rate-note {
+        font-size: 0.68rem;
+        color: var(--muted2);
+      }
+      .reset-btn {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 16px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.76rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .reset-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
       }
       .dot {
         width: 7px;
         height: 7px;
         border-radius: 50%;
         background: var(--green);
+        display: inline-block;
         animation: pulse 1.5s infinite;
       }
       @keyframes pulse {
@@ -139,212 +214,64 @@
         }
       }
 
-      /* ── CURRENCY SELECTOR ── */
-      .currency-bar {
-        display: flex;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        margin-top: 1.2rem;
-        align-items: center;
+      /* ── FX STRIP ── */
+      .fx-wrap {
+        max-width: 1140px;
+        margin: 28px auto 0;
+        padding: 0 48px;
       }
-      .currency-bar-label {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        letter-spacing: 0.12em;
-        color: var(--ink-muted);
-        text-transform: uppercase;
-        margin-right: 0.3rem;
-      }
-      .cur-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        padding: 0.3rem 0.85rem;
-        border-radius: 20px;
-        font-family: "Syne Mono", monospace;
-        font-size: 0.72rem;
-        border: 1px solid var(--border);
-        cursor: pointer;
-        transition: all 0.15s;
-        color: var(--ink-muted);
-        background: transparent;
-        letter-spacing: 0.05em;
-      }
-      .cur-pill:hover {
-        background: var(--surface);
-        color: var(--ink);
-      }
-      .cur-pill.active-usd {
-        border-color: var(--green-d);
-        background: var(--green-bg);
-        color: var(--green);
-      }
-      .cur-pill.active-eur {
-        border-color: var(--blue);
-        background: var(--blue-bg);
-        color: var(--blue);
-      }
-      .cur-pill.active-krw {
-        border-color: var(--purple);
-        background: var(--purple-bg);
-        color: var(--purple);
-      }
-      .cur-pill.active-aed {
-        border-color: var(--orange);
-        background: var(--orange-bg);
-        color: var(--orange);
-      }
-      .cur-flag {
-        font-size: 1rem;
-        line-height: 1;
-      }
-      .cur-rate-live {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        opacity: 0.6;
-      }
-
-      /* ── LAYOUT ── */
-      .main {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 2rem 1.5rem;
-        position: relative;
-      }
-      .mb1 {
-        margin-bottom: 1rem;
-      }
-      .mb15 {
-        margin-bottom: 1.5rem;
-      }
-      .mb2 {
-        margin-bottom: 2rem;
-      }
-      .grid-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-      }
-      .grid-3 {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 1rem;
-      }
-      .grid-4 {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 0.85rem;
-      }
-      .grid-5 {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 0.85rem;
-      }
-      @media (max-width: 720px) {
-        .grid-2,
-        .grid-3,
-        .grid-4,
-        .grid-5 {
-          grid-template-columns: 1fr;
-        }
-      }
-      @media (max-width: 900px) {
-        .grid-3 {
-          grid-template-columns: 1fr 1fr;
-        }
-        .grid-4 {
-          grid-template-columns: 1fr 1fr;
-        }
-        .grid-5 {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      .section-label {
-        font-family: "Syne Mono", monospace;
+      .strip-label {
         font-size: 0.68rem;
-        letter-spacing: 0.18em;
+        font-weight: 600;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--ink-muted);
-        margin-bottom: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 12px;
         display: flex;
         align-items: center;
-        gap: 0.8rem;
+        gap: 12px;
       }
-      .section-label::after {
+      .strip-label::after {
         content: "";
         flex: 1;
         height: 1px;
-        background: var(--border-l);
+        background: var(--border);
       }
-
-      /* ── CARDS ── */
-      .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 1.5rem;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-      }
-      .card-title {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: var(--ink-muted);
-        margin-bottom: 1.2rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid var(--border-l);
-      }
-
-      /* ── MULTI-CURRENCY RATE STRIP ── */
       .fx-strip {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-      }
-      @media (max-width: 640px) {
-        .fx-strip {
-          grid-template-columns: 1fr 1fr;
-        }
+        gap: 12px;
+        margin-bottom: 24px;
       }
       .fx-card {
-        background: var(--surface);
-        border: 1px solid var(--border-l);
+        background: #fff;
+        border: 1px solid var(--border);
         border-radius: 6px;
-        padding: 1rem;
-        position: relative;
-        overflow: hidden;
-        transition: border-color 0.15s;
+        padding: 16px 18px;
+        border-top-width: 3px;
+        transition: box-shadow 0.2s;
+      }
+      .fx-card:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       }
       .fx-card.usd {
-        border-color: var(--green-d);
+        border-top-color: var(--green);
       }
       .fx-card.eur {
-        border-color: var(--blue);
+        border-top-color: var(--blue);
       }
       .fx-card.krw {
-        border-color: var(--purple);
+        border-top-color: var(--purple);
       }
       .fx-card.aed {
-        border-color: var(--orange);
-      }
-      .fx-card::before {
-        content: attr(data-flag);
-        position: absolute;
-        right: 0.5rem;
-        top: 0.3rem;
-        font-size: 2.2rem;
-        opacity: 0.15;
-        pointer-events: none;
+        border-top-color: var(--orange);
       }
       .fx-cur-label {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.6rem;
-        letter-spacing: 0.15em;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin-bottom: 0.3rem;
+        margin-bottom: 6px;
       }
       .fx-cur-label.usd {
         color: var(--green);
@@ -359,25 +286,179 @@
         color: var(--orange);
       }
       .fx-rate-val {
-        font-family: "Syne Mono", monospace;
-        font-size: 1.1rem;
-        font-weight: 500;
-        color: var(--ink);
-        margin-bottom: 0.1rem;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 4px;
       }
       .fx-rate-sub {
-        font-size: 0.68rem;
-        color: var(--ink-muted);
+        font-size: 0.74rem;
+        color: var(--muted);
       }
       .fx-rate-yr {
-        font-size: 0.65rem;
+        font-size: 0.72rem;
         color: var(--teal);
-        margin-top: 0.1rem;
+        margin-top: 4px;
+      }
+
+      /* ── MAIN WRAP ── */
+      .main-wrap {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 48px 80px;
+      }
+
+      /* ── SECTION HDR ── */
+      .section-hdr {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+        margin-top: 28px;
+      }
+      .section-hdr h2 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      /* ── GRID LAYOUTS ── */
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      .grid-5 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 12px;
+      }
+
+      /* ── CARDS ── */
+      .card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 22px 22px 18px;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+      }
+      .card:hover {
+        border-color: var(--border-strong);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      }
+      .card-title {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      /* ── STAT BOXES ── */
+      .stat {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 14px 16px;
+        transition: border-color 0.15s;
+      }
+      .stat:hover {
+        border-color: var(--border-strong);
+      }
+      .stat-label {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .stat-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        line-height: 1.2;
+      }
+      .stat-val2 {
+        font-size: 0.72rem;
+        color: var(--teal);
+        margin-top: 3px;
+      }
+      .stat-val3 {
+        font-size: 0.68rem;
+        color: var(--purple);
+        margin-top: 2px;
+      }
+      .stat-val4 {
+        font-size: 0.68rem;
+        color: var(--orange);
+        margin-top: 2px;
+      }
+      .stat-sub {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .stat.accent {
+        border-color: rgba(138, 106, 48, 0.3);
+        background: var(--accent-dim);
+      }
+      .stat.accent .stat-val {
+        color: var(--accent);
+      }
+      .stat.green {
+        border-color: rgba(26, 107, 60, 0.25);
+        background: var(--green-dim);
+      }
+      .stat.green .stat-val {
+        color: var(--green);
+      }
+      .stat.red {
+        border-color: rgba(185, 28, 28, 0.2);
+        background: var(--red-dim);
+      }
+      .stat.red .stat-val {
+        color: var(--red);
+      }
+      .stat.blue {
+        border-color: rgba(26, 74, 138, 0.2);
+        background: var(--blue-dim);
+      }
+      .stat.blue .stat-val {
+        color: var(--blue);
+      }
+      .stat.purple {
+        border-color: rgba(91, 63, 138, 0.2);
+        background: var(--purple-dim);
+      }
+      .stat.purple .stat-val {
+        color: var(--purple);
       }
 
       /* ── SLIDERS ── */
       .field {
-        margin-bottom: 1.3rem;
+        margin-bottom: 18px;
       }
       .field:last-child {
         margin-bottom: 0;
@@ -386,25 +467,25 @@
         display: flex;
         justify-content: space-between;
         align-items: baseline;
-        margin-bottom: 0.5rem;
+        margin-bottom: 6px;
       }
       .field-label {
-        font-size: 0.85rem;
-        color: var(--ink-mid);
-      }
-      .field-val {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.95rem;
-        color: var(--gold);
+        font-size: 0.84rem;
+        color: var(--muted);
         font-weight: 500;
       }
+      .field-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--accent);
+      }
       .field-dual {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.72rem;
-        color: var(--ink-muted);
-        margin-top: 0.3rem;
+        font-size: 0.7rem;
+        color: var(--muted);
+        margin-top: 4px;
         display: flex;
-        gap: 0.7rem;
+        gap: 8px;
         flex-wrap: wrap;
       }
       .field-dual .npr {
@@ -425,439 +506,397 @@
       input[type="range"] {
         width: 100%;
         -webkit-appearance: none;
+        appearance: none;
         height: 3px;
         background: var(--border);
         border-radius: 2px;
         outline: none;
         cursor: pointer;
-        margin-top: 0.2rem;
+        margin-top: 2px;
       }
       input[type="range"]::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 18px;
-        height: 18px;
+        width: 16px;
+        height: 16px;
         border-radius: 50%;
-        background: var(--card);
+        background: var(--accent);
         cursor: pointer;
-        border: 2px solid var(--gold);
-        box-shadow:
-          0 0 0 3px rgba(230, 184, 74, 0.15),
-          0 2px 6px rgba(0, 0, 0, 0.4);
+        border: 2px solid #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
       }
-      .auto-hint {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--green-d);
-        background: var(--green-bg);
-        border: 1px solid rgba(62, 207, 142, 0.2);
-        border-radius: 3px;
-        padding: 0.2rem 0.55rem;
-        margin-top: 0.35rem;
+      .field-hint {
         display: inline-block;
+        font-size: 0.68rem;
+        font-weight: 500;
+        color: var(--green);
+        background: var(--green-dim);
+        border: 1px solid rgba(26, 107, 60, 0.2);
+        border-radius: 3px;
+        padding: 2px 8px;
+        margin-top: 5px;
       }
-      .auto-hint.warn {
+      .field-hint.warn {
         color: var(--red);
-        background: var(--red-bg);
-        border-color: rgba(240, 110, 110, 0.2);
+        background: var(--red-dim);
+        border-color: rgba(185, 28, 28, 0.2);
+      }
+      .field-hint.info {
+        color: var(--blue);
+        background: var(--blue-dim);
+        border-color: rgba(26, 74, 138, 0.2);
       }
 
-      /* ── STAT BOXES ── */
-      .stat {
-        background: var(--surface);
-        border: 1px solid var(--border-l);
-        border-radius: 6px;
-        padding: 1rem 1.1rem;
+      /* ── AUTO SPLIT BOX ── */
+      .split-box {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 14px 16px;
+        margin-top: 16px;
       }
-      .stat-label {
-        font-size: 0.75rem;
-        color: var(--ink-muted);
-        margin-bottom: 0.35rem;
-        line-height: 1.3;
+      .split-box-title {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
       }
-      .stat-val {
-        font-family: "Syne Mono", monospace;
-        font-size: 1.15rem;
-        color: var(--ink);
-        font-weight: 500;
-        line-height: 1.2;
+      .split-row {
+        display: flex;
+        gap: 10px;
+        align-items: stretch;
       }
-      .stat-val2 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.8rem;
-        color: var(--teal);
-        margin-top: 0.15rem;
+      .split-col {
+        flex: 1;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 12px;
       }
-      .stat-val3 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.72rem;
-        color: var(--purple);
-        margin-top: 0.08rem;
+      .split-arrow {
+        color: var(--muted);
+        font-size: 0.9rem;
+        align-self: center;
       }
-      .stat-val4 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.72rem;
-        color: var(--orange);
-        margin-top: 0.08rem;
+      .split-col-label {
+        font-size: 0.68rem;
+        color: var(--muted);
+        margin-bottom: 4px;
       }
-      .stat-sub {
-        font-size: 0.7rem;
-        color: var(--ink-muted);
-        margin-top: 0.2rem;
+      .split-col-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
       }
-      .stat.gold {
-        border-color: var(--gold-d);
-        background: var(--gold-bg);
+      .split-col-val.red {
+        color: var(--red);
       }
-      .stat.gold .stat-val {
-        color: var(--gold);
-      }
-      .stat.green {
-        border-color: var(--green-d);
-        background: var(--green-bg);
-      }
-      .stat.green .stat-val {
+      .split-col-val.green {
         color: var(--green);
       }
-      .stat.red {
-        border-color: #a03030;
-        background: var(--red-bg);
+      .split-col-sub {
+        font-size: 0.68rem;
+        color: var(--teal);
+        margin-top: 2px;
       }
-      .stat.red .stat-val {
-        color: var(--red);
-      }
-      .stat.blue {
-        border-color: #3060a0;
-        background: var(--blue-bg);
-      }
-      .stat.blue .stat-val {
+      .split-col-sub2 {
+        font-size: 0.65rem;
         color: var(--blue);
+        margin-top: 1px;
       }
-      .stat.purple {
-        border-color: #6d5aad;
-        background: var(--purple-bg);
-      }
-      .stat.purple .stat-val {
+      .split-col-sub3 {
+        font-size: 0.65rem;
         color: var(--purple);
+        margin-top: 1px;
       }
-      .stat.orange {
-        border-color: #a0581a;
-        background: var(--orange-bg);
-      }
-      .stat.orange .stat-val {
+      .split-col-sub4 {
+        font-size: 0.65rem;
         color: var(--orange);
+        margin-top: 1px;
+      }
+      .split-note {
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-top: 10px;
+        text-align: center;
       }
 
-      /* ── PLAN BANNER ── */
-      .plan-box {
-        background: linear-gradient(135deg, #141e2e 0%, #1a2840 100%);
-        border: 1px solid var(--gold-d);
-        border-radius: 6px;
-        padding: 1.8rem;
-        margin-bottom: 1.8rem;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+      /* ── EMI DERIVED BOX ── */
+      .emi-derived-box {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 14px 16px;
+        margin-top: 12px;
       }
-      .plan-box::before {
-        content: "✦";
-        position: absolute;
-        right: 1.5rem;
-        top: 0.8rem;
-        font-size: 5rem;
-        opacity: 0.05;
-        line-height: 1;
-        color: var(--gold);
-      }
-      .plan-box-label {
-        font-family: "Syne Mono", monospace;
+      .emi-derived-box-title {
         font-size: 0.68rem;
-        letter-spacing: 0.2em;
+        font-weight: 600;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--gold);
-        margin-bottom: 0.7rem;
+        color: var(--muted);
+        margin-bottom: 10px;
       }
-      .plan-box-title {
-        font-family: "Playfair Display", serif;
-        font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-        font-weight: 400;
-        color: #fff;
-        margin-bottom: 1rem;
-        line-height: 1.25;
-      }
-      .plan-grid {
+      .emi-derived-row {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
       }
-      @media (max-width: 600px) {
-        .plan-grid {
-          grid-template-columns: 1fr 1fr;
-        }
+      .emi-derived-item {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 10px 12px;
       }
-      .plan-stat-label {
-        font-size: 0.72rem;
-        color: rgba(232, 237, 242, 0.4);
-        margin-bottom: 0.25rem;
+      .emi-derived-label {
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 3px;
       }
-      .plan-stat-val {
-        font-family: "Syne Mono", monospace;
+      .emi-derived-val {
+        font-family: "Cormorant Garamond", serif;
         font-size: 1rem;
-        color: var(--gold);
+        font-weight: 600;
+        color: var(--text);
       }
-      .plan-stat-val2 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.72rem;
+      .emi-derived-sub {
+        font-size: 0.65rem;
         color: var(--teal);
-        margin-top: 0.1rem;
-      }
-      .plan-stat-val3 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--purple);
-        margin-top: 0.04rem;
-      }
-      .plan-stat-val4 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--orange);
-        margin-top: 0.04rem;
+        margin-top: 2px;
       }
 
       /* ── NPR TIMELINE ── */
+      .timeline-note {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 12px 16px;
+        font-size: 0.82rem;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .timeline-note strong {
+        color: var(--text);
+      }
       .npr-timeline {
         display: flex;
         border: 1px solid var(--border);
         border-radius: 6px;
         overflow: hidden;
-        margin-bottom: 1rem;
+        margin-bottom: 12px;
         overflow-x: auto;
+        background: #fff;
       }
       .npr-yr {
         flex: 1;
-        min-width: 80px;
+        min-width: 76px;
         text-align: center;
-        padding: 0.75rem 0.3rem;
+        padding: 12px 4px;
         cursor: pointer;
-        border-right: 1px solid var(--border-l);
+        border-right: 1px solid var(--border);
         transition: background 0.12s;
       }
       .npr-yr:last-child {
         border-right: none;
       }
-      .yr-label {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        color: var(--ink-muted);
-        margin-bottom: 0.25rem;
-      }
-      .yr-rate {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: var(--ink);
-      }
-      .yr-usd {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--green);
-        margin-top: 0.08rem;
-      }
-      .yr-eur {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--blue);
-        margin-top: 0.03rem;
-      }
-      .yr-krw {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--purple);
-        margin-top: 0.03rem;
-      }
-      .yr-aed {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.6rem;
-        color: var(--orange);
-        margin-top: 0.03rem;
-      }
-      .yr-change {
-        font-size: 0.6rem;
-        color: var(--green);
-        margin-top: 0.1rem;
+      .npr-yr:hover:not(.active) {
+        background: var(--surface2);
       }
       .npr-yr.active {
-        background: rgba(230, 184, 74, 0.1);
-        border-bottom: 2px solid var(--gold);
+        background: var(--accent-dim);
+        border-bottom: 2px solid var(--accent);
+      }
+      .yr-label {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 4px;
       }
       .npr-yr.active .yr-label {
-        color: var(--gold);
+        color: var(--accent);
+      }
+      .yr-rate {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
       }
       .npr-yr.active .yr-rate {
-        color: var(--gold);
+        color: var(--accent);
       }
-      .npr-yr:hover:not(.active) {
-        background: var(--surface);
+      .yr-usd {
+        font-size: 0.62rem;
+        color: var(--green);
+        margin-top: 3px;
       }
-
-      .timeline-explain {
-        font-size: 0.85rem;
-        color: var(--ink-mid);
-        line-height: 1.6;
-        background: var(--surface);
-        border: 1px solid var(--border-l);
-        border-radius: 6px;
-        padding: 0.9rem 1.1rem;
-        margin-bottom: 1rem;
+      .yr-eur {
+        font-size: 0.62rem;
+        color: var(--blue);
+        margin-top: 1px;
       }
-      .timeline-explain strong {
-        color: var(--ink);
+      .yr-krw {
+        font-size: 0.62rem;
+        color: var(--purple);
+        margin-top: 1px;
+      }
+      .yr-aed {
+        font-size: 0.62rem;
+        color: var(--orange);
+        margin-top: 1px;
+      }
+      .yr-change {
+        font-size: 0.62rem;
+        color: var(--muted);
+        margin-top: 3px;
       }
 
       /* ── COMPARE STRIP ── */
       .compare-strip {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
-        gap: 0.6rem;
-        margin-bottom: 1rem;
-      }
-      @media (max-width: 640px) {
-        .compare-strip {
-          grid-template-columns: 1fr 1fr;
-        }
+        gap: 8px;
+        margin-bottom: 14px;
       }
       .compare-col {
-        background: var(--surface);
-        border: 1px solid var(--border-l);
-        border-radius: 6px;
-        padding: 0.85rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 12px 8px;
         text-align: center;
         cursor: pointer;
         transition: all 0.12s;
       }
+      .compare-col:hover:not(.sel) {
+        border-color: var(--border-strong);
+        background: var(--surface2);
+      }
       .compare-col.sel {
-        background: var(--gold-bg);
-        border-color: var(--gold-d);
+        background: var(--accent-dim);
+        border-color: rgba(138, 106, 48, 0.3);
       }
       .cc-yr {
-        font-family: "Syne Mono", monospace;
         font-size: 0.62rem;
-        color: var(--ink-muted);
-        margin-bottom: 0.3rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 4px;
       }
       .cc-rate {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--ink);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text);
       }
       .compare-col.sel .cc-rate {
-        color: var(--gold);
+        color: var(--accent);
       }
       .cc-loanUSD {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         color: var(--green);
-        margin-top: 0.12rem;
+        margin-top: 3px;
       }
       .cc-loanEUR {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         color: var(--blue);
-        margin-top: 0.05rem;
+        margin-top: 1px;
       }
       .cc-loanKRW {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         color: var(--purple);
-        margin-top: 0.05rem;
+        margin-top: 1px;
       }
       .cc-loanAED {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.62rem;
         color: var(--orange);
-        margin-top: 0.05rem;
+        margin-top: 1px;
       }
       .cc-save {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--green);
-        margin-top: 0.1rem;
-      }
-      .compare-col:hover:not(.sel) {
-        background: var(--card);
+        margin-top: 3px;
+        font-weight: 500;
       }
 
-      /* ── INSIGHT ── */
+      /* ── INSIGHT BOX ── */
       .insight {
-        border-left: 3px solid var(--gold);
-        padding: 1rem 1.2rem;
-        background: var(--gold-bg);
-        border-radius: 0 6px 6px 0;
-        margin-bottom: 1rem;
+        border-left: 3px solid var(--accent);
+        padding: 14px 18px;
+        background: var(--accent-dim);
+        border-radius: 0 4px 4px 0;
+        margin-bottom: 14px;
+      }
+      .insight.green {
+        border-left-color: var(--green);
+        background: var(--green-dim);
       }
       .insight-title {
-        font-family: "Playfair Display", serif;
+        font-family: "Cormorant Garamond", serif;
         font-size: 1rem;
-        font-weight: 700;
-        color: var(--gold);
-        margin-bottom: 0.3rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+      .insight.green .insight-title {
+        color: var(--green);
       }
       .insight-body {
-        font-size: 0.85rem;
-        color: var(--ink-mid);
+        font-size: 0.82rem;
+        color: var(--muted);
         line-height: 1.6;
       }
       .insight-body strong {
-        color: var(--ink);
-      }
-      .insight.g {
-        border-color: var(--green-d);
-        background: var(--green-bg);
-      }
-      .insight.g .insight-title {
-        color: var(--green);
+        color: var(--text);
       }
 
       /* ── TABS ── */
       .tabs-wrap {
-        background: var(--card);
+        background: #fff;
         border: 1px solid var(--border);
         border-radius: 6px;
         overflow: hidden;
+        margin-bottom: 40px;
       }
       .tabs-nav {
         display: flex;
         border-bottom: 1px solid var(--border);
-        background: var(--surface);
+        background: var(--surface2);
         overflow-x: auto;
       }
       .tab-btn {
-        padding: 0.9rem 1.3rem;
-        font-family: "Syne", sans-serif;
-        font-size: 0.78rem;
+        padding: 0 18px;
+        height: 48px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.76rem;
         font-weight: 500;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--ink-muted);
+        color: var(--muted);
         border: none;
         background: transparent;
         cursor: pointer;
         white-space: nowrap;
         border-bottom: 2px solid transparent;
-        margin-bottom: -1px;
         transition: all 0.12s;
       }
       .tab-btn.active {
-        color: var(--gold);
-        border-bottom-color: var(--gold);
-        background: var(--card);
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+        background: #fff;
       }
       .tab-btn:hover:not(.active) {
-        color: var(--ink);
+        color: var(--text);
       }
       .tab-panel {
         display: none;
-        padding: 1.5rem;
+        padding: 24px;
       }
       .tab-panel.active {
         display: block;
@@ -870,16 +909,16 @@
       }
       .legend-row {
         display: flex;
-        gap: 1.5rem;
+        gap: 20px;
         flex-wrap: wrap;
-        margin-bottom: 1rem;
+        margin-bottom: 16px;
       }
       .leg-item {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
-        font-size: 0.78rem;
-        color: var(--ink-muted);
+        gap: 8px;
+        font-size: 0.76rem;
+        color: var(--muted);
       }
       .leg-swatch {
         width: 24px;
@@ -896,70 +935,99 @@
         border-collapse: collapse;
       }
       thead th {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
+        font-size: 0.66rem;
+        font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--ink-muted);
+        color: var(--muted);
         text-align: right;
-        padding: 0.65rem 0.85rem;
+        padding: 10px 14px;
         border-bottom: 2px solid var(--border);
-        background: var(--surface);
+        background: var(--surface2);
         white-space: nowrap;
       }
       thead th:first-child {
         text-align: left;
       }
       tbody td {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.78rem;
+        font-size: 0.8rem;
         text-align: right;
-        padding: 0.55rem 0.85rem;
-        border-bottom: 1px solid var(--border-l);
-        color: var(--ink-mid);
+        padding: 9px 14px;
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
       }
       tbody td:first-child {
         text-align: left;
-        color: var(--ink);
+        color: var(--text);
         font-weight: 500;
       }
       tbody td .sub {
         display: block;
-        font-size: 0.65rem;
+        font-size: 0.66rem;
         color: var(--teal);
-        margin-top: 0.1rem;
+        margin-top: 1px;
       }
       tbody td .sub2 {
         display: block;
         font-size: 0.62rem;
         color: var(--purple);
-        margin-top: 0.05rem;
+        margin-top: 1px;
       }
       tbody td .sub3 {
         display: block;
         font-size: 0.62rem;
         color: var(--orange);
-        margin-top: 0.05rem;
+        margin-top: 1px;
       }
       tbody tr:hover td {
-        background: var(--surface);
+        background: var(--surface2);
       }
       tbody tr.row-lump td {
-        background: rgba(62, 207, 142, 0.06);
+        background: rgba(26, 107, 60, 0.04);
       }
       tbody tr.row-opt td {
-        background: rgba(230, 184, 74, 0.06);
+        background: var(--accent-dim);
+      }
+
+      /* View toggle for amort table */
+      .view-btns {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .view-btn {
+        padding: 5px 14px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.74rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .view-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+      .view-btn:hover:not(.active) {
+        border-color: var(--border-strong);
+        color: var(--text);
       }
 
       /* ── STRATEGY TIMELINE ── */
       .tl {
         position: relative;
-        padding-left: 2.2rem;
+        padding-left: 28px;
       }
       .tl::before {
         content: "";
         position: absolute;
-        left: 0.6rem;
+        left: 8px;
         top: 0;
         bottom: 0;
         width: 1px;
@@ -967,120 +1035,117 @@
       }
       .tl-item {
         position: relative;
-        margin-bottom: 1.6rem;
+        margin-bottom: 22px;
       }
       .tl-item::before {
         content: "";
         position: absolute;
-        left: -1.95rem;
-        top: 0.3rem;
+        left: -22px;
+        top: 4px;
         width: 11px;
         height: 11px;
         border-radius: 50%;
-        background: var(--gold);
-        border: 2px solid var(--card);
-        box-shadow: 0 0 0 2px var(--gold-d);
+        background: var(--accent);
+        border: 2px solid #fff;
+        box-shadow: 0 0 0 2px var(--accent);
       }
       .tl-phase {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--gold);
+        font-size: 0.66rem;
+        font-weight: 600;
         letter-spacing: 0.1em;
-        margin-bottom: 0.25rem;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 3px;
       }
       .tl-title {
-        font-weight: 500;
-        font-size: 0.95rem;
-        color: var(--ink);
-        margin-bottom: 0.3rem;
+        font-weight: 600;
+        font-size: 0.92rem;
+        color: var(--text);
+        margin-bottom: 5px;
       }
       .tl-body {
-        font-size: 0.83rem;
-        color: var(--ink-mid);
+        font-size: 0.82rem;
+        color: var(--muted);
         line-height: 1.6;
       }
       .tl-body strong {
-        color: var(--ink);
+        color: var(--text);
       }
 
-      /* ── AUTO-SPLIT BOX ── */
-      .split-box {
-        background: var(--surface);
-        border: 1px solid var(--border-l);
-        border-radius: 6px;
-        padding: 1rem;
-        margin-top: 0.8rem;
-      }
-      .split-box-title {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--ink-muted);
-        margin-bottom: 0.75rem;
-      }
-      .split-row {
+      /* ── ROLLOVER LEGEND ── */
+      .rollover-legend {
         display: flex;
-        gap: 0.75rem;
-        align-items: stretch;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
       }
-      .split-col {
-        flex: 1;
-        background: var(--card);
-        border: 1px solid var(--border-l);
-        border-radius: 5px;
-        padding: 0.8rem;
+
+      /* ── FOOTER ── */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 24px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #fff;
       }
-      .split-arrow {
-        color: var(--border);
-        font-size: 1rem;
-        align-self: center;
+      .footer-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: none;
       }
-      .split-col-label {
-        font-size: 0.7rem;
-        color: var(--ink-muted);
-        margin-bottom: 0.3rem;
+      footer p {
+        font-size: 0.78rem;
+        color: var(--muted);
       }
-      .split-col-val {
-        font-family: "Syne Mono", monospace;
-        font-size: 1rem;
-        font-weight: 500;
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 900px) {
+        nav,
+        .currency-wrap,
+        footer {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .fx-wrap,
+        .main-wrap {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .fx-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-3 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-5 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .compare-strip {
+          grid-template-columns: 1fr 1fr;
+        }
       }
-      .split-col-val.red {
-        color: var(--red);
-      }
-      .split-col-val.green {
-        color: var(--green);
-      }
-      .split-col-sub {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.65rem;
-        color: var(--teal);
-        margin-top: 0.12rem;
-      }
-      .split-col-sub2 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        color: var(--blue);
-        margin-top: 0.04rem;
-      }
-      .split-col-sub3 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        color: var(--purple);
-        margin-top: 0.04rem;
-      }
-      .split-col-sub4 {
-        font-family: "Syne Mono", monospace;
-        font-size: 0.62rem;
-        color: var(--orange);
-        margin-top: 0.04rem;
-      }
-      .split-note {
-        font-size: 0.72rem;
-        color: var(--ink-muted);
-        margin-top: 0.65rem;
-        text-align: center;
+      @media (max-width: 580px) {
+        .fx-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .grid-5 {
+          grid-template-columns: 1fr;
+        }
+        .compare-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+        .currency-wrap {
+          flex-wrap: wrap;
+        }
       }
     </style>
   </head>
@@ -1089,99 +1154,85 @@
       <a href="index.html" class="nav-logo">M Finance</a>
       <ul class="nav-links">
         <li><a href="index.html#cards">Credit</a></li>
-        <li><a href="savings.html" class="active">Savings</a></li>
+        <li><a href="savings.html">Savings</a></li>
+        <li><a href="home-calculator.html" class="active">Home Loan</a></li>
         <li><a href="loan-calculator.html">Calculator</a></li>
-        <li><a href="home-calculator.html">Home Loan</a></li>
       </ul>
     </nav>
-    <div class="masthead">
-      <div class="masthead-inner">
-        <div class="masthead-tag">
-          Nepal Property · Multi-Currency · Auto-Optimized
-        </div>
-        <h1>Home Loan Strategy<br /><em>USD · EUR · KRW · AED</em></h1>
-        <p class="masthead-sub">
-          Every number shown in all four currencies — USD, Euro, Korean Won, and
-          UAE Dirham — alongside NPR. Auto-projected with NPR depreciation.
-        </p>
-        <!-- Currency selector -->
-        <div class="currency-bar">
-          <span class="currency-bar-label">Primary display:</span>
-          <button class="cur-pill active-usd" onclick="setPrimary('usd', this)">
-            <span class="cur-flag">🇺🇸</span> USD
-            <span class="cur-rate-live" id="pill-usd-rate">≈150.65 NPR</span>
-          </button>
-          <button class="cur-pill" onclick="setPrimary('eur', this)">
-            <span class="cur-flag">🇪🇺</span> EUR
-            <span class="cur-rate-live" id="pill-eur-rate">≈163.2 NPR</span>
-          </button>
-          <button class="cur-pill" onclick="setPrimary('krw', this)">
-            <span class="cur-flag">🇰🇷</span> KRW
-            <span class="cur-rate-live" id="pill-krw-rate">≈0.109 NPR</span>
-          </button>
-          <button class="cur-pill" onclick="setPrimary('aed', this)">
-            <span class="cur-flag">🇦🇪</span> AED
-            <span class="cur-rate-live" id="pill-aed-rate">≈41.02 NPR</span>
-          </button>
-        </div>
-        <div class="auto-badge" onclick="autoOptimize()">
-          <span class="dot"></span>&nbsp; Reset to Optimal Defaults
-        </div>
-      </div>
+
+    <section class="page-hero">
+      <p class="section-label">Nepal Property · Multi-Currency</p>
+      <h1>Home Loan Strategy<br /><em>USD · EUR · KRW · AED</em></h1>
+      <p>
+        Every number shown in all four currencies alongside NPR. Auto-projected
+        with NPR depreciation.
+      </p>
+    </section>
+
+    <!-- Currency Selector -->
+    <div class="currency-wrap">
+      <span class="currency-wrap-label">Primary display</span>
+      <button class="cur-pill active" onclick="setPrimary('usd', this)">
+        🇺🇸 USD <span class="cur-rate-note" id="pill-usd-rate">≈150.65 NPR</span>
+      </button>
+      <button class="cur-pill" onclick="setPrimary('eur', this)">
+        🇪🇺 EUR <span class="cur-rate-note" id="pill-eur-rate">≈163.2 NPR</span>
+      </button>
+      <button class="cur-pill" onclick="setPrimary('krw', this)">
+        🇰🇷 KRW <span class="cur-rate-note" id="pill-krw-rate">≈0.109 NPR</span>
+      </button>
+      <button class="cur-pill" onclick="setPrimary('aed', this)">
+        🇦🇪 AED <span class="cur-rate-note" id="pill-aed-rate">≈41.02 NPR</span>
+      </button>
+      <button class="reset-btn" onclick="autoOptimize()">
+        <span class="dot"></span> Reset to Defaults
+      </button>
     </div>
 
-    <div class="main">
-      <!-- FX RATE STRIP -->
-      <div class="section-label mb1">
-        Live Exchange Rates (NPR base · projected with ~3.5%/yr NPR
-        depreciation)
+    <!-- FX Rate Strip -->
+    <div class="fx-wrap">
+      <div class="strip-label">
+        Live Exchange Rates — NPR base · ~3.5%/yr depreciation projected
       </div>
-      <div class="fx-strip mb2" id="fxStrip">
-        <div class="fx-card usd" data-flag="🇺🇸">
+      <div class="fx-strip">
+        <div class="fx-card usd">
           <div class="fx-cur-label usd">🇺🇸 USD</div>
           <div class="fx-rate-val" id="fx-usd-now">150.65 NPR/$</div>
           <div class="fx-rate-sub">Today</div>
           <div class="fx-rate-yr" id="fx-usd-yr">Year 7: ~192 NPR/$</div>
         </div>
-        <div class="fx-card eur" data-flag="🇪🇺">
+        <div class="fx-card eur">
           <div class="fx-cur-label eur">🇪🇺 EUR</div>
           <div class="fx-rate-val" id="fx-eur-now">163.20 NPR/€</div>
           <div class="fx-rate-sub">Today (USD×1.083)</div>
           <div class="fx-rate-yr" id="fx-eur-yr">Year 7: ~208 NPR/€</div>
         </div>
-        <div class="fx-card krw" data-flag="🇰🇷">
+        <div class="fx-card krw">
           <div class="fx-cur-label krw">🇰🇷 KRW</div>
           <div class="fx-rate-val" id="fx-krw-now">0.109 NPR/₩</div>
           <div class="fx-rate-sub">Today (USD÷1381)</div>
           <div class="fx-rate-yr" id="fx-krw-yr">Year 7: ~0.139 NPR/₩</div>
         </div>
-        <div class="fx-card aed" data-flag="🇦🇪">
+        <div class="fx-card aed">
           <div class="fx-cur-label aed">🇦🇪 AED</div>
           <div class="fx-rate-val" id="fx-aed-now">41.02 NPR/د.إ</div>
           <div class="fx-rate-sub">Today (USD×0.2723)</div>
           <div class="fx-rate-yr" id="fx-aed-yr">Year 7: ~52.3 NPR/د.إ</div>
         </div>
       </div>
+    </div>
 
-      <!-- PLAN BANNER -->
-      <div class="plan-box mb2" id="planBanner">
-        <div class="plan-box-label">⚡ Optimal Payment Plan</div>
-        <div class="plan-box-title" id="plan-title">
-          Calculating your ideal strategy…
-        </div>
-        <div class="plan-grid" id="plan-stats"></div>
-      </div>
-
+    <div class="main-wrap">
       <!-- INPUTS -->
-      <div class="section-label mb1">Your Situation</div>
-      <div class="grid-3 mb2">
+      <div class="section-hdr"><h2>Your Situation</h2></div>
+      <div class="grid-3" style="margin-bottom: 28px">
         <!-- Loan card -->
         <div class="card">
           <div class="card-title">Loan — Nabil Bank</div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Loan Amount</span>
-              <span class="field-val" id="v-loan">—</span>
+              <span class="field-label">Loan Amount</span
+              ><span class="field-val" id="v-loan">—</span>
             </div>
             <input
               type="range"
@@ -1198,14 +1249,14 @@
               <span class="krw" id="d-loan-krw">—</span>
               <span class="aed" id="d-loan-aed">—</span>
             </div>
-            <div class="auto-hint" id="hint-loan">
+            <div class="field-hint" id="hint-loan">
               ↑ Based on 70% LTV of collateral
             </div>
           </div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Nabil Bank APR</span>
-              <span class="field-val" id="v-apr">8.49%</span>
+              <span class="field-label">Nabil Bank APR</span
+              ><span class="field-val" id="v-apr">8.49%</span>
             </div>
             <input
               type="range"
@@ -1215,12 +1266,12 @@
               step="0.1"
               value="8.49"
             />
-            <div class="auto-hint">✓ Best rate — negotiate hard for this</div>
+            <div class="field-hint">✓ Best rate — negotiate hard for this</div>
           </div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Loan Term</span>
-              <span class="field-val" id="v-term">20 yrs</span>
+              <span class="field-label">Loan Term</span
+              ><span class="field-val" id="v-term">20 yrs</span>
             </div>
             <input
               type="range"
@@ -1230,19 +1281,19 @@
               step="1"
               value="20"
             />
-            <div class="auto-hint">
-              ✓ Longest term = lowest EMI = more savings
+            <div class="field-hint" id="hint-term">
+              ✓ Longest term = lowest EMI
             </div>
           </div>
         </div>
 
         <!-- Income card -->
         <div class="card">
-          <div class="card-title">Income Currency & Auto-Split</div>
+          <div class="card-title">Income Currency &amp; Auto-Split</div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Annual Savings (your currency)</span>
-              <span class="field-val" id="v-income">—</span>
+              <span class="field-label">Annual Savings (your currency)</span
+              ><span class="field-val" id="v-income">—</span>
             </div>
             <input
               type="range"
@@ -1258,29 +1309,14 @@
               <span class="krw" id="d-income-krw">—</span>
               <span class="aed" id="d-income-aed">—</span>
             </div>
-            <div class="auto-hint" id="hint-income-cur">
+            <div class="field-hint" id="hint-income-cur">
               Shown in USD by default
             </div>
           </div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Savings Rate (APY)</span>
-              <span class="field-val" id="v-apy">4.75%</span>
-            </div>
-            <input
-              type="range"
-              id="s-apy"
-              min="1"
-              max="7"
-              step="0.25"
-              value="4.75"
-            />
-            <div class="auto-hint" id="hint-apy">US HYSA avg (Mar 2026)</div>
-          </div>
-          <div class="field">
-            <div class="field-header">
-              <span class="field-label">Nepal Property Growth / yr</span>
-              <span class="field-val" id="v-appr">10%</span>
+              <span class="field-label">Nepal Property Growth / yr</span
+              ><span class="field-val" id="v-appr">10%</span>
             </div>
             <input
               type="range"
@@ -1290,9 +1326,9 @@
               step="1"
               value="10"
             />
-            <div class="auto-hint">Kathmandu historical avg: 8–15%</div>
+            <div class="field-hint">Kathmandu historical avg: 8–15%</div>
           </div>
-          <!-- Auto-split -->
+          <!-- Auto split -->
           <div class="split-box">
             <div class="split-box-title">Auto Income Split / Month</div>
             <div class="split-row">
@@ -1306,7 +1342,7 @@
               </div>
               <div class="split-arrow">+</div>
               <div class="split-col">
-                <div class="split-col-label">→ Savings Stack</div>
+                <div class="split-col-label">→ Remaining</div>
                 <div class="split-col-val green" id="split-hysa-primary">—</div>
                 <div class="split-col-sub" id="split-hysa-npr">—</div>
                 <div class="split-col-sub2" id="split-hysa-eur">—</div>
@@ -1314,17 +1350,17 @@
                 <div class="split-col-sub4" id="split-hysa-aed">—</div>
               </div>
             </div>
-            <div class="split-note" id="split-note">Optimized split</div>
+            <div class="split-note" id="split-note">Income split</div>
           </div>
         </div>
 
         <!-- Collateral card -->
         <div class="card">
-          <div class="card-title">Property & Collateral</div>
+          <div class="card-title">Property &amp; Collateral</div>
           <div class="field">
             <div class="field-header">
-              <span class="field-label">Collateral Value (NPR Cr)</span>
-              <span class="field-val" id="v-coll">2.0 Cr</span>
+              <span class="field-label">Collateral Value (NPR Cr)</span
+              ><span class="field-val" id="v-coll">2.0 Cr</span>
             </div>
             <input
               type="range"
@@ -1341,24 +1377,72 @@
               <span class="krw" id="d-coll-krw">—</span>
               <span class="aed" id="d-coll-aed">—</span>
             </div>
-            <div class="auto-hint" id="hint-coll">
+            <div class="field-hint" id="hint-coll">
               Max borrow: 1.40 Cr (70% LTV)
             </div>
           </div>
-          <div class="grid-2" style="margin-top: 0.8rem; gap: 0.6rem">
+
+          <!-- Monthly EMI Target Slider (NEW) -->
+          <div class="field" style="margin-top: 4px">
+            <div class="field-header">
+              <span class="field-label">Monthly EMI Target (NPR)</span
+              ><span class="field-val" id="v-emi-target">—</span>
+            </div>
+            <input
+              type="range"
+              id="s-emi-target"
+              min="10000"
+              max="500000"
+              step="5000"
+              value="121407"
+            />
+            <div class="field-hint info" id="hint-emi-mode">
+              ↕ Drag to set EMI — auto-adjusts term &amp; interest
+            </div>
+          </div>
+
+          <!-- Derived values from EMI target -->
+          <div class="emi-derived-box">
+            <div class="emi-derived-box-title">
+              Derived from your EMI target
+            </div>
+            <div class="emi-derived-row">
+              <div class="emi-derived-item">
+                <div class="emi-derived-label">Repayment Term</div>
+                <div class="emi-derived-val" id="emi-derived-term">—</div>
+                <div class="emi-derived-sub" id="emi-derived-term-sub">—</div>
+              </div>
+              <div class="emi-derived-item">
+                <div class="emi-derived-label">Total Interest</div>
+                <div class="emi-derived-val" id="emi-derived-int">—</div>
+                <div class="emi-derived-sub" id="emi-derived-int-sub">—</div>
+              </div>
+              <div class="emi-derived-item">
+                <div class="emi-derived-label">Interest Saved vs Min</div>
+                <div
+                  class="emi-derived-val"
+                  id="emi-derived-saved"
+                  style="color: var(--green)"
+                >
+                  —
+                </div>
+                <div class="emi-derived-sub" id="emi-derived-saved-sub">—</div>
+              </div>
+              <div class="emi-derived-item">
+                <div class="emi-derived-label">Total Outflow</div>
+                <div class="emi-derived-val" id="emi-derived-total">—</div>
+                <div class="emi-derived-sub" id="emi-derived-total-sub">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top: 14px; gap: 8px">
             <div class="stat blue">
               <div class="stat-label">Max LAP (70% LTV)</div>
               <div class="stat-val" id="max-lap-npr">—</div>
               <div class="stat-val2" id="max-lap-usd">—</div>
               <div class="stat-val3" id="max-lap-eur">—</div>
               <div class="stat-val4" id="max-lap-aed">—</div>
-            </div>
-            <div class="stat">
-              <div class="stat-label">Monthly EMI</div>
-              <div class="stat-val" id="st-emi-npr">—</div>
-              <div class="stat-val2" id="st-emi-usd">—</div>
-              <div class="stat-val3" id="st-emi-eur">—</div>
-              <div class="stat-val4" id="st-emi-aed">—</div>
             </div>
             <div class="stat green">
               <div class="stat-label">Property @ Year 5</div>
@@ -1374,20 +1458,25 @@
               <div class="stat-val3" id="prop-yr10-eur">—</div>
               <div class="stat-val4" id="prop-yr10-aed">—</div>
             </div>
+            <div class="stat accent">
+              <div class="stat-label">Monthly EMI (Effective)</div>
+              <div class="stat-val" id="st-emi-npr">—</div>
+              <div class="stat-val2" id="st-emi-usd">—</div>
+              <div class="stat-val3" id="st-emi-eur">—</div>
+              <div class="stat-val4" id="st-emi-aed">—</div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- NPR TIMELINE -->
-      <div class="section-label mb1">
-        NPR / Multi-Currency Projection — Click a Year to Set Lump Sum Target
-      </div>
-      <div class="card mb2">
+      <div class="section-hdr"><h2>NPR / Multi-Currency Projection</h2></div>
+      <div class="card" style="margin-bottom: 24px">
         <div class="card-title">
-          Historical trend: ~3.5%/yr NPR weakening — all 4 currencies shown per
-          year
+          Historical trend: ~3.5%/yr NPR weakening — click a year to set lump
+          sum target
         </div>
-        <div class="timeline-explain">
+        <div class="timeline-note">
           Nepal's NPR has weakened ~<strong>3–4% per year</strong> vs USD
           (106→135→151 from 2015→2020→2026). EUR, KRW, and AED rates are
           cross-calculated from USD. As NPR weakens, your foreign income buys
@@ -1396,21 +1485,34 @@
         </div>
         <div class="npr-timeline" id="nprTimeline"></div>
         <div class="compare-strip" id="compareStrip"></div>
-        <div class="insight g" id="fx-insight">
+        <div class="insight green" id="fx-insight">
           <div class="insight-title" id="fx-title">—</div>
           <div class="insight-body" id="fx-body">—</div>
         </div>
       </div>
 
-      <!-- SNAPSHOT -->
-      <div class="section-label mb1">Numbers at a Glance</div>
-      <div class="grid-4 mb2">
+      <!-- SNAPSHOT — now the primary summary section -->
+      <div class="section-hdr">
+        <h2>Numbers at a Glance</h2>
+        <span style="font-size: 0.72rem; color: var(--muted)"
+          >All figures multi-currency · click year strip above to change lump
+          target</span
+        >
+      </div>
+      <div class="grid-5" style="margin-bottom: 12px">
         <div class="stat blue">
           <div class="stat-label">Loan Value Today</div>
           <div class="stat-val" id="st-loan-npr">—</div>
           <div class="stat-val2" id="st-loan-usd">—</div>
           <div class="stat-val3" id="st-loan-eur">—</div>
           <div class="stat-val4" id="st-loan-aed">—</div>
+        </div>
+        <div class="stat accent">
+          <div class="stat-label">Monthly EMI</div>
+          <div class="stat-val" id="snap-emi-npr">—</div>
+          <div class="stat-val2" id="snap-emi-usd">—</div>
+          <div class="stat-val3" id="snap-emi-eur">—</div>
+          <div class="stat-val4" id="snap-emi-aed">—</div>
         </div>
         <div class="stat red">
           <div class="stat-label">Total Interest (full term)</div>
@@ -1419,36 +1521,12 @@
           <div class="stat-val3" id="st-int-eur">—</div>
           <div class="stat-val4" id="st-int-aed">—</div>
         </div>
-        <div class="stat gold">
-          <div class="stat-label">Interest Saved w/ Strategy</div>
+        <div class="stat green">
+          <div class="stat-label">Interest Saved vs Min EMI</div>
           <div class="stat-val" id="st-saved-npr">—</div>
           <div class="stat-val2" id="st-saved-usd">—</div>
           <div class="stat-val3" id="st-saved-eur">—</div>
           <div class="stat-val4" id="st-saved-aed">—</div>
-        </div>
-        <div class="stat green">
-          <div class="stat-label">Savings Stack at Lump Year</div>
-          <div class="stat-val" id="st-stack-usd">—</div>
-          <div class="stat-val2" id="st-stack-npr">—</div>
-          <div class="stat-val3" id="st-stack-eur">—</div>
-          <div class="stat-val4" id="st-stack-aed">—</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Lump Sum Buys (NPR)</div>
-          <div class="stat-val" id="st-lumpnpr">—</div>
-          <div class="stat-val2" id="st-lumpusd">—</div>
-          <div class="stat-val3" id="st-lumpeur">—</div>
-          <div class="stat-val4" id="st-lumpaed">—</div>
-        </div>
-        <div class="stat green">
-          <div class="stat-label">Balance After Lump</div>
-          <div class="stat-val" id="st-after-npr">—</div>
-          <div class="stat-val2" id="st-after-usd">—</div>
-        </div>
-        <div class="stat gold">
-          <div class="stat-label">Full Payoff Year</div>
-          <div class="stat-val" id="st-opt-yr">—</div>
-          <div class="stat-val2" id="st-opt-rate">—</div>
         </div>
         <div class="stat blue">
           <div class="stat-label">Net Worth @ Year 10</div>
@@ -1458,10 +1536,43 @@
           <div class="stat-val4" id="st-nw10-aed">—</div>
         </div>
       </div>
+      <div class="grid-5" style="margin-bottom: 28px">
+        <div class="stat">
+          <div class="stat-label">Loan Term (effective)</div>
+          <div class="stat-val" id="snap-term">—</div>
+          <div class="stat-val2" id="snap-term-sub">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Total Repayment</div>
+          <div class="stat-val" id="snap-total-npr">—</div>
+          <div class="stat-val2" id="snap-total-usd">—</div>
+          <div class="stat-val3" id="snap-total-eur">—</div>
+          <div class="stat-val4" id="snap-total-aed">—</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">
+            Balance After Lump (Yr <span id="snap-lump-yr-label">7</span>)
+          </div>
+          <div class="stat-val" id="st-after-npr">—</div>
+          <div class="stat-val2" id="st-after-usd">—</div>
+        </div>
+        <div class="stat accent">
+          <div class="stat-label">Full Payoff Year</div>
+          <div class="stat-val" id="st-opt-yr">—</div>
+          <div class="stat-val2" id="st-opt-rate">—</div>
+        </div>
+        <div class="stat green">
+          <div class="stat-label">Property @ Year 10</div>
+          <div class="stat-val" id="snap-prop10-npr">—</div>
+          <div class="stat-val2" id="snap-prop10-usd">—</div>
+          <div class="stat-val3" id="snap-prop10-eur">—</div>
+          <div class="stat-val4" id="snap-prop10-aed">—</div>
+        </div>
+      </div>
 
       <!-- TABS -->
-      <div class="section-label mb1">Deep Dive</div>
-      <div class="tabs-wrap mb2">
+      <div class="section-hdr"><h2>Deep Dive</h2></div>
+      <div class="tabs-wrap">
         <div class="tabs-nav">
           <button class="tab-btn active" data-tab="chart">📈 Chart</button>
           <button class="tab-btn" data-tab="amort">📋 Amortization</button>
@@ -1473,7 +1584,7 @@
         <div class="tab-panel active" id="tab-chart">
           <div class="legend-row">
             <div class="leg-item">
-              <div class="leg-swatch" style="background: var(--gold)"></div>
+              <div class="leg-swatch" style="background: var(--accent)"></div>
               Loan balance (USD)
             </div>
             <div class="leg-item">
@@ -1507,91 +1618,20 @@
           <div
             id="chart-insight"
             class="insight"
-            style="margin-top: 1.2rem"
+            style="margin-top: 18px"
           ></div>
         </div>
 
         <div class="tab-panel" id="tab-amort">
-          <div
-            style="
-              display: flex;
-              gap: 0.5rem;
-              margin-bottom: 1.2rem;
-              flex-wrap: wrap;
-            "
-          >
-            <button
-              class="tab-btn active"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('both', this)"
-            >
+          <div class="view-btns">
+            <button class="view-btn active" onclick="setView('both', this)">
               Full View
             </button>
-            <button
-              class="tab-btn"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('npr', this)"
-            >
-              NPR
-            </button>
-            <button
-              class="tab-btn"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('usd', this)"
-            >
-              USD
-            </button>
-            <button
-              class="tab-btn"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('eur', this)"
-            >
-              EUR
-            </button>
-            <button
-              class="tab-btn"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('krw', this)"
-            >
-              KRW
-            </button>
-            <button
-              class="tab-btn"
-              style="
-                font-size: 0.7rem;
-                padding: 0.4rem 0.9rem;
-                border: 1px solid var(--border);
-                border-radius: 4px;
-              "
-              onclick="setView('aed', this)"
-            >
-              AED
-            </button>
+            <button class="view-btn" onclick="setView('npr', this)">NPR</button>
+            <button class="view-btn" onclick="setView('usd', this)">USD</button>
+            <button class="view-btn" onclick="setView('eur', this)">EUR</button>
+            <button class="view-btn" onclick="setView('krw', this)">KRW</button>
+            <button class="view-btn" onclick="setView('aed', this)">AED</button>
           </div>
           <div class="table-scroll">
             <table>
@@ -1602,13 +1642,17 @@
         </div>
 
         <div class="tab-panel" id="tab-strategy">
-          <div id="strategy-insight" class="insight mb1"></div>
+          <div
+            id="strategy-insight"
+            class="insight"
+            style="margin-bottom: 20px"
+          ></div>
           <div class="tl" id="strategyTl"></div>
         </div>
 
         <div class="tab-panel" id="tab-property">
-          <div class="grid-4 mb1" id="prop-snap"></div>
-          <div class="table-scroll" style="margin-top: 1.2rem">
+          <div class="grid-4" id="prop-snap" style="margin-bottom: 20px"></div>
+          <div class="table-scroll">
             <table>
               <thead>
                 <tr>
@@ -1629,11 +1673,14 @@
           </div>
         </div>
 
-        <!-- ── ROLLOVER TAB ── -->
         <div class="tab-panel" id="tab-rollover">
           <div
-            class="insight mb1"
-            style="border-color: var(--purple); background: var(--purple-bg)"
+            class="insight"
+            style="
+              border-left-color: var(--purple);
+              background: var(--purple-dim);
+              margin-bottom: 18px;
+            "
           >
             <div class="insight-title" style="color: var(--purple)">
               🔄 BRRRR Rollover — Full 20-Year Wealth Projection
@@ -1642,20 +1689,12 @@
           </div>
           <div
             id="rollover-kpis"
-            style="
-              display: grid;
-              grid-template-columns: repeat(4, 1fr);
-              gap: 0.85rem;
-              margin-bottom: 1.4rem;
-            "
+            class="grid-4"
+            style="margin-bottom: 20px"
           ></div>
-          <div
-            class="legend-row"
-            id="rollover-legend"
-            style="margin-bottom: 0.8rem"
-          ></div>
+          <div class="legend-row" id="rollover-legend"></div>
           <canvas id="rolloverChart" class="main-chart" height="340"></canvas>
-          <div class="table-scroll" style="margin-top: 1.5rem">
+          <div class="table-scroll" style="margin-top: 20px">
             <table>
               <thead>
                 <tr>
@@ -1677,18 +1716,26 @@
         </div>
       </div>
     </div>
+    <!-- /main-wrap -->
+
+    <footer>
+      <a href="index.html" class="footer-logo">M Finance</a>
+      <p>&copy; 2026 M Finance. All rights reserved.</p>
+    </footer>
 
     <script>
       // ── CONSTANTS ──────────────────────────────────────────────────────────────
-      const RATE0_USD = 150.65; // NPR per 1 USD today
-      const EUR_MULT = 1.083; // 1 EUR = ~1.083 USD → NPR per EUR = RATE0_USD * EUR_MULT
-      const KRW_PER_USD = 1381; // 1 USD = 1381 KRW → NPR per KRW = RATE0_USD / 1381
-      const AED_PER_USD = 3.673; // 1 USD = 3.673 AED → NPR per AED = RATE0_USD / 3.673
+      const RATE0_USD = 150.65;
+      const EUR_MULT = 1.083;
+      const KRW_PER_USD = 1381;
+      const AED_PER_USD = 3.673;
       const DEPR = 0.035;
+      const FIXED_APY = 0.0475; // 4.75% fixed — not user-adjustable
 
       let selectedLumpYr = 7;
       let currentView = "both";
-      let primaryCur = "usd"; // which currency is the "primary" display
+      let primaryCur = "usd";
+      let emiTargetMode = false; // true when user has dragged EMI target slider
       let G = {};
 
       const $ = (id) => document.getElementById(id);
@@ -1712,7 +1759,6 @@
             ? (n / 1000).toFixed(0) + "K"
             : fmt(n, 0);
 
-      // Exchange rates at year y (NPR weakens, so each foreign currency buys more NPR)
       const nprPerUSD = (yr) => RATE0_USD * Math.pow(1 + DEPR, yr);
       const nprPerEUR = (yr) => nprPerUSD(yr) * EUR_MULT;
       const nprPerKRW = (yr) => nprPerUSD(yr) / KRW_PER_USD;
@@ -1723,7 +1769,6 @@
       const toKRW = (npr, yr = 0) => npr / nprPerKRW(yr);
       const toAED = (npr, yr = 0) => npr / nprPerAED(yr);
 
-      // Convert from primary currency to NPR
       const fromPrimary = (v, yr = 0) => {
         if (primaryCur === "usd") return v * nprPerUSD(yr);
         if (primaryCur === "eur") return v * nprPerEUR(yr);
@@ -1744,7 +1789,6 @@
         return primarySym() + fmt(v);
       };
 
-      // Pill rate labels
       function updatePillRates() {
         $("pill-usd-rate").textContent = "≈" + fmt(RATE0_USD, 0) + " NPR";
         $("pill-eur-rate").textContent = "≈" + fmt(nprPerEUR(0), 0) + " NPR";
@@ -1755,22 +1799,13 @@
       function setPrimary(cur, btn) {
         primaryCur = cur;
         document.querySelectorAll(".cur-pill").forEach((p) => {
-          p.className = "cur-pill";
+          p.classList.remove("active");
         });
-        if (btn) btn.classList.add("active-" + cur);
-        // Update APY hint
-        const hints = {
-          usd: "US HYSA avg (Mar 2026)",
-          eur: "EU savings rate",
-          krw: "Korean savings rate",
-          aed: "UAE savings rate",
-        };
-        $("hint-apy").textContent = hints[cur] || "Savings rate";
+        if (btn) btn.classList.add("active");
         $("hint-income-cur").textContent = "Shown in " + cur.toUpperCase();
         recalc();
       }
 
-      // ── SLIDER DEFS ────────────────────────────────────────────────────────────
       const sliderDefs = [
         { id: "s-loan", out: "v-loan", fmt: (v) => fmtC(v * 100000) },
         {
@@ -1783,15 +1818,9 @@
           id: "s-income",
           out: "v-income",
           fmt: (v) => {
-            const npr = fromPrimary(parseFloat(v));
             if (primaryCur === "krw") return "₩" + fmtK(parseFloat(v));
             return primarySym() + fmt(parseFloat(v));
           },
-        },
-        {
-          id: "s-apy",
-          out: "v-apy",
-          fmt: (v) => parseFloat(v).toFixed(2) + "%",
         },
         { id: "s-appr", out: "v-appr", fmt: (v) => v + "%" },
         {
@@ -1804,19 +1833,39 @@
         const el = $(s.id);
         el.addEventListener("input", () => {
           $(s.out).textContent = s.fmt(el.value);
+          if (s.id === "s-loan" || s.id === "s-apr" || s.id === "s-term") {
+            // Reset EMI target slider to match new calculated EMI
+            emiTargetMode = false;
+          }
           recalc();
         });
         $(s.out).textContent = s.fmt(el.value);
       });
 
+      // EMI Target slider
+      $("s-emi-target").addEventListener("input", () => {
+        emiTargetMode = true;
+        recalc();
+      });
+
+      // Compute months to repay given a fixed EMI
+      function monthsFromEMI(P, apr, emiTarget) {
+        const r = apr / 100 / 12;
+        if (r === 0) return Math.ceil(P / emiTarget);
+        // n = -log(1 - P*r/EMI) / log(1+r)
+        const ratio = (P * r) / emiTarget;
+        if (ratio >= 1) return Infinity; // EMI too small to cover interest
+        return Math.ceil(-Math.log(1 - ratio) / Math.log(1 + r));
+      }
+
       function autoOptimize() {
         $("s-income").value = 50000;
         $("s-apr").value = 8.49;
         $("s-term").value = 20;
-        $("s-apy").value = 4.75;
         $("s-appr").value = 10;
         $("s-loan").value = 120;
         $("s-coll").value = 2;
+        emiTargetMode = false;
         sliderDefs.forEach((s) => {
           $(s.out).textContent = s.fmt($(s.id).value);
         });
@@ -1824,20 +1873,18 @@
         recalc();
       }
 
-      // ── MATH ──────────────────────────────────────────────────────────────────
       function calcEMI(P, apr, yrs) {
         const r = apr / 100 / 12,
           n = yrs * 12;
         if (r === 0) return P / n;
         return (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
       }
-      function amortize(P, apr, yrs) {
-        const r = apr / 100 / 12,
-          n = yrs * 12,
-          emi = calcEMI(P, apr, yrs);
+      function amortize(P, apr, months) {
+        const r = apr / 100 / 12;
+        const emi = calcEMImonths(P, apr, months);
         let bal = P;
         const rows = [];
-        for (let i = 0; i < n; i++) {
+        for (let i = 0; i < months; i++) {
           const int = bal * r,
             prin = emi - int;
           bal = Math.max(0, bal - prin);
@@ -1845,38 +1892,103 @@
         }
         return rows;
       }
+      function calcEMImonths(P, apr, months) {
+        const r = apr / 100 / 12;
+        if (r === 0) return P / months;
+        return (
+          (P * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1)
+        );
+      }
 
-      // ── RECALC ────────────────────────────────────────────────────────────────
       function recalc() {
         const P = parseFloat($("s-loan").value) * 100000;
         const apr = parseFloat($("s-apr").value);
-        const term = parseInt($("s-term").value);
-        const incPrimary = parseFloat($("s-income").value); // in primary currency
-        const incNPR = fromPrimary(incPrimary, 0); // convert to NPR
+        const termFromSlider = parseInt($("s-term").value);
+        const incPrimary = parseFloat($("s-income").value);
+        const incNPR = fromPrimary(incPrimary, 0);
         const incUSD = toUSD(incNPR, 0);
-        const apy = parseFloat($("s-apy").value) / 100;
+        const apy = FIXED_APY;
         const appr = parseFloat($("s-appr").value) / 100;
         const coll = parseFloat($("s-coll").value) * 10000000;
         const R0 = nprPerUSD(0);
 
-        const emi = calcEMI(P, apr, term);
-        const monthly = amortize(P, apr, term);
-        const totalInt = emi * term * 12 - P;
+        // Baseline (minimum EMI = full term from slider)
+        const emiMin = calcEMI(P, apr, termFromSlider);
+        const totalIntMin = emiMin * termFromSlider * 12 - P;
 
-        // EMI in USD equivalent
-        const emiMoUSD = toUSD(emi, 0);
+        // EMI target logic
+        let effectiveEMI, effectiveMonths, effectiveTerm;
+        if (emiTargetMode) {
+          effectiveEMI = parseFloat($("s-emi-target").value);
+          const months = monthsFromEMI(P, apr, effectiveEMI);
+          if (!isFinite(months)) {
+            // EMI below interest — cap and warn
+            effectiveEMI = emiMin;
+            effectiveMonths = termFromSlider * 12;
+            emiTargetMode = false;
+            $("s-emi-target").value = Math.ceil(emiMin / 1000) * 1000;
+          } else {
+            effectiveMonths = Math.min(months, termFromSlider * 12);
+            // If EMI target is below min, recalc actual EMI for that capped months
+            if (months > termFromSlider * 12) {
+              effectiveEMI = emiMin;
+              effectiveMonths = termFromSlider * 12;
+            }
+          }
+          effectiveTerm = effectiveMonths / 12;
+        } else {
+          effectiveEMI = emiMin;
+          effectiveMonths = termFromSlider * 12;
+          effectiveTerm = termFromSlider;
+          // Sync EMI slider to calculated value
+          $("s-emi-target").value = Math.round(effectiveEMI);
+        }
+
+        $("v-emi-target").textContent = "NPR " + fmt(effectiveEMI);
+        $("v-term").textContent = Math.round(effectiveTerm * 10) / 10 + " yrs";
+
+        const totalInt = effectiveEMI * effectiveMonths - P;
+        const totalRepay = effectiveEMI * effectiveMonths;
+        const intSavedVsMin = totalIntMin - totalInt;
+
+        // Update derived EMI box
+        const termYrs = Math.floor(effectiveMonths / 12);
+        const termMos = effectiveMonths % 12;
+        $("emi-derived-term").textContent =
+          termYrs + (termMos > 0 ? "y " + termMos + "m" : "y");
+        $("emi-derived-term-sub").textContent = effectiveMonths + " months";
+        $("emi-derived-int").textContent = fmtC(totalInt);
+        $("emi-derived-int-sub").textContent = "= $" + fmt(toUSD(totalInt));
+        if (emiTargetMode && intSavedVsMin > 0) {
+          $("emi-derived-saved").textContent = fmtC(intSavedVsMin);
+          $("emi-derived-saved-sub").textContent =
+            "vs min EMI ($" + fmt(toUSD(intSavedVsMin)) + ")";
+          $("emi-derived-saved").style.color = "var(--green)";
+        } else if (emiTargetMode && intSavedVsMin < 0) {
+          $("emi-derived-saved").textContent = fmtC(Math.abs(intSavedVsMin));
+          $("emi-derived-saved-sub").textContent = "extra vs min EMI";
+          $("emi-derived-saved").style.color = "var(--red)";
+        } else {
+          $("emi-derived-saved").textContent = "—";
+          $("emi-derived-saved-sub").textContent = "at minimum EMI";
+          $("emi-derived-saved").style.color = "var(--muted)";
+        }
+        $("emi-derived-total").textContent = fmtC(totalRepay);
+        $("emi-derived-total-sub").textContent = "= $" + fmt(toUSD(totalRepay));
+
+        const monthly = amortize(P, apr, effectiveMonths);
+
+        const emiMoUSD = toUSD(effectiveEMI, 0);
         const incMoUSD = incUSD / 12;
         const hysaMoUSD = Math.max(0, incMoUSD - emiMoUSD);
         const emiPct = Math.min(100, (emiMoUSD / incMoUSD) * 100);
 
-        // ── Dual display — loan sliders ──
         $("d-loan-npr").textContent = fmtC(P) + " NPR";
         $("d-loan-usd").textContent = "= $" + fmt(toUSD(P)) + " USD";
         $("d-loan-eur").textContent = "= €" + fmt(toEUR(P)) + " EUR";
         $("d-loan-krw").textContent = "= ₩" + fmtK(toKRW(P)) + " KRW";
         $("d-loan-aed").textContent = "= د.إ" + fmt(toAED(P)) + " AED";
 
-        // Income display
         $("d-income-usd").textContent = "$" + fmt(incUSD / 12, 0) + "/mo";
         $("d-income-eur").textContent =
           "€" + fmt(toEUR(incNPR) / 12, 0) + "/mo";
@@ -1888,7 +2000,6 @@
             ? "₩" + fmtK(incPrimary)
             : primarySym() + fmt(incPrimary);
 
-        // Collateral display
         $("d-coll-npr").textContent = fmtC(coll) + " NPR";
         $("d-coll-usd").textContent = "= $" + fmt(toUSD(coll));
         $("d-coll-eur").textContent = "€" + fmt(toEUR(coll));
@@ -1901,18 +2012,23 @@
         $("max-lap-eur").textContent = "€" + fmt(toEUR(maxLAP));
         $("max-lap-aed").textContent = "د.إ" + fmt(toAED(maxLAP));
 
-        $("st-emi-npr").textContent = "NPR " + fmt(emi);
+        $("st-emi-npr").textContent = "NPR " + fmt(effectiveEMI);
         $("st-emi-usd").textContent = "= $" + fmt(emiMoUSD, 0) + "/mo";
-        $("st-emi-eur").textContent = "€" + fmt(toEUR(emi), 0) + "/mo";
-        $("st-emi-aed").textContent = "د.إ" + fmt(toAED(emi), 0) + "/mo";
+        $("st-emi-eur").textContent = "€" + fmt(toEUR(effectiveEMI), 0) + "/mo";
+        $("st-emi-aed").textContent =
+          "د.إ" + fmt(toAED(effectiveEMI), 0) + "/mo";
 
         $("hint-coll").textContent =
           "Max borrow: " + fmtC(maxLAP) + " = $" + fmt(toUSD(maxLAP));
-        $("hint-loan").className = P <= maxLAP ? "auto-hint" : "auto-hint warn";
+        $("hint-loan").className =
+          P <= maxLAP ? "field-hint" : "field-hint warn";
         $("hint-loan").textContent =
           P <= maxLAP
             ? "✓ Within your 70% LTV limit"
             : "⚠ Exceeds 70% LTV — reduce loan or increase collateral";
+        $("hint-term").textContent = emiTargetMode
+          ? "← Term set by EMI target above"
+          : "✓ Longest term = lowest EMI";
 
         const py5 = coll * Math.pow(1 + appr, 5),
           py10 = coll * Math.pow(1 + appr, 10);
@@ -1925,12 +2041,14 @@
         $("prop-yr10-eur").textContent = "€" + fmt(toEUR(py10, 10));
         $("prop-yr10-aed").textContent = "د.إ" + fmt(toAED(py10, 10));
 
-        // Split display
-        $("split-emi-primary").textContent = primaryFmt(emi) + "/mo";
-        $("split-emi-npr").textContent = "NPR " + fmt(emi) + "/mo";
-        $("split-emi-eur").textContent = "€" + fmt(toEUR(emi), 0) + "/mo";
-        $("split-emi-krw").textContent = "₩" + fmtK(toKRW(emi)) + "/mo";
-        $("split-emi-aed").textContent = "د.إ" + fmt(toAED(emi), 0) + "/mo";
+        $("split-emi-primary").textContent = primaryFmt(effectiveEMI) + "/mo";
+        $("split-emi-npr").textContent = "NPR " + fmt(effectiveEMI) + "/mo";
+        $("split-emi-eur").textContent =
+          "€" + fmt(toEUR(effectiveEMI), 0) + "/mo";
+        $("split-emi-krw").textContent =
+          "₩" + fmtK(toKRW(effectiveEMI)) + "/mo";
+        $("split-emi-aed").textContent =
+          "د.إ" + fmt(toAED(effectiveEMI), 0) + "/mo";
 
         const hysaNPR = hysaMoUSD * R0;
         $("split-hysa-primary").textContent = primaryFmt(hysaNPR) + "/mo";
@@ -1943,9 +2061,8 @@
           fmt(emiPct, 1) +
           "% of income to EMI · " +
           fmt(100 - emiPct, 1) +
-          "% to savings";
+          "% remaining";
 
-        // FX strip update
         $("fx-usd-now").textContent = fmt(nprPerUSD(0), 2) + " NPR/$";
         $("fx-eur-now").textContent = fmt(nprPerEUR(0), 2) + " NPR/€";
         $("fx-krw-now").textContent = nprPerKRW(0).toFixed(4) + " NPR/₩";
@@ -1976,12 +2093,15 @@
           " NPR/د.إ";
 
         // Build yearly data
+        const maxYears = Math.max(Math.ceil(effectiveTerm), 15);
         const years = [];
         let usdStack = 0,
           cumInt = 0;
-        for (let y = 1; y <= Math.max(term, 15); y++) {
+        for (let y = 1; y <= maxYears; y++) {
           const rateY = nprPerUSD(y);
-          const balAfter = y <= term ? (monthly[y * 12 - 1]?.bal ?? 0) : 0;
+          const mIdx = y * 12 - 1;
+          const balAfter =
+            mIdx < monthly.length ? (monthly[mIdx]?.bal ?? 0) : 0;
           let intYr = 0,
             prinYr = 0;
           for (let m = 0; m < 12; m++) {
@@ -2028,7 +2148,7 @@
           });
         }
 
-        // Lump sum calcs
+        // Lump sum at selected year
         const lumpRow = years.find((r) => r.y === selectedLumpYr);
         const lumpUSD = lumpRow?.usdStack ?? 0;
         const futRate = nprPerUSD(selectedLumpYr);
@@ -2037,9 +2157,9 @@
         const afterNPR = Math.max(0, balAtLump - lumpNPR);
         const intRem = totalInt - (lumpRow?.cumInt ?? 0);
         const payFrac = Math.min(1, lumpNPR / Math.max(1, balAtLump));
-        const intSaved = intRem * payFrac;
+        const intSavedLump = intRem * payFrac;
 
-        let optYear = term;
+        let optYear = Math.ceil(effectiveTerm);
         for (const r of years) {
           if (r.usdStack >= r.balUSD) {
             optYear = r.y;
@@ -2048,80 +2168,19 @@
         }
         const optRow = years.find((r) => r.y === optYear);
 
-        // ── PLAN BANNER ──
-        $("plan-title").textContent =
-          afterNPR < 100000
-            ? `Drop ${primaryFmt(lumpNPR)} at Year ${selectedLumpYr} — loan fully paid off`
-            : `Stack savings for ${selectedLumpYr} yrs, drop ${primaryFmt(lumpNPR)} — saves NPR ${fmtC(intSaved)} in interest`;
-
-        $("plan-stats").innerHTML = [
-          {
-            l: "Monthly EMI",
-            v: "NPR " + fmt(emi),
-            v2: "$" + fmt(emiMoUSD, 0),
-            v3: "€" + fmt(toEUR(emi), 0),
-            v4: "د.إ" + fmt(toAED(emi), 0),
-          },
-          {
-            l: "Savings / Month",
-            v: "$" + fmt(hysaMoUSD, 0),
-            v2: "€" + fmt(hysaMoUSD / EUR_MULT, 0),
-            v3: "₩" + fmtK(hysaMoUSD * KRW_PER_USD),
-            v4: "د.إ" + fmt(hysaMoUSD * AED_PER_USD, 0),
-          },
-          {
-            l: "Lump at Yr " + selectedLumpYr,
-            v: "$" + fmt(lumpUSD),
-            v2: "= NPR " + fmtC(lumpNPR),
-            v3: "€" + fmt(toEUR(lumpNPR)),
-            v4: "د.إ" + fmt(toAED(lumpNPR)),
-          },
-          {
-            l: "Interest Saved",
-            v: fmtC(intSaved),
-            v2: "$" + fmt(toUSD(intSaved)),
-            v3: "€" + fmt(toEUR(intSaved)),
-            v4: "د.إ" + fmt(toAED(intSaved)),
-          },
-          {
-            l: "Full Payoff Year",
-            v: "Year " + optYear,
-            v2: fmt(optRow?.rateY ?? 0, 1) + " NPR/$",
-            v3: "",
-            v4: "",
-          },
-          {
-            l: "Net Worth @ Yr 10",
-            v: "$" + fmt(years.find((r) => r.y === 10)?.netWorthUSD ?? 0),
-            v2:
-              "€" +
-              fmt(
-                toEUR(
-                  (years.find((r) => r.y === 10)?.netWorthUSD ?? 0) *
-                    nprPerUSD(10),
-                  10,
-                ),
-              ),
-            v3: "",
-            v4: "",
-          },
-        ]
-          .map(
-            (s) => `<div class="plan-stat">
-          <div class="plan-stat-label">${s.l}</div>
-          <div class="plan-stat-val">${s.v}</div>
-          <div class="plan-stat-val2">${s.v2}</div>
-          ${s.v3 ? `<div class="plan-stat-val3">${s.v3}</div>` : ""}
-          ${s.v4 ? `<div class="plan-stat-val4">${s.v4}</div>` : ""}
-        </div>`,
-          )
-          .join("");
-
-        // ── SNAPSHOT ──
+        // Numbers at a Glance — main snapshot
+        $("snap-lump-yr-label").textContent = selectedLumpYr;
         $("st-loan-npr").textContent = fmtC(P);
         $("st-loan-usd").textContent = "= $" + fmt(toUSD(P)) + " USD";
         $("st-loan-eur").textContent = "€" + fmt(toEUR(P)) + " EUR";
         $("st-loan-aed").textContent = "د.إ" + fmt(toAED(P)) + " AED";
+
+        $("snap-emi-npr").textContent = "NPR " + fmt(effectiveEMI);
+        $("snap-emi-usd").textContent = "= $" + fmt(emiMoUSD, 0) + "/mo";
+        $("snap-emi-eur").textContent =
+          "€" + fmt(toEUR(effectiveEMI), 0) + "/mo";
+        $("snap-emi-aed").textContent =
+          "د.إ" + fmt(toAED(effectiveEMI), 0) + "/mo";
 
         $("st-int-npr").textContent = fmtC(totalInt);
         $("st-int-usd").textContent =
@@ -2129,24 +2188,43 @@
         $("st-int-eur").textContent = "€" + fmt(toEUR(totalInt));
         $("st-int-aed").textContent = "د.إ" + fmt(toAED(totalInt));
 
-        $("st-saved-npr").textContent = fmtC(intSaved);
+        // Interest saved vs min EMI (from EMI slider) — meaningful comparison
+        $("st-saved-npr").textContent =
+          intSavedVsMin > 100
+            ? fmtC(intSavedVsMin)
+            : intSavedLump > 0
+              ? fmtC(intSavedLump)
+              : "—";
         $("st-saved-usd").textContent =
-          "~$" + fmt(toUSD(intSaved, selectedLumpYr));
+          intSavedVsMin > 100
+            ? "~$" + fmt(toUSD(intSavedVsMin))
+            : intSavedLump > 0
+              ? "~$" + fmt(toUSD(intSavedLump))
+              : "at minimum EMI";
         $("st-saved-eur").textContent =
-          "€" + fmt(toEUR(intSaved, selectedLumpYr));
+          intSavedVsMin > 100
+            ? "€" + fmt(toEUR(intSavedVsMin))
+            : intSavedLump > 0
+              ? "€" + fmt(toEUR(intSavedLump))
+              : "";
         $("st-saved-aed").textContent =
-          "د.إ" + fmt(toAED(intSaved, selectedLumpYr));
+          intSavedVsMin > 100
+            ? "د.إ" + fmt(toAED(intSavedVsMin))
+            : intSavedLump > 0
+              ? "د.إ" + fmt(toAED(intSavedLump))
+              : "";
 
-        $("st-stack-usd").textContent = "$" + fmt(lumpUSD);
-        $("st-stack-npr").textContent =
-          "= NPR " + fmtC(lumpNPR) + " at Yr " + selectedLumpYr;
-        $("st-stack-eur").textContent = "€" + fmt(lumpUSD / EUR_MULT);
-        $("st-stack-aed").textContent = "د.إ" + fmt(lumpUSD * AED_PER_USD);
+        $("snap-term").textContent =
+          Math.round(effectiveTerm * 10) / 10 + " yrs";
+        $("snap-term-sub").textContent =
+          effectiveMonths +
+          " months · " +
+          (emiTargetMode ? "EMI-set" : "term-set");
 
-        $("st-lumpnpr").textContent = fmtC(lumpNPR);
-        $("st-lumpusd").textContent = "= $" + fmt(lumpUSD) + " → NPR";
-        $("st-lumpeur").textContent = "€" + fmt(lumpUSD / EUR_MULT);
-        $("st-lumpaed").textContent = "د.إ" + fmt(lumpUSD * AED_PER_USD);
+        $("snap-total-npr").textContent = fmtC(totalRepay);
+        $("snap-total-usd").textContent = "= $" + fmt(toUSD(totalRepay));
+        $("snap-total-eur").textContent = "€" + fmt(toEUR(totalRepay));
+        $("snap-total-aed").textContent = "د.إ" + fmt(toAED(totalRepay));
 
         $("st-after-npr").textContent =
           afterNPR < 1000 ? "✓ Fully paid" : fmtC(afterNPR);
@@ -2165,13 +2243,21 @@
         $("st-nw10-aed").textContent =
           "د.إ" + fmt((nw10?.netWorthUSD ?? 0) * AED_PER_USD);
 
+        $("snap-prop10-npr").textContent = fmtC(py10);
+        $("snap-prop10-usd").textContent = "= $" + fmt(toUSD(py10, 10));
+        $("snap-prop10-eur").textContent = "€" + fmt(toEUR(py10, 10));
+        $("snap-prop10-aed").textContent = "د.إ" + fmt(toAED(py10, 10));
+
         G = {
           years,
           P,
           apr,
-          term,
-          emi,
+          term: effectiveTerm,
+          effectiveMonths,
+          emi: effectiveEMI,
           totalInt,
+          totalIntMin,
+          intSavedVsMin,
           apy,
           appr,
           coll,
@@ -2181,12 +2267,13 @@
           lumpNPR,
           balAtLump,
           afterNPR,
-          intSaved,
+          intSaved: intSavedLump,
           optYear,
           selectedLumpYr,
           futRate,
           incNPR,
           incPrimary,
+          monthly,
         };
 
         buildTimeline();
@@ -2197,7 +2284,6 @@
         buildRollover();
       }
 
-      // ── TIMELINE ──────────────────────────────────────────────────────────────
       function buildTimeline() {
         const { P, years } = G;
         const allYrs = [0, 2, 4, 6, 8, 10, 12, 15, 20];
@@ -2210,8 +2296,6 @@
                 : "+" +
                   fmt(((rate - RATE0_USD) / RATE0_USD) * 100, 1) +
                   "% weaker";
-            const balRow = years.find((r) => r.y === y);
-            const balUSD = balRow ? balRow.balUSD : toUSD(P);
             return `<div class="npr-yr${y === selectedLumpYr ? " active" : ""}" onclick="setLumpYear(${y})">
             <div class="yr-label">Yr ${y}</div>
             <div class="yr-rate">${fmt(rate, 0)}</div>
@@ -2227,10 +2311,10 @@
         const scenarios = [2, 5, 7, 10, 15];
         $("compareStrip").innerHTML = scenarios
           .map((y) => {
-            const rate = nprPerUSD(y);
-            const row = years.find((r) => r.y === y);
-            const balUSD = row?.balUSD ?? toUSD(P);
-            const save = toUSD(P) - balUSD;
+            const rate = nprPerUSD(y),
+              row = years.find((r) => r.y === y);
+            const balUSD = row?.balUSD ?? toUSD(P),
+              save = toUSD(P) - balUSD;
             return `<div class="compare-col${y === selectedLumpYr ? " sel" : ""}" onclick="setLumpYear(${y})">
             <div class="cc-yr">Year ${y}</div>
             <div class="cc-rate">${fmt(rate, 0)} NPR/$</div>
@@ -2246,8 +2330,8 @@
         const lr = years.find((r) => r.y === selectedLumpYr);
         const futRate = nprPerUSD(selectedLumpYr);
         const balNow = toUSD(P),
-          balThen = lr?.balUSD ?? balNow;
-        const saving = balNow - balThen;
+          balThen = lr?.balUSD ?? balNow,
+          saving = balNow - balThen;
         $("fx-title").textContent =
           `Year ${selectedLumpYr}: Rate ~${fmt(futRate, 0)} NPR/USD (€${fmt(nprPerEUR(selectedLumpYr), 0)}/EUR · د.إ${fmt(nprPerAED(selectedLumpYr), 1)}/AED)`;
         $("fx-body").innerHTML =
@@ -2255,13 +2339,8 @@
           At Year ${selectedLumpYr}, remaining balance <strong>${fmtC(lr?.balNPR ?? P)} NPR</strong> costs only <strong>$${fmt(balThen)}</strong>
           / <strong>€${fmt(lr?.balEUR ?? 0)}</strong> / <strong>₩${fmtK(lr?.balKRW ?? 0)}</strong> / <strong>د.إ${fmt(lr?.balAED ?? 0)}</strong>.
           That's a <strong>$${fmt(saving)} USD saving</strong> from currency depreciation alone.
-          Your savings stack = <strong>$${fmt(lr?.usdStack ?? 0)}</strong>
-          = <strong>NPR ${fmtC((lr?.usdStack ?? 0) * futRate)}</strong> at that rate —
-          ${
-            lr && lr.usdStack >= lr.balUSD
-              ? `<strong style="color:var(--green)">enough to fully pay off the loan ✓</strong>`
-              : `enough for a major lump sum payment`
-          }.`;
+          Savings stack = <strong>$${fmt(lr?.usdStack ?? 0)}</strong> = <strong>NPR ${fmtC((lr?.usdStack ?? 0) * futRate)}</strong> at that rate —
+          ${lr && lr.usdStack >= lr.balUSD ? `<strong style="color:var(--green)">enough to fully pay off the loan ✓</strong>` : `enough for a major lump sum payment`}.`;
       }
 
       function setLumpYear(y) {
@@ -2270,7 +2349,6 @@
         recalc();
       }
 
-      // ── CHART ─────────────────────────────────────────────────────────────────
       function buildChart() {
         const canvas = $("mainChart");
         const W = canvas.parentElement.offsetWidth,
@@ -2298,7 +2376,7 @@
         for (let g = 0; g <= 5; g++) {
           const y = pad.t + (g / 5) * ph,
             val = maxV * (1 - g / 5);
-          ctx.strokeStyle = "rgba(45,53,64,0.8)";
+          ctx.strokeStyle = "rgba(216,216,216,0.8)";
           ctx.lineWidth = 1;
           ctx.setLineDash([3, 4]);
           ctx.beginPath();
@@ -2306,17 +2384,17 @@
           ctx.lineTo(pad.l + pw, y);
           ctx.stroke();
           ctx.setLineDash([]);
-          ctx.fillStyle = "#5c6b7a";
-          ctx.font = "10px Syne Mono,monospace";
+          ctx.fillStyle = "#888";
+          ctx.font = "10px DM Sans,sans-serif";
           ctx.textAlign = "right";
           ctx.fillText("$" + fmt(val / 1000) + "k", pad.l - 6, y + 4);
         }
         if (selectedLumpYr > 0 && selectedLumpYr <= n) {
           const x1 = xP(selectedLumpYr - 1),
             x2 = xP(selectedLumpYr);
-          ctx.fillStyle = "rgba(62,207,142,0.05)";
+          ctx.fillStyle = "rgba(26,107,60,0.05)";
           ctx.fillRect(x1, pad.t, x2 - x1, ph);
-          ctx.strokeStyle = "rgba(62,207,142,0.2)";
+          ctx.strokeStyle = "rgba(26,107,60,0.2)";
           ctx.lineWidth = 1;
           ctx.setLineDash([3, 3]);
           ctx.beginPath();
@@ -2338,10 +2416,10 @@
           ctx.stroke();
           ctx.setLineDash([]);
         };
-        line(propU, 1, "rgba(91,156,246,0.45)", [5, 4], 1.5);
-        line(netW, 1, "rgba(240,110,110,0.5)", [5, 4], 1.5);
-        line(stacks, 0, "#3ecf8e", [], 2.5);
-        line(balUSDs, 0, "#e6b84a", [], 3);
+        line(propU, 1, "rgba(26,74,138,0.4)", [5, 4], 1.5);
+        line(netW, 1, "rgba(185,28,28,0.45)", [5, 4], 1.5);
+        line(stacks, 0, "#1a6b3c", [], 2.5);
+        line(balUSDs, 0, "#8a6a30", [], 3);
 
         if (optYear <= n) {
           const or = years[optYear - 1];
@@ -2350,25 +2428,25 @@
               y = yP(or.balUSD);
             ctx.beginPath();
             ctx.arc(x, y, 8, 0, Math.PI * 2);
-            ctx.fillStyle = "#e6b84a";
+            ctx.fillStyle = "#8a6a30";
             ctx.fill();
-            ctx.strokeStyle = "#0e1012";
+            ctx.strokeStyle = "#fff";
             ctx.lineWidth = 2.5;
             ctx.stroke();
-            ctx.fillStyle = "#0e1012";
-            ctx.font = "bold 10px Syne Mono,monospace";
+            ctx.fillStyle = "#fff";
+            ctx.font = "bold 10px DM Sans,sans-serif";
             ctx.textAlign = "center";
             ctx.fillText("⚡", x, y + 4);
           }
         }
         if (selectedLumpYr > 0 && selectedLumpYr <= n) {
-          ctx.fillStyle = "#3ecf8e";
-          ctx.font = "bold 10px Syne Mono,monospace";
+          ctx.fillStyle = "#1a6b3c";
+          ctx.font = "bold 10px DM Sans,sans-serif";
           ctx.textAlign = "center";
           ctx.fillText("↓ LUMP SUM", xP(selectedLumpYr - 0.5), pad.t + 14);
         }
-        ctx.fillStyle = "#5c6b7a";
-        ctx.font = "10px Syne Mono,monospace";
+        ctx.fillStyle = "#888";
+        ctx.font = "10px DM Sans,sans-serif";
         ctx.textAlign = "center";
         for (let i = 0; i <= n; i++)
           if (i === 0 || i % 2 === 0 || i === n)
@@ -2376,29 +2454,15 @@
 
         const optRow2 = years.find((r) => r.y === G.optYear);
         const surplus = (optRow2?.usdStack ?? 0) - (optRow2?.balUSD ?? 0);
-        $("chart-insight").innerHTML = `
-          <div class="insight-title">⚡ Crossover at Year ${G.optYear} — ${fmt(optRow2?.rateY ?? 0, 0)} NPR/USD</div>
-          <div class="insight-body">
-            HYSA crosses loan balance at <strong>Year ${G.optYear}</strong>.
-            Rate: ~<strong>${fmt(optRow2?.rateY ?? 0, 0)} NPR/$</strong>
-            / <strong>€1 = ${fmt(nprPerEUR(G.optYear), 0)} NPR</strong>
-            / <strong>₩1K = ${fmt(nprPerKRW(G.optYear) * 1000, 2)} NPR</strong>
-            / <strong>د.إ1 = ${fmt(nprPerAED(G.optYear), 1)} NPR</strong>.
-            Balance: <strong>${fmtC(optRow2?.balNPR ?? 0)} NPR</strong> = <strong>$${fmt(optRow2?.balUSD ?? 0)}</strong>
-            / <strong>€${fmt(optRow2?.balEUR ?? 0)}</strong> / <strong>د.إ${fmt(optRow2?.balAED ?? 0)}</strong>.
-            ${
-              surplus >= 0
-                ? `Surplus: <strong style="color:var(--green)">$${fmt(surplus)}</strong>`
-                : `Short by: <strong style="color:var(--red)">$${fmt(Math.abs(surplus))}</strong>`
-            }
-          </div>`;
+        $("chart-insight").innerHTML =
+          `<div class="insight-title">⚡ Crossover at Year ${G.optYear} — ${fmt(optRow2?.rateY ?? 0, 0)} NPR/USD</div>
+          <div class="insight-body">HYSA crosses loan balance at <strong>Year ${G.optYear}</strong>. Rate: ~<strong>${fmt(optRow2?.rateY ?? 0, 0)} NPR/$</strong> / <strong>€1 = ${fmt(nprPerEUR(G.optYear), 0)} NPR</strong> / <strong>₩1K = ${fmt(nprPerKRW(G.optYear) * 1000, 2)} NPR</strong> / <strong>د.إ1 = ${fmt(nprPerAED(G.optYear), 1)} NPR</strong>. Balance: <strong>${fmtC(optRow2?.balNPR ?? 0)} NPR</strong> = <strong>$${fmt(optRow2?.balUSD ?? 0)}</strong> / <strong>€${fmt(optRow2?.balEUR ?? 0)}</strong> / <strong>د.إ${fmt(optRow2?.balAED ?? 0)}</strong>. ${surplus >= 0 ? `Surplus: <strong style="color:var(--green)">$${fmt(surplus)}</strong>` : `Short by: <strong style="color:var(--red)">$${fmt(Math.abs(surplus))}</strong>`}</div>`;
       }
 
-      // ── TABLE ─────────────────────────────────────────────────────────────────
       function setView(v, btn) {
         currentView = v;
         document
-          .querySelectorAll("#tab-amort .tab-btn")
+          .querySelectorAll(".view-btn")
           .forEach((b) => b.classList.remove("active"));
         if (btn) btn.classList.add("active");
         buildTable(v);
@@ -2469,7 +2533,6 @@
             )
             .join("") +
           "</tr>";
-
         $("amortBody").innerHTML = years
           .map((r) => {
             const lbl =
@@ -2478,8 +2541,8 @@
                 : r.y === optYear
                   ? "⚡ Yr " + r.y
                   : "Yr " + r.y;
-            const net = r.usdStack - r.balUSD;
-            const netClr = net >= 0 ? "var(--green)" : "var(--red)";
+            const net = r.usdStack - r.balUSD,
+              netClr = net >= 0 ? "var(--green)" : "var(--red)";
             const cls =
               r.y === selectedLumpYr
                 ? "row-lump"
@@ -2487,7 +2550,7 @@
                   ? "row-opt"
                   : "";
             let cells;
-            if (view === "both") {
+            if (view === "both")
               cells = [
                 lbl,
                 fmt(r.rateY, 1),
@@ -2499,7 +2562,7 @@
                 "$" + fmt(r.usdStack),
                 `<span style="color:${netClr}">${net >= 0 ? "+" : ""}$${fmt(net)}</span>`,
               ];
-            } else if (view === "npr") {
+            else if (view === "npr")
               cells = [
                 lbl,
                 fmt(r.rateY, 1),
@@ -2509,7 +2572,7 @@
                 fmtC(r.cumInt),
                 r.y === selectedLumpYr ? "💰" : r.y === optYear ? "⚡" : "—",
               ];
-            } else if (view === "usd") {
+            else if (view === "usd")
               cells = [
                 lbl,
                 fmt(r.rateY, 1),
@@ -2518,7 +2581,7 @@
                 "$" + fmt(r.usdStack),
                 `<span style="color:${netClr}">${net >= 0 ? "+" : ""}$${fmt(net)}</span>`,
               ];
-            } else if (view === "eur") {
+            else if (view === "eur") {
               const rE = nprPerEUR(r.y),
                 netEUR = (r.usdStack * r.rateY) / rE - r.balEUR;
               cells = [
@@ -2557,7 +2620,6 @@
           .join("");
       }
 
-      // ── STRATEGY ──────────────────────────────────────────────────────────────
       function buildStrategy() {
         const {
           P,
@@ -2578,39 +2640,25 @@
           incNPR,
         } = G;
         const lr = G.years?.find((r) => r.y === selectedLumpYr);
-        $("strategy-insight").innerHTML = `
-          <div class="insight-title">Your Optimized 3-Phase Plan</div>
-          <div class="insight-body">
-            EMI = <strong>NPR ${fmt(emi)}</strong> = <strong>$${fmt(emiMoUSD, 0)}/mo</strong>
-            / <strong>€${fmt(toEUR(emi), 0)}/mo</strong>
-            / <strong>₩${fmtK(toKRW(emi))}/mo</strong>
-            / <strong>د.إ${fmt(toAED(emi), 0)}/mo</strong>.
-            Remaining <strong>$${fmt(hysaMoUSD, 0)}/mo</strong> stacks in savings at ${$("s-apy").value}% APY.
-            At Year <strong>${selectedLumpYr}</strong>, drop <strong>$${fmt(lumpUSD)}</strong>
-            = <strong>NPR ${fmtC(lumpNPR)}</strong> at ~${fmt(futRate, 0)} NPR/USD,
-            saving <strong>NPR ${fmtC(intSaved)}</strong> in interest.
-            ${afterNPR < 100000 ? `<strong style="color:var(--green)">Loan fully cleared ✓</strong>` : `Balance after: <strong>NPR ${fmtC(afterNPR)}</strong>.`}
-          </div>`;
+        $("strategy-insight").innerHTML =
+          `<div class="insight-title">Your Optimized 3-Phase Plan</div>
+          <div class="insight-body">EMI = <strong>NPR ${fmt(emi)}</strong> = <strong>$${fmt(emiMoUSD, 0)}/mo</strong> / <strong>€${fmt(toEUR(emi), 0)}/mo</strong> / <strong>₩${fmtK(toKRW(emi))}/mo</strong> / <strong>د.إ${fmt(toAED(emi), 0)}/mo</strong>. Remaining <strong>$${fmt(hysaMoUSD, 0)}/mo</strong> available from income. ${afterNPR < 100000 ? `<strong style="color:var(--green)">Loan fully cleared ✓</strong>` : `Balance after lump: <strong>NPR ${fmtC(afterNPR)}</strong>.`}</div>`;
 
         const items = [
           {
             phase: "Now — Day 1",
-            title: "Negotiate 8.49% APR & open savings account in your country",
-            body: `Lock best Nabil Bank rate. Open savings account (US HYSA / EU savings / Korean savings / UAE savings). Every 1% difference = ~<strong>NPR ${fmtC(P * 0.07)}</strong> extra interest over ${$("s-term").value} yrs.`,
+            title: "Negotiate 8.49% APR & maximize EMI payments",
+            body: `Lock best Nabil Bank rate. Every extra NPR paid on principal saves <strong>${apr.toFixed(2)}% interest annually</strong>. On a ${fmtC(P)} NPR loan, paying down principal aggressively always beats any savings rate since your loan costs more than you can safely earn.`,
           },
           {
             phase: `Year 1–${selectedLumpYr}`,
-            title: "Minimum EMI · Maximum savings stack",
-            body: `Monthly EMI: <strong>NPR ${fmt(emi)}</strong> = <strong>$${fmt(emiMoUSD, 0)}</strong> / <strong>€${fmt(toEUR(emi), 0)}</strong> / <strong>₩${fmtK(toKRW(emi))}</strong> / <strong>د.إ${fmt(toAED(emi), 0)}</strong>.
-           Route remaining savings into your account at ${$("s-apy").value}% APY.
-           <strong>Never convert to NPR unnecessarily</strong> — each year NPR weakens ~3.5%, your money buys more NPR automatically.
-           By Year ${selectedLumpYr}: HYSA = <strong>$${fmt(lr?.usdStack ?? 0)}</strong> = <strong>€${fmt((lr?.usdStack ?? 0) / EUR_MULT)}</strong> = <strong>د.إ${fmt((lr?.usdStack ?? 0) * AED_PER_USD)}</strong>.`,
+            title: "Pay principal aggressively — consider higher EMI",
+            body: `Current EMI: <strong>NPR ${fmt(emi)}</strong> = <strong>$${fmt(emiMoUSD, 0)}</strong> / <strong>€${fmt(toEUR(emi), 0)}</strong>. Use the EMI slider to explore paying more each month — every extra payment reduces principal and saves <strong>${apr.toFixed(2)}% on that amount</strong> immediately. The loan costs more than any savings account pays. By Year ${selectedLumpYr}: your savings = <strong>$${fmt(lr?.usdStack ?? 0)}</strong> — consider a major lump payment at this favourable NPR rate.`,
           },
           {
             phase: `Year ${selectedLumpYr} — ~${fmt(futRate, 0)} NPR/USD`,
             title: "Drop the lump sum payoff",
-            body: `Convert savings → NPR at favorable rate. Apply to principal. Saves <strong>NPR ${fmtC(intSaved)}</strong>
-           = <strong>$${fmt(toUSD(intSaved, selectedLumpYr))}</strong> / <strong>€${fmt(toEUR(intSaved, selectedLumpYr))}</strong> / <strong>د.إ${fmt(toAED(intSaved, selectedLumpYr))}</strong>.`,
+            body: `Remaining balance <strong>${fmtC(G.balAtLump)} NPR</strong> at this rate. Converts to <strong>$${fmt(G.lumpUSD)}</strong> worth of NPR from your savings. Saves <strong>NPR ${fmtC(intSaved)}</strong> = <strong>$${fmt(toUSD(intSaved, selectedLumpYr))}</strong> in future interest.`,
           },
           {
             phase: `Year ${selectedLumpYr + 1}→${optYear}`,
@@ -2620,28 +2668,23 @@
                 : "Continue reduced EMI to full payoff",
             body:
               afterNPR < 100000
-                ? `Property now worth <strong>NPR ${fmtC(coll * Math.pow(1 + appr, optYear))}</strong> = <strong>$${fmt(toUSD(coll * Math.pow(1 + appr, optYear), optYear))}</strong> / <strong>€${fmt(toEUR(coll * Math.pow(1 + appr, optYear), optYear))}</strong>. Refinance via LAP (70% LTV) → acquire next property.`
+                ? `Property now worth <strong>NPR ${fmtC(coll * Math.pow(1 + appr, optYear))}</strong> = <strong>$${fmt(toUSD(coll * Math.pow(1 + appr, optYear), optYear))}</strong>. Refinance via LAP (70% LTV) → acquire next property.`
                 : `Balance: <strong>NPR ${fmtC(afterNPR)}</strong>. Full payoff at Year <strong>${optYear}</strong>.`,
           },
           {
             phase: "Year 10+",
             title: "BRRRR Loop — scale portfolio",
-            body: `Property worth <strong>NPR ${fmtC(coll * Math.pow(1 + appr, 10))}</strong> = <strong>$${fmt(toUSD(coll * Math.pow(1 + appr, 10), 10))}</strong> / <strong>€${fmt(toEUR(coll * Math.pow(1 + appr, 10), 10))}</strong> / <strong>د.إ${fmt(toAED(coll * Math.pow(1 + appr, 10), 10))}</strong>. LAP (70%) → buy next land. Repeat.`,
+            body: `Property worth <strong>NPR ${fmtC(coll * Math.pow(1 + appr, 10))}</strong> = <strong>$${fmt(toUSD(coll * Math.pow(1 + appr, 10), 10))}</strong> / <strong>€${fmt(toEUR(coll * Math.pow(1 + appr, 10), 10))}</strong>. LAP (70%) → buy next land. Repeat.`,
           },
         ];
         $("strategyTl").innerHTML = items
           .map(
-            (it) => `
-          <div class="tl-item">
-            <div class="tl-phase">${it.phase}</div>
-            <div class="tl-title">${it.title}</div>
-            <div class="tl-body">${it.body}</div>
-          </div>`,
+            (it) =>
+              `<div class="tl-item"><div class="tl-phase">${it.phase}</div><div class="tl-title">${it.title}</div><div class="tl-body">${it.body}</div></div>`,
           )
           .join("");
       }
 
-      // ── PROPERTY ──────────────────────────────────────────────────────────────
       function buildPropertyTab() {
         const { years, coll, appr, selectedLumpYr } = G;
         const yr10 = years.find((r) => r.y === 10) || years[years.length - 1];
@@ -2679,7 +2722,7 @@
             v4: "د.إ" + fmt(toAED(coll * Math.pow(1 + appr, 10), 10)),
           },
           {
-            c: "gold",
+            c: "accent",
             l: "Yr 10 Refi Power",
             v: fmtC(coll * Math.pow(1 + appr, 10) * 0.7),
             v2: "$" + fmt(toUSD(coll * Math.pow(1 + appr, 10) * 0.7, 10)),
@@ -2696,14 +2739,14 @@
           },
           {
             c: "",
-            l: "Yr 10 HYSA",
+            l: "Yr 10 Savings",
             v: "$" + fmt(yr10.usdStack),
             v2: "NPR " + fmtC(yr10.stackNPR),
             v3: "€" + fmt(yr10.usdStack / EUR_MULT),
             v4: "د.إ" + fmt(yr10.usdStack * AED_PER_USD),
           },
           {
-            c: "gold",
+            c: "accent",
             l: "Net Worth Yr 10",
             v: "$" + fmt(yr10.netWorthUSD),
             v2: "NPR " + fmtC(yr10.netWorthUSD * yr10.rateY),
@@ -2712,37 +2755,323 @@
           },
         ]
           .map(
-            (s) => `<div class="stat ${s.c}">
-          <div class="stat-label">${s.l}</div>
-          <div class="stat-val">${s.v}</div>
-          <div class="stat-val2">${s.v2}</div>
-          ${s.v3 ? `<div class="stat-val3">${s.v3}</div>` : ""}
-          ${s.v4 ? `<div class="stat-val4">${s.v4}</div>` : ""}
-        </div>`,
+            (s) =>
+              `<div class="stat ${s.c}"><div class="stat-label">${s.l}</div><div class="stat-val">${s.v}</div><div class="stat-val2">${s.v2}</div>${s.v3 ? `<div class="stat-val3">${s.v3}</div>` : ""}${s.v4 ? `<div class="stat-val4">${s.v4}</div>` : ""}</div>`,
           )
           .join("");
 
         $("propBody").innerHTML = years
           .map((r) => {
             const cls =
-              r.y === 10 ? "row-opt" : r.y === selectedLumpYr ? "row-lump" : "";
-            return `<tr class="${cls}">
-            <td>${r.y === 10 ? "★ " : r.y === G.selectedLumpYr ? "💰 " : ""}Year ${r.y}</td>
-            <td>${fmt(r.rateY, 1)}</td>
-            <td>${fmtC(r.propVal)}</td>
-            <td>$${fmt(r.propUSD)}</td>
-            <td>€${fmt(r.propEUR)}</td>
-            <td>₩${fmtK(r.propKRW)}</td>
-            <td>د.إ${fmt(r.propAED)}</td>
-            <td>${fmtC(r.balNPR)} <span style="font-size:0.65rem;color:var(--teal)">$${fmt(r.balUSD)}</span></td>
-            <td style="color:${r.equity >= 0 ? "var(--green)" : "var(--red)"}">${fmtC(r.equity)}</td>
-            <td style="color:var(--blue)">$${fmt(r.netWorthUSD)}</td>
-          </tr>`;
+              r.y === 10
+                ? "row-opt"
+                : r.y === G.selectedLumpYr
+                  ? "row-lump"
+                  : "";
+            return `<tr class="${cls}"><td>${r.y === 10 ? "★ " : r.y === G.selectedLumpYr ? "💰 " : ""}Year ${r.y}</td><td>${fmt(r.rateY, 1)}</td><td>${fmtC(r.propVal)}</td><td>$${fmt(r.propUSD)}</td><td>€${fmt(r.propEUR)}</td><td>₩${fmtK(r.propKRW)}</td><td>د.إ${fmt(r.propAED)}</td><td>${fmtC(r.balNPR)} <span style="font-size:0.65rem;color:var(--teal)">$${fmt(r.balUSD)}</span></td><td style="color:${r.equity >= 0 ? "var(--green)" : "var(--red)"}">${fmtC(r.equity)}</td><td style="color:var(--blue)">$${fmt(r.netWorthUSD)}</td></tr>`;
           })
           .join("");
       }
 
-      // ── TABS ──────────────────────────────────────────────────────────────────
+      function buildRollover() {
+        const {
+          P,
+          apr,
+          term,
+          emi,
+          apy,
+          appr,
+          coll,
+          hysaMoUSD,
+          emiMoUSD,
+          selectedLumpYr,
+          years,
+          effectiveMonths,
+        } = G;
+        const payoffYr = selectedLumpYr,
+          YEARS = 20;
+        const rows = [];
+        const props = [
+          {
+            startYr: 0,
+            initValNPR: coll,
+            loanNPR: P,
+            apr,
+            termYrs: term,
+            amort: amortize(P, apr, effectiveMonths || term * 12),
+            paidOff: false,
+          },
+        ];
+        let cashUSD = 0;
+        let noRollPropNPR = coll,
+          noRollLoanNPR = P,
+          noRollCashUSD = 0;
+        const noRollAmort = amortize(P, apr, effectiveMonths || term * 12);
+
+        for (let y = 1; y <= YEARS; y++) {
+          const rateY = nprPerUSD(y),
+            events = [];
+          const totalEmiUSD = props
+            .filter((pr) => !pr.paidOff)
+            .reduce((s, pr) => {
+              const mIdx = (y - pr.startYr) * 12 - 1;
+              if (mIdx < 0 || mIdx >= pr.amort.length) return s;
+              return (
+                s +
+                toUSD(
+                  calcEMImonths(pr.loanNPR, pr.apr, pr.termYrs * 12),
+                  pr.startYr,
+                )
+              );
+            }, 0);
+          const incMoUSD = G.incNPR / rateY / 12;
+          const saveMoUSD = Math.max(0, incMoUSD - totalEmiUSD);
+          for (let m = 0; m < 12; m++)
+            cashUSD = cashUSD * (1 + apy / 12) + saveMoUSD;
+
+          props.forEach((pr, pi) => {
+            const age = y - pr.startYr,
+              mIdx = age * 12 - 1;
+            if (pr.paidOff) return;
+            const balNPR =
+              mIdx >= 0 && mIdx < pr.amort.length ? pr.amort[mIdx].bal : 0;
+            const balUSD = toUSD(balNPR, y);
+            const shouldPayoff =
+              (pi === 0 && y === payoffYr) ||
+              (pi > 0 && cashUSD >= balUSD && age >= 3);
+            if (shouldPayoff && balNPR > 0) {
+              const payUSD = Math.min(cashUSD, balUSD);
+              cashUSD -= payUSD;
+              pr.paidOff = true;
+              events.push(`🏠 Prop${pi + 1} paid off`);
+              const propAge = y - pr.startYr,
+                propValNow = pr.initValNPR * Math.pow(1 + appr, propAge);
+              const newLoanNPR = propValNow * 0.7,
+                newPropVal = newLoanNPR / 0.7;
+              const newTermYrs = Math.max(5, Math.ceil(term) - y + pr.startYr);
+              if (y < YEARS - 2) {
+                props.push({
+                  startYr: y,
+                  initValNPR: newPropVal,
+                  loanNPR: newLoanNPR,
+                  apr,
+                  termYrs: newTermYrs,
+                  amort: amortize(newLoanNPR, apr, newTermYrs * 12),
+                  paidOff: false,
+                });
+                events.push(
+                  `🆕 Prop${props.length} acquired (${fmtC(newPropVal)} NPR)`,
+                );
+              }
+            }
+          });
+
+          const propVals = props.map((pr) => ({
+            valNPR: pr.initValNPR * Math.pow(1 + appr, y - pr.startYr),
+            balNPR: (() => {
+              const mIdx = (y - pr.startYr) * 12 - 1;
+              if (pr.paidOff) return 0;
+              if (mIdx < 0) return pr.loanNPR;
+              if (mIdx >= pr.amort.length) return 0;
+              return pr.amort[mIdx].bal;
+            })(),
+          }));
+          const totalPropNPR = propVals.reduce((s, p) => s + p.valNPR, 0);
+          const totalLoanNPR = propVals.reduce((s, p) => s + p.balNPR, 0);
+          const netWorthUSD = toUSD(totalPropNPR - totalLoanNPR, y) + cashUSD;
+
+          for (let m = 0; m < 12; m++)
+            noRollCashUSD = noRollCashUSD * (1 + apy / 12) + hysaMoUSD;
+          noRollPropNPR = coll * Math.pow(1 + appr, y);
+          const noRollMIdx = y * 12 - 1;
+          noRollLoanNPR =
+            noRollMIdx < noRollAmort.length ? noRollAmort[noRollMIdx].bal : 0;
+          const noRollNW =
+            toUSD(noRollPropNPR - noRollLoanNPR, y) + noRollCashUSD;
+          const delta = netWorthUSD - noRollNW;
+          rows.push({
+            y,
+            events: events.join(" · ") || "—",
+            p1NPR: propVals[0]?.valNPR ?? 0,
+            p2NPR: propVals[1]?.valNPR ?? 0,
+            p3NPR: propVals[2]?.valNPR ?? 0,
+            totalPropUSD: toUSD(totalPropNPR, y),
+            cashUSD,
+            totalLoanNPR,
+            netWorthUSD,
+            noRollNW,
+            delta,
+            rateY,
+          });
+        }
+
+        const r20 = rows[rows.length - 1],
+          r10 = rows[9];
+        $("rollover-kpis").innerHTML = [
+          {
+            c: "purple",
+            l: "Net Worth @ Yr 10 (Rollover)",
+            v: "$" + fmt(r10.netWorthUSD),
+            v2: "NPR " + fmtC(r10.netWorthUSD * r10.rateY),
+          },
+          {
+            c: "accent",
+            l: "Net Worth @ Yr 20 (Rollover)",
+            v: "$" + fmt(r20.netWorthUSD),
+            v2: "NPR " + fmtC(r20.netWorthUSD * r20.rateY),
+          },
+          {
+            c: "green",
+            l: "Rollover Advantage @ Yr 20",
+            v: "$" + fmt(r20.delta),
+            v2: "vs just holding Prop 1",
+          },
+          {
+            c: "blue",
+            l: "Total Properties @ Yr 20",
+            v: fmtC(r20.p1NPR + r20.p2NPR + r20.p3NPR) + " NPR",
+            v2: "$" + fmt(r20.totalPropUSD) + " USD",
+          },
+        ]
+          .map(
+            (s) =>
+              `<div class="stat ${s.c}"><div class="stat-label">${s.l}</div><div class="stat-val">${s.v}</div><div class="stat-val2">${s.v2}</div></div>`,
+          )
+          .join("");
+
+        $("rollover-summary").innerHTML =
+          `After paying off Prop 1 at Year <strong>${payoffYr}</strong>, equity is recycled via 70% LAP into the next property. Each new property also appreciates at <strong>${G.appr * 100}%/yr</strong>. Cash savings continue compounding. By Year 20, rollover strategy gives <strong>$${fmt(r20.netWorthUSD)}</strong> net worth vs <strong>$${fmt(r20.noRollNW)}</strong> without rollover — a <strong style="color:var(--green)">$${fmt(r20.delta)} advantage</strong>.`;
+
+        const canvas = $("rolloverChart");
+        const W = canvas.parentElement.offsetWidth,
+          H = 340;
+        canvas.width = W;
+        canvas.height = H;
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, W, H);
+        const pad = { t: 30, r: 20, b: 45, l: 80 };
+        const pw = W - pad.l - pad.r,
+          ph = H - pad.t - pad.b;
+        const n = rows.length;
+        const allV = [
+          ...rows.map((r) => r.netWorthUSD),
+          ...rows.map((r) => r.noRollNW),
+          ...rows.map((r) => r.totalPropUSD),
+          ...rows.map((r) => r.cashUSD),
+        ].filter((v) => v > 0 && isFinite(v));
+        const maxV = Math.max(...allV) * 1.1;
+        const xP = (i) => pad.l + (i / n) * pw,
+          yP = (v) => pad.t + ph - Math.max(0, Math.min(1, v / maxV)) * ph;
+
+        for (let g = 0; g <= 5; g++) {
+          const gy = pad.t + (g / 5) * ph,
+            val = maxV * (1 - g / 5);
+          ctx.strokeStyle = "rgba(216,216,216,0.8)";
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 4]);
+          ctx.beginPath();
+          ctx.moveTo(pad.l, gy);
+          ctx.lineTo(pad.l + pw, gy);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = "#888";
+          ctx.font = "10px DM Sans,sans-serif";
+          ctx.textAlign = "right";
+          ctx.fillText("$" + fmt(val / 1000) + "k", pad.l - 6, gy + 4);
+        }
+        const pxYr = xP(payoffYr - 1);
+        ctx.strokeStyle = "rgba(91,63,138,0.25)";
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 3]);
+        ctx.beginPath();
+        ctx.moveTo(pxYr, pad.t);
+        ctx.lineTo(pxYr, pad.t + ph);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = "rgba(91,63,138,0.7)";
+        ctx.font = "bold 9px DM Sans,sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText("PAYOFF+ROLLOVER", pxYr, pad.t + 10);
+
+        const drawLine = (data, color, dash, lw) => {
+          ctx.beginPath();
+          ctx.strokeStyle = color;
+          ctx.lineWidth = lw || 2;
+          ctx.setLineDash(dash || []);
+          data.forEach((v, i) => {
+            const x = xP(i + 0.5),
+              y = yP(v);
+            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+          });
+          ctx.stroke();
+          ctx.setLineDash([]);
+        };
+        drawLine(
+          rows.map((r) => r.totalPropUSD),
+          "rgba(26,74,138,0.45)",
+          [5, 4],
+          1.5,
+        );
+        drawLine(
+          rows.map((r) => r.cashUSD),
+          "#1a6b3c",
+          [],
+          2,
+        );
+        drawLine(
+          rows.map((r) => r.noRollNW),
+          "rgba(185,28,28,0.5)",
+          [5, 3],
+          1.5,
+        );
+        drawLine(
+          rows.map((r) => r.netWorthUSD),
+          "#5b3f8a",
+          [],
+          3,
+        );
+
+        rows.forEach((r, i) => {
+          if (r.events !== "—") {
+            const x = xP(i + 0.5),
+              y = yP(r.netWorthUSD);
+            ctx.beginPath();
+            ctx.arc(x, y, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "#5b3f8a";
+            ctx.fill();
+            ctx.strokeStyle = "#fff";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+          }
+        });
+        ctx.fillStyle = "#888";
+        ctx.font = "10px DM Sans,sans-serif";
+        ctx.textAlign = "center";
+        for (let i = 0; i < n; i++)
+          if (i === 0 || i % 4 === 3 || i === n - 1)
+            ctx.fillText("Y" + (i + 1), xP(i + 0.5), pad.t + ph + 20);
+
+        $("rollover-legend").innerHTML = `
+          <div class="leg-item"><div class="leg-swatch" style="background:var(--purple)"></div>Net Worth (Rollover)</div>
+          <div class="leg-item"><div class="leg-swatch" style="background:rgba(185,28,28,0.7);height:0;border-top:2px dashed rgba(185,28,28,0.7)"></div>Net Worth (No Rollover)</div>
+          <div class="leg-item"><div class="leg-swatch" style="background:var(--blue);opacity:0.6"></div>All Properties (USD)</div>
+          <div class="leg-item"><div class="leg-swatch" style="background:var(--green)"></div>Cash Savings (USD)</div>`;
+
+        $("rolloverBody").innerHTML = rows
+          .map((r) => {
+            const cls =
+              r.events !== "—"
+                ? "row-lump"
+                : r.y === 10 || r.y === 20
+                  ? "row-opt"
+                  : "";
+            const deltaClr = r.delta >= 0 ? "var(--green)" : "var(--red)";
+            return `<tr class="${cls}"><td>${r.y === 10 ? "★ " : r.y === 20 ? "🏆 " : ""}Yr ${r.y}</td><td style="text-align:left;font-size:0.72rem;color:var(--purple)">${r.events}</td><td>${fmtC(r.p1NPR)}</td><td>${r.p2NPR > 0 ? fmtC(r.p2NPR) : "—"}</td><td>${r.p3NPR > 0 ? fmtC(r.p3NPR) : "—"}</td><td>$${fmt(r.totalPropUSD)}</td><td style="color:var(--green)">$${fmt(r.cashUSD)}</td><td>${fmtC(r.totalLoanNPR)}</td><td style="color:var(--purple);font-weight:500">$${fmt(r.netWorthUSD)}</td><td style="color:${deltaClr}">${r.delta >= 0 ? "+" : ""}$${fmt(r.delta)}</td></tr>`;
+          })
+          .join("");
+      }
+
+      // Tabs
       document.querySelectorAll(".tab-btn[data-tab]").forEach((btn) => {
         btn.addEventListener("click", () => {
           document
@@ -2765,371 +3094,9 @@
         )
           buildRollover();
       });
+
       updatePillRates();
       recalc();
-
-      // ── ROLLOVER PROJECTION ────────────────────────────────────────────────────
-      // Models: pay off Prop1 at selectedLumpYr, reinvest equity → Prop2 (new LAP loan),
-      // then pay off Prop2 and add Prop3. Tracks cash savings throughout.
-      // Compared against simple no-rollover baseline (just hold Prop1 + keep saving).
-
-      function buildRollover() {
-        const {
-          P,
-          apr,
-          term,
-          emi,
-          apy,
-          appr,
-          coll,
-          hysaMoUSD,
-          emiMoUSD,
-          selectedLumpYr,
-          years,
-        } = G;
-        const payoffYr = selectedLumpYr; // Year of first payoff & rollover
-
-        const YEARS = 20;
-        const rows = [];
-
-        // ── State ──
-        // Properties: each has {startYr, initValNPR, loanNPR, apr, termYrs, amort, paidOff}
-        const props = [
-          {
-            startYr: 0,
-            initValNPR: coll,
-            loanNPR: P,
-            apr,
-            termYrs: term,
-            amort: amortize(P, apr, term),
-            paidOff: false,
-          },
-        ];
-        let cashUSD = 0; // running HYSA/savings in USD
-        let extraCashUSD = 0; // cash freed up after payoffs (surplus over new loans)
-        let noRollPropNPR = coll; // baseline: just hold prop1, no refi
-        let noRollLoanNPR = P;
-        let noRollCashUSD = 0;
-        const noRollAmort = amortize(P, apr, term);
-
-        for (let y = 1; y <= YEARS; y++) {
-          const rateY = nprPerUSD(y);
-          const events = [];
-
-          // ── Grow all props ──
-          props.forEach((pr) => {
-            /* value grows each year — computed at display time */
-          });
-
-          // ── Pay EMIs for active loans ──
-          props.forEach((pr, pi) => {
-            const monthIdx = (y - pr.startYr) * 12 - 1;
-            if (!pr.paidOff && monthIdx >= 0 && monthIdx < pr.amort.length) {
-              // EMI is already paid from income; just track balance
-            }
-          });
-
-          // ── Monthly compound savings (EMI comes out, rest goes in) ──
-          // First prop pays EMI from income; if prop2/3 exist their EMI also comes from income
-          const totalEmiUSD = props
-            .filter((pr) => !pr.paidOff)
-            .reduce((s, pr) => {
-              const mIdx = (y - pr.startYr) * 12 - 1;
-              if (mIdx < 0 || mIdx >= pr.amort.length) return s;
-              return (
-                s + toUSD(calcEMI(pr.loanNPR, pr.apr, pr.termYrs), pr.startYr)
-              );
-            }, 0);
-          const incMoUSD = G.incNPR / rateY / 12;
-          const saveMoUSD = Math.max(0, incMoUSD - totalEmiUSD);
-          for (let m = 0; m < 12; m++)
-            cashUSD = cashUSD * (1 + apy / 12) + saveMoUSD;
-
-          // ── Check payoff events ──
-          props.forEach((pr, pi) => {
-            const age = y - pr.startYr;
-            const mIdx = age * 12 - 1;
-            if (pr.paidOff) return;
-            const balNPR =
-              mIdx >= 0 && mIdx < pr.amort.length ? pr.amort[mIdx].bal : 0;
-            const balUSD = toUSD(balNPR, y);
-
-            // Payoff condition: first prop at selectedLumpYr; subsequent props when cash covers balance
-            const shouldPayoff =
-              (pi === 0 && y === payoffYr) ||
-              (pi > 0 && cashUSD >= balUSD && age >= 3);
-
-            if (shouldPayoff && balNPR > 0) {
-              const payUSD = Math.min(cashUSD, balUSD);
-              cashUSD -= payUSD;
-              pr.paidOff = true;
-              events.push(`🏠 Prop${pi + 1} paid off`);
-
-              // Rollover: use freed equity (70% LAP of appreciated value) to buy next prop
-              const propAge = y - pr.startYr;
-              const propValNow = pr.initValNPR * Math.pow(1 + appr, propAge);
-              const newLoanNPR = propValNow * 0.7; // 70% LTV on appreciated value
-              const newPropVal = newLoanNPR / 0.7; // new property ~same as LAP
-              const newTermYrs = Math.max(5, term - y + pr.startYr); // remaining horizon
-              const newAmort = amortize(newLoanNPR, apr, newTermYrs);
-              if (y < YEARS - 2) {
-                // only add new prop if horizon > 2yr
-                props.push({
-                  startYr: y,
-                  initValNPR: newPropVal,
-                  loanNPR: newLoanNPR,
-                  apr,
-                  termYrs: newTermYrs,
-                  amort: newAmort,
-                  paidOff: false,
-                });
-                events.push(
-                  `🆕 Prop${props.length} acquired (${fmtC(newPropVal)} NPR)`,
-                );
-              }
-            }
-          });
-
-          // ── Compute property values this year ──
-          const propVals = props.map((pr) => ({
-            valNPR: pr.initValNPR * Math.pow(1 + appr, y - pr.startYr),
-            balNPR: (() => {
-              const mIdx = (y - pr.startYr) * 12 - 1;
-              if (pr.paidOff) return 0;
-              if (mIdx < 0) return pr.loanNPR;
-              if (mIdx >= pr.amort.length) return 0;
-              return pr.amort[mIdx].bal;
-            })(),
-          }));
-
-          const totalPropNPR = propVals.reduce((s, p) => s + p.valNPR, 0);
-          const totalLoanNPR = propVals.reduce((s, p) => s + p.balNPR, 0);
-          const totalPropUSD = toUSD(totalPropNPR, y);
-          const netWorthUSD = toUSD(totalPropNPR - totalLoanNPR, y) + cashUSD;
-
-          // ── No-rollover baseline ──
-          for (let m = 0; m < 12; m++)
-            noRollCashUSD = noRollCashUSD * (1 + apy / 12) + hysaMoUSD;
-          noRollPropNPR = coll * Math.pow(1 + appr, y);
-          const noRollMIdx = y * 12 - 1;
-          noRollLoanNPR =
-            noRollMIdx < noRollAmort.length ? noRollAmort[noRollMIdx].bal : 0;
-          const noRollNW =
-            toUSD(noRollPropNPR - noRollLoanNPR, y) + noRollCashUSD;
-          const delta = netWorthUSD - noRollNW;
-
-          rows.push({
-            y,
-            events: events.join(" · ") || "—",
-            p1NPR: propVals[0]?.valNPR ?? 0,
-            p2NPR: propVals[1]?.valNPR ?? 0,
-            p3NPR: propVals[2]?.valNPR ?? 0,
-            totalPropUSD,
-            cashUSD,
-            totalLoanNPR,
-            netWorthUSD,
-            noRollNW,
-            delta,
-            rateY,
-          });
-        }
-
-        // ── KPIs ──
-        const r20 = rows[rows.length - 1];
-        const r10 = rows[9];
-        $("rollover-kpis").innerHTML = [
-          {
-            c: "purple",
-            l: "Net Worth @ Yr 10 (Rollover)",
-            v: "$" + fmt(r10.netWorthUSD),
-            v2: "NPR " + fmtC(r10.netWorthUSD * r10.rateY),
-          },
-          {
-            c: "gold",
-            l: "Net Worth @ Yr 20 (Rollover)",
-            v: "$" + fmt(r20.netWorthUSD),
-            v2: "NPR " + fmtC(r20.netWorthUSD * r20.rateY),
-          },
-          {
-            c: "green",
-            l: "Rollover Advantage @ Yr 20",
-            v: "$" + fmt(r20.delta),
-            v2: "vs just holding Prop 1",
-          },
-          {
-            c: "blue",
-            l: "Total Properties @ Yr 20",
-            v: fmtC(r20.p1NPR + r20.p2NPR + r20.p3NPR) + " NPR",
-            v2: "$" + fmt(r20.totalPropUSD) + " USD",
-          },
-        ]
-          .map(
-            (s) => `<div class="stat ${s.c}">
-          <div class="stat-label">${s.l}</div>
-          <div class="stat-val">${s.v}</div>
-          <div class="stat-val2">${s.v2}</div>
-        </div>`,
-          )
-          .join("");
-
-        // ── Summary text ──
-        $("rollover-summary").innerHTML =
-          `After paying off Prop 1 at Year <strong>${payoffYr}</strong>, equity is recycled via 70% LAP into the next property.
-          Each new property also appreciates at <strong>${G.appr * 100}%/yr</strong>.
-          Cash savings continue compounding at <strong>${$("s-apy").value}% APY</strong> on the income surplus above all EMIs.
-          By Year 20, rollover strategy gives <strong style="color:var(--purple)">$${fmt(r20.netWorthUSD)}</strong> net worth
-          vs <strong style="color:var(--ink-mid)">$${fmt(r20.noRollNW)}</strong> without rollover —
-          a <strong style="color:var(--green)">$${fmt(r20.delta)} advantage</strong>.`;
-
-        // ── Chart ──
-        const canvas = $("rolloverChart");
-        const W = canvas.parentElement.offsetWidth,
-          H = 340;
-        canvas.width = W;
-        canvas.height = H;
-        const ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, W, H);
-        const pad = { t: 30, r: 20, b: 45, l: 80 };
-        const pw = W - pad.l - pad.r,
-          ph = H - pad.t - pad.b;
-        const n = rows.length;
-        const allV = [
-          ...rows.map((r) => r.netWorthUSD),
-          ...rows.map((r) => r.noRollNW),
-          ...rows.map((r) => r.totalPropUSD),
-          ...rows.map((r) => r.cashUSD),
-        ].filter((v) => v > 0 && isFinite(v));
-        const maxV = Math.max(...allV) * 1.1;
-        const xP = (i) => pad.l + (i / n) * pw;
-        const yP = (v) => pad.t + ph - Math.max(0, Math.min(1, v / maxV)) * ph;
-
-        // grid
-        for (let g = 0; g <= 5; g++) {
-          const gy = pad.t + (g / 5) * ph,
-            val = maxV * (1 - g / 5);
-          ctx.strokeStyle = "rgba(45,53,64,0.8)";
-          ctx.lineWidth = 1;
-          ctx.setLineDash([3, 4]);
-          ctx.beginPath();
-          ctx.moveTo(pad.l, gy);
-          ctx.lineTo(pad.l + pw, gy);
-          ctx.stroke();
-          ctx.setLineDash([]);
-          ctx.fillStyle = "#5c6b7a";
-          ctx.font = "10px Syne Mono,monospace";
-          ctx.textAlign = "right";
-          ctx.fillText("$" + fmt(val / 1000) + "k", pad.l - 6, gy + 4);
-        }
-
-        // payoff year marker
-        const pxYr = xP(payoffYr - 1);
-        ctx.strokeStyle = "rgba(167,139,250,0.3)";
-        ctx.lineWidth = 1;
-        ctx.setLineDash([4, 3]);
-        ctx.beginPath();
-        ctx.moveTo(pxYr, pad.t);
-        ctx.lineTo(pxYr, pad.t + ph);
-        ctx.stroke();
-        ctx.setLineDash([]);
-        ctx.fillStyle = "rgba(167,139,250,0.7)";
-        ctx.font = "bold 9px Syne Mono,monospace";
-        ctx.textAlign = "center";
-        ctx.fillText("PAYOFF+ROLLOVER", pxYr, pad.t + 10);
-
-        const drawLine = (data, color, dash, lw) => {
-          ctx.beginPath();
-          ctx.strokeStyle = color;
-          ctx.lineWidth = lw || 2;
-          ctx.setLineDash(dash || []);
-          data.forEach((v, i) => {
-            const x = xP(i + 0.5),
-              y = yP(v);
-            i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-          });
-          ctx.stroke();
-          ctx.setLineDash([]);
-        };
-
-        drawLine(
-          rows.map((r) => r.totalPropUSD),
-          "rgba(91,156,246,0.5)",
-          [5, 4],
-          1.5,
-        ); // props
-        drawLine(
-          rows.map((r) => r.cashUSD),
-          "#3ecf8e",
-          [],
-          2,
-        ); // cash
-        drawLine(
-          rows.map((r) => r.noRollNW),
-          "rgba(240,110,110,0.55)",
-          [5, 3],
-          1.5,
-        ); // no-rollover
-        drawLine(
-          rows.map((r) => r.netWorthUSD),
-          "#a78bfa",
-          [],
-          3,
-        ); // rollover NW
-
-        // dots at payoff events
-        rows.forEach((r, i) => {
-          if (r.events !== "—") {
-            const x = xP(i + 0.5),
-              y = yP(r.netWorthUSD);
-            ctx.beginPath();
-            ctx.arc(x, y, 6, 0, Math.PI * 2);
-            ctx.fillStyle = "#a78bfa";
-            ctx.fill();
-            ctx.strokeStyle = "#0e1012";
-            ctx.lineWidth = 2;
-            ctx.stroke();
-          }
-        });
-
-        // x labels
-        ctx.fillStyle = "#5c6b7a";
-        ctx.font = "10px Syne Mono,monospace";
-        ctx.textAlign = "center";
-        for (let i = 0; i < n; i++)
-          if (i === 0 || i % 4 === 3 || i === n - 1)
-            ctx.fillText("Y" + (i + 1), xP(i + 0.5), pad.t + ph + 20);
-
-        // legend
-        $("rollover-legend").innerHTML = `
-          <div class="leg-item"><div class="leg-swatch" style="background:var(--purple)"></div>Net Worth (Rollover)</div>
-          <div class="leg-item"><div class="leg-swatch" style="background:rgba(240,110,110,0.7);border-top:2px dashed rgba(240,110,110,0.7);height:0"></div>Net Worth (No Rollover)</div>
-          <div class="leg-item"><div class="leg-swatch" style="background:var(--blue);opacity:0.6"></div>All Properties (USD)</div>
-          <div class="leg-item"><div class="leg-swatch" style="background:var(--green)"></div>Cash Savings (USD)</div>`;
-
-        // ── Table ──
-        $("rolloverBody").innerHTML = rows
-          .map((r, i) => {
-            const cls =
-              r.events !== "—"
-                ? "row-lump"
-                : r.y === 10 || r.y === 20
-                  ? "row-opt"
-                  : "";
-            const deltaClr = r.delta >= 0 ? "var(--green)" : "var(--red)";
-            return `<tr class="${cls}">
-            <td>${r.y === 10 ? "★ " : r.y === 20 ? "🏆 " : ""}Yr ${r.y}</td>
-            <td style="text-align:left;font-size:0.72rem;color:var(--purple)">${r.events}</td>
-            <td>${fmtC(r.p1NPR)}</td>
-            <td>${r.p2NPR > 0 ? fmtC(r.p2NPR) : "—"}</td>
-            <td>${r.p3NPR > 0 ? fmtC(r.p3NPR) : "—"}</td>
-            <td>$${fmt(r.totalPropUSD)}</td>
-            <td style="color:var(--green)">$${fmt(r.cashUSD)}</td>
-            <td>${fmtC(r.totalLoanNPR)}</td>
-            <td style="color:var(--purple);font-weight:500">$${fmt(r.netWorthUSD)}</td>
-            <td style="color:${deltaClr}">${r.delta >= 0 ? "+" : ""}$${fmt(r.delta)}</td>
-          </tr>`;
-          })
-          .join("");
-      }
     </script>
   </body>
 </html>
