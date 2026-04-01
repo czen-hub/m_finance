@@ -2,13 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
     <title>My Cards — M Finance</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
+      :root {
+        --bg: #0f1117;
+        --surface: #1a1d27;
+        --card: #22263a;
+        --card2: #2a2e42;
+        --border: #2e3248;
+        --ink: #eef0f8;
+        --ink-mid: #9499b8;
+        --ink-muted: #5a6080;
+        --gold: #c9a84c;
+        --gold-bg: rgba(201, 168, 76, 0.1);
+        --green: #34c97a;
+        --green-bg: rgba(52, 201, 122, 0.1);
+        --red: #f05454;
+        --red-bg: rgba(240, 84, 84, 0.1);
+        --blue: #4f8ef7;
+        --blue-bg: rgba(79, 142, 247, 0.1);
+        --purple: #a97cf8;
+        --purple-bg: rgba(169, 124, 248, 0.1);
+        --nav-h: 64px;
+        --bottom-h: 68px;
+        --radius: 16px;
+        --radius-sm: 10px;
+      }
       *,
       *::before,
       *::after {
@@ -16,788 +43,722 @@
         margin: 0;
         padding: 0;
       }
-      :root {
-        --bg: #f2f2f2;
-        --surface: #ffffff;
-        --surface2: #f8f8f8;
-        --border: #d8d8d8;
-        --border-strong: #bbbbbb;
-        --text: #111111;
-        --muted: #555555;
-        --muted2: #888888;
-        --accent: #8a6a30;
-        --accent-dim: rgba(138, 106, 48, 0.08);
-        --green: #1a6b3c;
-        --green-dim: rgba(26, 107, 60, 0.07);
-        --red: #b91c1c;
-        --red-dim: rgba(185, 28, 28, 0.07);
-        --blue: #1a4a8a;
-        --blue-dim: rgba(26, 74, 138, 0.07);
-        --purple: #5b3f8a;
-        --purple-dim: rgba(91, 63, 138, 0.07);
+      html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
       }
       body {
         background: var(--bg);
-        color: var(--text);
+        color: var(--ink);
         font-family: "DM Sans", sans-serif;
+        font-weight: 400;
         min-height: 100vh;
-        font-size: 15px;
-        line-height: 1.5;
+        padding-bottom: calc(var(--bottom-h) + 16px);
+        -webkit-font-smoothing: antialiased;
       }
 
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 60px;
-        height: 64px;
-        background: #ffffff;
-        border-bottom: 1px solid var(--border);
+      /* ── TOP NAV ── */
+      .top-nav {
         position: sticky;
         top: 0;
         z-index: 200;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: var(--nav-h);
       }
       .nav-logo {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.35rem;
+        font-size: 1.3rem;
         font-weight: 600;
-        color: var(--accent);
+        color: var(--gold);
         text-decoration: none;
         letter-spacing: 0.04em;
       }
-      .nav-links {
+      .nav-right {
         display: flex;
-        gap: 0;
-        list-style: none;
+        align-items: center;
+        gap: 12px;
       }
-      .nav-links li a {
-        display: block;
-        padding: 0 18px;
-        height: 64px;
-        line-height: 64px;
+      .nav-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--gold-bg);
+        border: 2px solid var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      /* ── HERO BALANCE ── */
+      .hero {
+        background: linear-gradient(160deg, #1a1d2f 0%, #0f1117 100%);
+        padding: 28px 20px 24px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 168, 76, 0.08) 0%,
+          transparent 70%
+        );
+      }
+      .hero-greeting {
         font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
+        color: var(--ink-muted);
+        letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: var(--muted);
-        text-decoration: none;
-        border-bottom: 2px solid transparent;
-        transition:
-          color 0.15s,
-          border-color 0.15s;
+        margin-bottom: 6px;
       }
-      .nav-links li a:hover {
-        color: var(--text);
-        border-bottom-color: var(--border-strong);
+      .hero-label {
+        font-size: 0.8rem;
+        color: var(--ink-mid);
+        margin-bottom: 4px;
       }
-      .nav-links li a.active {
-        color: var(--accent);
-        border-bottom-color: var(--accent);
-      }
-
-      .page-hero {
-        text-align: center;
-        padding: 48px 40px 36px;
-        background: #fff;
-        border-bottom: 1px solid var(--border);
-      }
-      .section-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 10px;
-      }
-      .page-hero h1 {
+      .hero-amount {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-size: 3rem;
         font-weight: 600;
-        color: var(--text);
-        margin-bottom: 8px;
+        line-height: 1;
+        color: var(--red);
+        margin-bottom: 4px;
       }
-      .page-hero p {
-        color: var(--muted);
-        font-size: 0.9rem;
+      .hero-amount.zero {
+        color: var(--green);
+      }
+      .hero-sub {
+        font-size: 0.8rem;
+        color: var(--ink-muted);
       }
 
-      .summary-strip {
-        max-width: 1140px;
-        margin: 28px auto;
-        padding: 0 48px;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
+      /* Pill strip */
+      .hero-pills {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
       }
-      .summary-card {
-        background: #fff;
+      .hero-pills::-webkit-scrollbar {
+        display: none;
+      }
+      .hero-pill {
+        flex-shrink: 0;
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 22px 20px;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
+        border-radius: 12px;
+        padding: 10px 16px;
+        min-width: 110px;
       }
-      .summary-card:hover {
-        border-color: var(--border-strong);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      .hp-label {
+        font-size: 0.65rem;
+        color: var(--ink-muted);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
       }
-      .s-label {
-        font-size: 0.68rem;
+      .hp-value {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 1;
+      }
+      .hp-value.green {
+        color: var(--green);
+      }
+      .hp-value.red {
+        color: var(--red);
+      }
+      .hp-value.gold {
+        color: var(--gold);
+      }
+      .hp-value.blue {
+        color: var(--blue);
+      }
+
+      /* ── QUICK ACTION ROW ── */
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        padding: 16px 20px;
+      }
+      .qa-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 14px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: all 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .qa-btn:active {
+        transform: scale(0.96);
+        background: var(--card);
+      }
+      .qa-icon {
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+      .qa-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: var(--ink-mid);
+        letter-spacing: 0.04em;
+        text-align: center;
+      }
+
+      /* ── NET WORTH CARD ── */
+      .section-pad {
+        padding: 0 20px;
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-size: 0.7rem;
         font-weight: 600;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 8px;
+        color: var(--ink-muted);
+        margin-bottom: 12px;
       }
-      .s-value {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--text);
-        line-height: 1;
-        margin-bottom: 4px;
-      }
-      .s-value.danger {
-        color: var(--red);
-      }
-      .s-value.good {
-        color: var(--green);
-      }
-      .s-value.accent {
-        color: var(--accent);
-      }
-      .s-sub {
-        font-size: 0.76rem;
-        color: var(--muted);
-      }
-
-      /* NET WORTH */
-      .net-worth-wrap {
-        max-width: 1140px;
-        margin: 0 auto 24px;
-        padding: 0 48px;
-      }
-      .net-worth-card {
-        background: #fff;
+      .nw-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-top: 3px solid var(--accent);
-        border-radius: 6px;
-        padding: 28px 32px;
+        border-radius: var(--radius);
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
       }
-      .nw-header {
+      .nw-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--gold), var(--green));
+      }
+      .nw-row {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 22px;
-        flex-wrap: wrap;
-        gap: 16px;
+        margin-bottom: 16px;
       }
-      .nw-label {
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 6px;
+      .nw-main-label {
+        font-size: 0.72rem;
+        color: var(--ink-muted);
+        margin-bottom: 4px;
       }
-      .nw-value {
+      .nw-main-val {
         font-family: "Cormorant Garamond", serif;
-        font-size: 2.6rem;
+        font-size: 2.2rem;
         font-weight: 600;
         line-height: 1;
       }
-      .nw-value.positive {
+      .nw-main-val.pos {
         color: var(--green);
       }
-      .nw-value.negative {
+      .nw-main-val.neg {
         color: var(--red);
       }
-      .nw-value.neutral {
-        color: var(--muted);
-      }
-      .nw-sub {
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-top: 4px;
+      .nw-main-val.zero {
+        color: var(--ink-muted);
       }
       .nw-pillars {
         display: flex;
-        gap: 24px;
-        align-items: center;
+        gap: 16px;
       }
-      .nw-pillar {
+      .nw-p {
         text-align: right;
       }
-      .nw-pillar-label {
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 4px;
+      .nw-p-label {
+        font-size: 0.65rem;
+        color: var(--ink-muted);
+        margin-bottom: 3px;
       }
-      .nw-pillar-val {
+      .nw-p-val {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.1rem;
         font-weight: 600;
       }
-      .nw-pillar-val.savings-val {
+      .nw-p-val.green {
         color: var(--green);
       }
-      .nw-pillar-val.debt-val {
+      .nw-p-val.red {
         color: var(--red);
       }
       .nw-divider {
         width: 1px;
-        height: 44px;
         background: var(--border);
+        align-self: stretch;
       }
-      .nw-bar-wrap {
-        margin-bottom: 20px;
-      }
-      .nw-bar-labels {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.72rem;
-        font-weight: 500;
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
-      .nw-bar-track {
-        height: 8px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
+
+      /* Progress bar */
+      .prog-bar {
+        height: 6px;
+        background: var(--card2);
         border-radius: 4px;
         overflow: hidden;
         display: flex;
-      }
-      .nw-bar-savings {
-        height: 100%;
-        background: var(--green);
-        transition: width 0.8s ease;
-      }
-      .nw-bar-debt {
-        height: 100%;
-        background: var(--red);
-        transition: width 0.8s ease;
-      }
-      .nw-metrics {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-      }
-      .nw-metric {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 14px 16px;
-      }
-      .nw-metric-label {
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
         margin-bottom: 6px;
       }
-      .nw-metric-val {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        color: var(--text);
-        margin-bottom: 2px;
+      .prog-green {
+        height: 100%;
+        background: var(--green);
+        transition: width 0.5s;
       }
-      .nw-metric-sub {
-        font-size: 0.74rem;
-        color: var(--muted);
-        line-height: 1.4;
+      .prog-red {
+        height: 100%;
+        background: var(--red);
+        transition: width 0.5s;
+      }
+      .prog-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.68rem;
+        color: var(--ink-muted);
       }
 
-      .payoff-slider-card {
-        background: var(--surface2);
+      /* Payoff planner */
+      .payoff-planner {
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 18px 20px 14px;
-        margin-bottom: 4px;
+        border-radius: var(--radius-sm);
+        padding: 16px;
+        margin-top: 16px;
       }
-      .psc-top {
+      .pp-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 12px;
-        flex-wrap: wrap;
-        gap: 8px;
       }
-      .psc-label {
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .psc-presets {
-        display: flex;
-        gap: 6px;
-        flex-wrap: wrap;
-      }
-      .psc-preset-btn {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 3px;
-        color: var(--text);
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.72rem;
-        font-weight: 500;
-        padding: 4px 10px;
-        cursor: pointer;
-        transition: all 0.15s;
-      }
-      .psc-preset-btn:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-      .psc-slider-row {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-      .psc-slider-row input[type="range"] {
-        flex: 1;
-        -webkit-appearance: none;
-        appearance: none;
-        height: 3px;
-        background: var(--border);
-        border-radius: 3px;
-        outline: none;
-        cursor: pointer;
-      }
-      .psc-slider-row input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        background: var(--accent);
-        cursor: pointer;
-        border: 2px solid #fff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-      }
-      .psc-daily-val {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: var(--accent);
-        min-width: 110px;
-        text-align: right;
-        line-height: 1;
-      }
-      .psc-bar-wrap {
-        margin-top: 12px;
-      }
-      .psc-bar-track {
-        height: 5px;
-        border-radius: 3px;
-        overflow: hidden;
-        display: flex;
-        background: var(--border);
-        margin-bottom: 6px;
-      }
-      .psc-bar-principal {
-        height: 100%;
-        background: #bbb;
-        transition: width 0.3s;
-      }
-      .psc-bar-interest {
-        height: 100%;
-        background: var(--red);
-        opacity: 0.7;
-        transition: width 0.3s;
-      }
-      .psc-bar-legend {
-        display: flex;
-        justify-content: space-between;
+      .pp-label {
         font-size: 0.7rem;
-        color: var(--muted);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
       }
-
-      .nw-notice {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 12px 16px;
-        font-size: 0.8rem;
-        color: var(--muted);
-        margin-top: 16px;
-      }
-      .nw-notice a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 500;
-      }
-      .nw-notice a:hover {
-        text-decoration: underline;
-      }
-
-      .main-wrap {
-        max-width: 1140px;
-        margin: 0 auto;
-        padding: 0 48px 80px;
-      }
-      .section-hdr {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid var(--border);
-      }
-      .section-hdr h2 {
+      .pp-daily {
         font-family: "Cormorant Garamond", serif;
         font-size: 1.4rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--gold);
       }
-      .btn-add {
+      .pp-presets {
         display: flex;
-        align-items: center;
         gap: 6px;
-        padding: 9px 18px;
-        background: var(--accent);
-        border: none;
-        border-radius: 3px;
-        color: #fff;
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.8rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        cursor: pointer;
-        transition: opacity 0.15s;
+        margin-bottom: 14px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        scrollbar-width: none;
       }
-      .btn-add:hover {
-        opacity: 0.88;
+      .pp-presets::-webkit-scrollbar {
+        display: none;
+      }
+      .pp-preset {
+        flex-shrink: 0;
+        background: var(--card2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        color: var(--ink-mid);
+        cursor: pointer;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .pp-preset:active,
+      .pp-preset.on {
+        background: var(--gold-bg);
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      input[type="range"].pp-range {
+        width: 100%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 4px;
+        background: var(--border);
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        margin-bottom: 14px;
+      }
+      input[type="range"].pp-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--gold);
+        cursor: pointer;
+        border: 3px solid var(--bg);
+        box-shadow: 0 2px 8px rgba(201, 168, 76, 0.35);
+      }
+      .pp-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+      }
+      .pp-stat {
+        background: var(--bg);
+        border-radius: 8px;
+        padding: 10px 8px;
+        text-align: center;
+      }
+      .pp-stat-label {
+        font-size: 0.6rem;
+        color: var(--ink-muted);
+        margin-bottom: 4px;
+        letter-spacing: 0.04em;
+      }
+      .pp-stat-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 600;
       }
 
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-        gap: 16px;
-        margin-bottom: 40px;
+      /* ── ACCOUNT CARDS ── */
+      .account-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
       }
-      .card-item {
-        background: #fff;
+      .acct-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
+        border-radius: var(--radius);
         overflow: hidden;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
-        animation: fadeUp 0.3s ease both;
+        transition: transform 0.15s;
+        animation: slideUp 0.3s ease both;
       }
-      @keyframes fadeUp {
+      @keyframes slideUp {
         from {
           opacity: 0;
-          transform: translateY(12px);
+          transform: translateY(16px);
         }
         to {
           opacity: 1;
           transform: translateY(0);
         }
       }
-      .card-item:hover {
-        border-color: var(--border-strong);
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      .acct-card:active {
+        transform: scale(0.99);
       }
-
-      .card-visual {
-        height: 5px;
+      .acct-stripe {
+        height: 4px;
       }
-      .card-visual.navy {
+      .acct-stripe.navy {
         background: #1a3a6b;
       }
-      .card-visual.paypal {
-        background: #003087;
-      }
-      .card-visual.capital {
+      .acct-stripe.capital {
         background: #8b0000;
       }
-      .card-visual.amex {
+      .acct-stripe.paypal {
+        background: #003087;
+      }
+      .acct-stripe.amex {
         background: #007bc1;
       }
-      .card-visual.discover {
+      .acct-stripe.discover {
         background: #e07000;
       }
-      .card-visual.auto {
-        background: #1a6b3c;
+      .acct-stripe.auto {
+        background: var(--green);
       }
-      .card-visual.personal {
-        background: #5b3f8a;
+      .acct-stripe.personal {
+        background: var(--purple);
       }
-      .card-visual.custom {
-        background: #888;
+      .acct-stripe.custom {
+        background: var(--ink-muted);
       }
 
-      .card-body {
-        padding: 20px 20px 16px;
+      .acct-main {
+        padding: 16px 16px 12px;
       }
-      .card-header-row {
+      .acct-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
-      .card-name {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.15rem;
+      .acct-name {
         font-weight: 600;
-        color: var(--text);
+        font-size: 0.95rem;
+        color: var(--ink);
         line-height: 1.2;
       }
-      .card-issuer {
-        font-size: 0.72rem;
-        font-weight: 500;
-        color: var(--muted);
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
+      .acct-issuer {
+        font-size: 0.7rem;
+        color: var(--ink-muted);
         margin-top: 2px;
       }
-      .card-actions {
+      .acct-badge-row {
         display: flex;
         gap: 6px;
+        margin-top: 4px;
+        flex-wrap: wrap;
+      }
+      .acct-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 2px;
       }
       .icon-btn {
-        width: 28px;
-        height: 28px;
-        background: transparent;
+        width: 32px;
+        height: 32px;
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 3px;
-        color: var(--muted);
-        font-size: 0.82rem;
+        border-radius: 8px;
+        color: var(--ink-muted);
+        font-size: 0.85rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.15s;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .icon-btn:hover {
-        border-color: var(--accent);
-        color: var(--accent);
+      .icon-btn:active {
+        background: var(--card2);
       }
-      .icon-btn.delete:hover {
+      .icon-btn.del:active {
         border-color: var(--red);
         color: var(--red);
       }
 
-      .balance-row {
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-        margin-bottom: 6px;
-      }
-      .balance-amount {
+      .acct-balance {
         font-family: "Cormorant Garamond", serif;
-        font-size: 2rem;
+        font-size: 2.4rem;
         font-weight: 600;
-        color: var(--text);
         line-height: 1;
+        color: var(--ink);
+        margin-bottom: 4px;
       }
-      .balance-of {
-        font-size: 0.8rem;
-        color: var(--muted);
+      .acct-of {
+        font-size: 0.75rem;
+        color: var(--ink-muted);
+        margin-bottom: 10px;
       }
-      .util-bar-wrap {
-        height: 3px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 2px;
+
+      .util-track {
+        height: 4px;
+        background: var(--card2);
+        border-radius: 4px;
         overflow: hidden;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
-      .util-bar {
+      .util-fill {
         height: 100%;
-        border-radius: 2px;
-        transition: width 0.6s ease;
+        border-radius: 4px;
+        transition: width 0.5s;
       }
-      .util-bar.low {
+      .util-fill.low {
         background: var(--green);
       }
-      .util-bar.mid {
-        background: var(--accent);
+      .util-fill.mid {
+        background: var(--gold);
       }
-      .util-bar.high {
+      .util-fill.high {
         background: var(--red);
       }
-      .util-bar.purple {
+      .util-fill.purple {
         background: var(--purple);
       }
 
-      .stats-row {
+      .acct-stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
-      .stat-box {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 10px 12px;
+      .stat-cell {
+        background: var(--card);
+        border-radius: 8px;
+        padding: 10px 8px;
       }
-      .stat-lbl {
-        font-size: 0.66rem;
+      .stat-cell-lbl {
+        font-size: 0.6rem;
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--ink-muted);
         margin-bottom: 4px;
       }
-      .stat-val {
+      .stat-cell-val {
         font-family: "Cormorant Garamond", serif;
         font-size: 1rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
       }
-      .stat-val.red {
+      .stat-cell-val.red {
         color: var(--red);
       }
-      .stat-val.green {
+      .stat-cell-val.green {
         color: var(--green);
       }
-      .stat-val.purple {
+      .stat-cell-val.gold {
+        color: var(--gold);
+      }
+      .stat-cell-val.purple {
         color: var(--purple);
       }
 
-      .payoff-row {
+      .int-breakdown {
+        background: var(--card);
+        border-radius: 8px;
+        padding: 12px;
+        margin-bottom: 12px;
+      }
+      .int-bk-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-top: 12px;
-        border-top: 1px solid var(--border);
-        font-size: 0.8rem;
+        margin-bottom: 8px;
       }
-      .payoff-label {
-        color: var(--muted);
-        font-weight: 500;
+      .int-bk-label {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
       }
-      .payoff-value {
-        color: var(--accent);
+      .int-bk-val {
         font-family: "Cormorant Garamond", serif;
         font-size: 1rem;
         font-weight: 600;
       }
+      .int-bar {
+        height: 4px;
+        background: var(--card2);
+        border-radius: 4px;
+        overflow: hidden;
+        display: flex;
+        margin-bottom: 6px;
+      }
+      .int-bar-p {
+        height: 100%;
+        background: var(--ink-muted);
+        opacity: 0.4;
+      }
+      .int-bar-i {
+        height: 100%;
+      }
+      .int-bar-legend {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: var(--ink-muted);
+      }
 
+      .acct-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-top: 1px solid var(--border);
+        background: var(--card);
+      }
       .priority-badge {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        padding: 3px 10px;
-        border-radius: 2px;
-        font-size: 0.66rem;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-      .priority-badge.pay-first {
-        background: var(--red-dim);
-        color: var(--red);
-        border: 1px solid rgba(185, 28, 28, 0.2);
-      }
-      .priority-badge.pay-next {
-        background: var(--accent-dim);
-        color: var(--accent);
-        border: 1px solid rgba(138, 106, 48, 0.2);
-      }
-      .priority-badge.good-standing {
-        background: var(--green-dim);
-        color: var(--green);
-        border: 1px solid rgba(26, 107, 60, 0.2);
-      }
-
-      .purpose-tag {
-        margin-top: 3px;
-        font-size: 0.66rem;
-        font-weight: 500;
-        color: var(--purple);
-        background: var(--purple-dim);
-        border: 1px solid rgba(91, 63, 138, 0.15);
-        display: inline-block;
-        padding: 2px 8px;
-        border-radius: 2px;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-      }
-
-      .interest-breakdown {
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 12px 14px;
-        margin-bottom: 12px;
-      }
-      .interest-breakdown-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 8px;
-      }
-      .interest-lbl {
-        font-size: 0.66rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      .interest-amount {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1rem;
-        font-weight: 600;
-      }
-      .interest-bar-track {
-        height: 4px;
-        border-radius: 2px;
-        overflow: hidden;
-        display: flex;
-        margin-bottom: 8px;
-        background: var(--border);
-      }
-      .interest-bar-principal {
-        height: 100%;
-        background: #ccc;
-      }
-      .interest-bar-interest {
-        height: 100%;
-        opacity: 0.8;
-      }
-      .interest-bar-legend {
-        display: flex;
-        justify-content: space-between;
-        font-size: 0.7rem;
-        color: var(--muted);
-        font-weight: 500;
-      }
-
-      .avalanche-section {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-top: 3px solid var(--accent);
+        padding: 4px 10px;
         border-radius: 6px;
-        padding: 28px;
-        margin-bottom: 40px;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
       }
-      .avalanche-section h3 {
+      .pb-first {
+        background: var(--red-bg);
+        color: var(--red);
+        border: 1px solid rgba(240, 84, 84, 0.25);
+      }
+      .pb-next {
+        background: var(--gold-bg);
+        color: var(--gold);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+      }
+      .pb-ok {
+        background: var(--green-bg);
+        color: var(--green);
+        border: 1px solid rgba(52, 201, 122, 0.25);
+      }
+      .pb-done {
+        background: var(--blue-bg);
+        color: var(--blue);
+        border: 1px solid rgba(79, 142, 247, 0.25);
+      }
+      .purpose-tag {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 5px;
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        background: var(--purple-bg);
+        color: var(--purple);
+        border: 1px solid rgba(169, 124, 248, 0.2);
+      }
+      .acct-payoff-info {
+        text-align: right;
+      }
+      .apf-label {
+        font-size: 0.65rem;
+        color: var(--ink-muted);
+      }
+      .apf-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--gold);
+      }
+
+      /* ── AVALANCHE ── */
+      .avalanche-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-top: 3px solid var(--gold);
+        border-radius: var(--radius);
+        padding: 20px;
+      }
+      .av-title {
         font-family: "Cormorant Garamond", serif;
         font-size: 1.3rem;
         font-weight: 600;
-        color: var(--text);
-        margin-bottom: 6px;
+        margin-bottom: 4px;
       }
-      .avalanche-desc {
-        font-size: 0.82rem;
-        color: var(--muted);
-        margin-bottom: 20px;
+      .av-desc {
+        font-size: 0.78rem;
+        color: var(--ink-muted);
+        margin-bottom: 16px;
+        line-height: 1.5;
       }
-      .avalanche-list {
+      .av-list {
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -805,65 +766,170 @@
       .av-row {
         display: flex;
         align-items: center;
-        gap: 16px;
-        padding: 14px 18px;
-        background: var(--surface2);
+        gap: 12px;
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        transition: border-color 0.15s;
-      }
-      .av-row:hover {
-        border-color: var(--border-strong);
+        border-radius: var(--radius-sm);
+        padding: 12px 14px;
       }
       .av-rank {
         font-family: "Cormorant Garamond", serif;
         font-size: 1.6rem;
         font-weight: 400;
-        color: var(--muted);
-        min-width: 28px;
+        color: var(--ink-muted);
+        min-width: 24px;
       }
       .av-rank.first {
         color: var(--red);
       }
-      .av-name {
+      .av-info {
         flex: 1;
-        font-size: 0.9rem;
-        font-weight: 600;
+        min-width: 0;
       }
-      .av-apr {
-        font-size: 0.8rem;
+      .av-name {
+        font-size: 0.88rem;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .av-sub {
+        font-size: 0.7rem;
         color: var(--red);
-        font-weight: 600;
+        font-weight: 500;
+        margin-top: 1px;
       }
-      .av-balance {
+      .av-right {
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .av-bal {
         font-family: "Cormorant Garamond", serif;
         font-size: 1.1rem;
         font-weight: 600;
-        color: var(--text);
       }
       .av-action {
-        font-size: 0.74rem;
-        color: var(--muted);
-        text-align: right;
-        max-width: 120px;
-        line-height: 1.4;
+        font-size: 0.68rem;
+        color: var(--ink-muted);
+        margin-top: 2px;
       }
       .av-action strong {
-        color: var(--accent);
+        color: var(--gold);
         display: block;
-        font-family: "Cormorant Garamond", serif;
-        font-size: 0.95rem;
-        font-weight: 600;
+        font-size: 0.78rem;
       }
 
-      .modal-overlay {
+      /* ── EMPTY STATE ── */
+      .empty {
+        text-align: center;
+        padding: 60px 24px;
+        border: 2px dashed var(--border);
+        border-radius: var(--radius);
+      }
+      .empty-icon {
+        font-size: 2.5rem;
+        opacity: 0.4;
+        margin-bottom: 12px;
+      }
+      .empty h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        color: var(--ink-muted);
+        margin-bottom: 8px;
+      }
+      .empty p {
+        font-size: 0.82rem;
+        color: var(--ink-muted);
+        margin-bottom: 24px;
+      }
+
+      /* ── BOTTOM NAV ── */
+      .bottom-nav {
         position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: 500;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        height: var(--bottom-h);
+        display: flex;
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .bn-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: opacity 0.12s;
+        border: none;
+        background: transparent;
+        padding: 0;
+      }
+      .bn-item:active {
+        opacity: 0.6;
+      }
+      .bn-icon {
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+      .bn-label {
+        font-size: 0.58rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+      }
+      .bn-item.active .bn-label {
+        color: var(--gold);
+      }
+      .bn-item.active .bn-icon {
+        filter: drop-shadow(0 0 4px rgba(201, 168, 76, 0.5));
+      }
+
+      /* ── ADD BUTTON ── */
+      .fab {
+        position: fixed;
+        right: 20px;
+        bottom: calc(var(--bottom-h) + 16px);
+        z-index: 300;
+        width: 56px;
+        height: 56px;
+        border-radius: 28px;
+        background: var(--gold);
+        border: none;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 1.6rem;
+        color: #000;
+        font-weight: 700;
+        box-shadow: 0 4px 20px rgba(201, 168, 76, 0.4);
+        cursor: pointer;
+        transition:
+          transform 0.15s,
+          box-shadow 0.15s;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .fab:active {
+        transform: scale(0.93);
+        box-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
+      }
+
+      /* ── MODAL ── */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 500;
+        display: flex;
+        align-items: flex-end;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s;
@@ -873,92 +939,94 @@
         pointer-events: all;
       }
       .modal {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 36px;
-        width: min(520px, 94vw);
-        max-height: 90vh;
+        border-radius: 24px 24px 0 0;
+        padding: 24px 20px 40px;
+        width: 100%;
+        max-height: 92vh;
         overflow-y: auto;
-        transform: translateY(16px);
-        transition: transform 0.25s;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
       }
       .modal-overlay.open .modal {
         transform: translateY(0);
       }
+      .modal-handle {
+        width: 36px;
+        height: 4px;
+        background: var(--border);
+        border-radius: 2px;
+        margin: 0 auto 20px;
+      }
       .modal h2 {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-weight: 600;
-        color: var(--text);
-        margin-bottom: 24px;
+        color: var(--ink);
+        margin-bottom: 20px;
       }
 
       .type-toggle {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
-        margin-bottom: 22px;
+        margin-bottom: 20px;
       }
       .mode-btn {
-        background: var(--surface2);
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        color: var(--muted);
+        border-radius: var(--radius-sm);
+        color: var(--ink-muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         font-weight: 500;
-        padding: 12px 8px;
+        padding: 12px 6px;
         cursor: pointer;
         text-align: center;
-        transition: all 0.15s;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .mode-btn:hover {
-        border-color: var(--border-strong);
-        color: var(--text);
+      .mode-btn:active {
+        transform: scale(0.97);
       }
       .mode-btn.active {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: #fff;
+        background: var(--gold-bg);
+        border-color: var(--gold);
+        color: var(--gold);
       }
       .mode-btn.active.personal-btn {
-        background: var(--purple);
+        background: var(--purple-bg);
         border-color: var(--purple);
+        color: var(--purple);
       }
 
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
       .form-group {
-        margin-bottom: 18px;
+        margin-bottom: 16px;
       }
       .form-group label {
         display: block;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 7px;
+        color: var(--ink-muted);
+        margin-bottom: 8px;
       }
       .form-group input,
       .form-group select {
         width: 100%;
-        background: #fff;
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 10px 12px;
+        border-radius: var(--radius-sm);
+        padding: 14px 16px;
         font-family: "DM Sans", sans-serif;
-        font-size: 0.92rem;
-        color: var(--text);
+        font-size: 1rem;
+        color: var(--ink);
         outline: none;
-        transition:
-          border-color 0.15s,
-          box-shadow 0.15s;
+        transition: border-color 0.15s;
+        -webkit-appearance: none;
+        appearance: none;
         -moz-appearance: textfield;
       }
       .form-group input::-webkit-inner-spin-button {
@@ -966,448 +1034,418 @@
       }
       .form-group input:focus,
       .form-group select:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-dim);
+        border-color: var(--gold);
       }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
       .dp-preview {
-        background: var(--surface2);
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 14px 16px;
-        margin-bottom: 18px;
+        border-radius: var(--radius-sm);
+        padding: 14px;
+        margin-bottom: 16px;
       }
       .dp-preview-title {
-        font-size: 0.66rem;
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--muted);
+        color: var(--ink-muted);
         margin-bottom: 10px;
       }
       .dp-preview-grid {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
+        gap: 8px;
       }
       .dp-stat-lbl {
-        font-size: 0.68rem;
-        color: var(--muted);
+        font-size: 0.65rem;
+        color: var(--ink-muted);
         margin-bottom: 3px;
-        font-weight: 500;
       }
       .dp-stat-val {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.05rem;
+        font-size: 1rem;
         font-weight: 600;
       }
+
       .modal-actions {
         display: flex;
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 20px;
       }
       .btn-save {
         flex: 1;
-        padding: 12px;
-        background: var(--accent);
+        padding: 16px;
+        background: var(--gold);
         border: none;
-        border-radius: 4px;
-        color: #fff;
+        border-radius: var(--radius-sm);
+        color: #000;
         font-family: "DM Sans", sans-serif;
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: 0.9rem;
+        font-weight: 700;
         letter-spacing: 0.04em;
         cursor: pointer;
         transition: opacity 0.15s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .btn-save:hover {
-        opacity: 0.88;
+      .btn-save:active {
+        opacity: 0.85;
       }
       .btn-save.personal-save {
         background: var(--purple);
+        color: #fff;
       }
       .btn-cancel {
-        padding: 12px 20px;
-        background: transparent;
+        padding: 16px 20px;
+        background: var(--card);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        color: var(--muted);
+        border-radius: var(--radius-sm);
+        color: var(--ink-muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.85rem;
+        font-size: 0.9rem;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.15s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .btn-cancel:hover {
-        border-color: var(--border-strong);
-        color: var(--text);
-      }
-
-      .empty-state {
-        text-align: center;
-        padding: 60px 24px;
-        border: 2px dashed var(--border);
-        border-radius: 6px;
-        margin-bottom: 40px;
-      }
-      .empty-state .empty-icon {
-        font-size: 2.5rem;
-        margin-bottom: 16px;
-        opacity: 0.4;
-      }
-      .empty-state h3 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.4rem;
-        font-weight: 600;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-      .empty-state p {
-        font-size: 0.84rem;
-        color: var(--muted);
-        margin-bottom: 22px;
+      .btn-cancel:active {
+        background: var(--card2);
       }
 
-      footer {
-        border-top: 1px solid var(--border);
-        padding: 24px 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #fff;
+      /* Large touch targets */
+      button {
+        touch-action: manipulation;
       }
-      .footer-logo {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--accent);
-        text-decoration: none;
+      select {
+        color: var(--ink);
       }
-      footer p {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
-
-      @media (max-width: 900px) {
-        nav {
-          padding: 0 20px;
-        }
-        .summary-strip {
-          grid-template-columns: 1fr 1fr;
-          padding: 0 20px;
-        }
-        .net-worth-wrap,
-        .main-wrap {
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-        .cards-grid {
-          grid-template-columns: 1fr;
-        }
-        .nw-metrics {
-          grid-template-columns: 1fr 1fr;
-        }
-        footer {
-          padding: 20px;
-          flex-direction: column;
-          gap: 8px;
-          text-align: center;
-        }
-      }
-      @media (max-width: 520px) {
-        .summary-strip {
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-        }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-        .type-toggle {
-          grid-template-columns: 1fr;
-        }
-        .nw-metrics {
-          grid-template-columns: 1fr;
-        }
+      select option {
+        background: var(--card);
+        color: var(--ink);
       }
     </style>
   </head>
   <body>
-    <nav>
+    <!-- TOP NAV -->
+    <nav class="top-nav">
       <a href="index.html" class="nav-logo">M Finance</a>
-      <ul class="nav-links">
-        <li><a href="index.html#cards">Credit</a></li>
-        <li><a href="savings.html">Savings</a></li>
-        <li><a href="home-calculator.html" class="active">Loan</a></li>
-        <li><a href="loan-calculator.html">Calculator</a></li>
-      </ul>
+      <div class="nav-right">
+        <div class="nav-avatar">T</div>
+      </div>
     </nav>
 
-    <section class="page-hero">
-      <p class="section-label">Personal Finance</p>
-      <h1>My Cards</h1>
-      <p>
-        Track balances, interest, and payoff plans across all your cards and
-        loans.
-      </p>
-    </section>
-
-    <div class="summary-strip">
-      <div class="summary-card">
-        <div class="s-label">Total Debt</div>
-        <div class="s-value danger" id="sum-debt">$0</div>
-        <div class="s-sub" id="sum-cards">0 accounts</div>
-      </div>
-      <div class="summary-card">
-        <div class="s-label">Monthly Min. Due</div>
-        <div class="s-value accent" id="sum-min">$0</div>
-        <div class="s-sub">combined minimums</div>
-      </div>
-      <div class="summary-card">
-        <div class="s-label">Avg. APR</div>
-        <div class="s-value" id="sum-apr">0%</div>
-        <div class="s-sub">weighted average</div>
-      </div>
-      <div class="summary-card">
-        <div class="s-label">Total Credit</div>
-        <div class="s-value good" id="sum-limit">$0</div>
-        <div class="s-sub" id="sum-util">0% utilized</div>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-greeting">Good morning</div>
+      <div class="hero-label">Total Debt</div>
+      <div class="hero-amount" id="hero-amount">$0</div>
+      <div class="hero-sub" id="hero-sub">0 accounts · $0/mo minimum</div>
+      <div class="hero-pills">
+        <div class="hero-pill">
+          <div class="hp-label">Avg APR</div>
+          <div class="hp-value gold" id="pill-apr">0%</div>
+        </div>
+        <div class="hero-pill">
+          <div class="hp-label">Credit Used</div>
+          <div class="hp-value" id="pill-util" style="color: var(--ink)">
+            0%
+          </div>
+        </div>
+        <div class="hero-pill">
+          <div class="hp-label">Total Limit</div>
+          <div class="hp-value blue" id="pill-limit">$0</div>
+        </div>
+        <div class="hero-pill">
+          <div class="hp-label">Net Worth</div>
+          <div class="hp-value" id="pill-nw" style="color: var(--ink-muted)">
+            $0
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="net-worth-wrap">
-      <div class="net-worth-card">
-        <div class="nw-header">
+    <!-- QUICK ACTIONS -->
+    <div class="quick-actions">
+      <div class="qa-btn" onclick="openModal()">
+        <div class="qa-icon">➕</div>
+        <div class="qa-label">Add Account</div>
+      </div>
+      <a href="savings.html" class="qa-btn" style="text-decoration: none">
+        <div class="qa-icon">💰</div>
+        <div class="qa-label">Savings</div>
+      </a>
+      <a
+        href="home-calculator.html"
+        class="qa-btn"
+        style="text-decoration: none"
+      >
+        <div class="qa-icon">🏠</div>
+        <div class="qa-label">Loan Calc</div>
+      </a>
+    </div>
+
+    <!-- NET WORTH SNAPSHOT -->
+    <div class="section-pad">
+      <div class="section-title">Net Worth Snapshot</div>
+      <div class="nw-card">
+        <div class="nw-row">
           <div>
-            <div class="nw-label">Net Worth Snapshot</div>
-            <div class="nw-value neutral" id="nw-value">$0</div>
-            <div class="nw-sub" id="nw-sub">
-              Add accounts &amp; savings to see your full picture
-            </div>
+            <div class="nw-main-label">Net Worth</div>
+            <div class="nw-main-val zero" id="nw-val">$0</div>
           </div>
           <div class="nw-pillars">
-            <div class="nw-pillar">
-              <div class="nw-pillar-label">Savings</div>
-              <div class="nw-pillar-val savings-val" id="nw-savings">$0</div>
+            <div class="nw-p">
+              <div class="nw-p-label">Savings</div>
+              <div class="nw-p-val green" id="nw-savings">$0</div>
             </div>
             <div class="nw-divider"></div>
-            <div class="nw-pillar">
-              <div class="nw-pillar-label">Total Debt</div>
-              <div class="nw-pillar-val debt-val" id="nw-debt">$0</div>
+            <div class="nw-p">
+              <div class="nw-p-label">Debt</div>
+              <div class="nw-p-val red" id="nw-debt">$0</div>
             </div>
           </div>
         </div>
-        <div class="nw-bar-wrap">
-          <div class="nw-bar-labels">
-            <span id="nw-bar-savings-pct">Savings 0%</span
-            ><span id="nw-bar-debt-pct">Debt 0%</span>
-          </div>
-          <div class="nw-bar-track">
-            <div
-              class="nw-bar-savings"
-              id="nw-bar-savings"
-              style="width: 0%"
-            ></div>
-            <div class="nw-bar-debt" id="nw-bar-debt" style="width: 0%"></div>
-          </div>
+        <div class="prog-bar" style="margin-bottom: 6px">
+          <div class="prog-green" id="nw-bar-sav" style="width: 0%"></div>
+          <div class="prog-red" id="nw-bar-dbt" style="width: 0%"></div>
         </div>
-        <div class="payoff-slider-card">
-          <div class="psc-top">
-            <div class="psc-label">Daily Payment Planner</div>
-            <div class="psc-presets" id="psc-presets"></div>
-          </div>
-          <div class="psc-slider-row">
-            <input
-              type="range"
-              id="psc-slider"
-              min="1"
-              max="300"
-              step="1"
-              value="10"
-              oninput="onSliderInput()"
-            />
-            <div class="psc-daily-val" id="psc-daily-val">$10/day</div>
-          </div>
-          <div class="nw-metrics" style="margin-top: 14px">
-            <div class="nw-metric">
-              <div class="nw-metric-label">Months to pay off</div>
-              <div class="nw-metric-val" id="psc-months">—</div>
-              <div class="nw-metric-sub" id="psc-date">—</div>
-            </div>
-            <div class="nw-metric">
-              <div class="nw-metric-label">Total interest paid</div>
-              <div class="nw-metric-val" id="psc-interest">—</div>
-              <div class="nw-metric-sub" id="psc-interest-sub">—</div>
-            </div>
-            <div class="nw-metric">
-              <div class="nw-metric-label">Total you'll pay</div>
-              <div class="nw-metric-val" id="psc-total">—</div>
-              <div class="nw-metric-sub" id="psc-total-sub">—</div>
-            </div>
-          </div>
-          <div class="psc-bar-wrap">
-            <div class="psc-bar-track">
-              <div class="psc-bar-principal" id="psc-bar-p"></div>
-              <div class="psc-bar-interest" id="psc-bar-i"></div>
-            </div>
-            <div class="psc-bar-legend">
-              <span id="psc-bar-p-lbl"></span><span id="psc-bar-i-lbl"></span>
-            </div>
-          </div>
+        <div class="prog-labels">
+          <span id="nw-bar-sav-lbl">Savings 0%</span>
+          <span id="nw-bar-dbt-lbl">Debt 0%</span>
         </div>
-        <div class="nw-notice" id="nw-notice">
-          Savings data is read from your
-          <a href="savings.html">Savings page</a>. Add income entries there to
-          see your full net worth here.
+
+        <!-- Payoff Planner -->
+        <div class="payoff-planner">
+          <div class="pp-header">
+            <div class="pp-label">Payoff Planner</div>
+            <div class="pp-daily" id="pp-daily">$10/day</div>
+          </div>
+          <div class="pp-presets" id="pp-presets"></div>
+          <input
+            type="range"
+            class="pp-range"
+            id="pp-slider"
+            min="1"
+            max="300"
+            step="1"
+            value="10"
+            oninput="onSlider()"
+          />
+          <div class="pp-stats">
+            <div class="pp-stat">
+              <div class="pp-stat-label">Months</div>
+              <div
+                class="pp-stat-val"
+                id="pp-months"
+                style="color: var(--ink-muted)"
+              >
+                —
+              </div>
+            </div>
+            <div class="pp-stat">
+              <div class="pp-stat-label">Interest</div>
+              <div
+                class="pp-stat-val"
+                id="pp-interest"
+                style="color: var(--red)"
+              >
+                —
+              </div>
+            </div>
+            <div class="pp-stat">
+              <div class="pp-stat-label">Total</div>
+              <div class="pp-stat-val" id="pp-total" style="color: var(--ink)">
+                —
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="main-wrap" id="cards">
-      <div class="section-hdr">
-        <h2>Your Accounts</h2>
-        <button class="btn-add" onclick="openModal()">+ Add Account</button>
-      </div>
-      <div class="cards-grid" id="cards-grid"></div>
+    <!-- ACCOUNTS -->
+    <div class="section-pad" id="accounts-section">
       <div
-        class="avalanche-section"
-        id="avalanche-section"
-        style="display: none"
+        class="section-title"
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
       >
-        <h3>Debt Avalanche Strategy</h3>
-        <p class="avalanche-desc">
-          Pay minimums on all accounts, then put extra toward the highest APR
-          first. This minimizes total interest paid over time.
-        </p>
-        <div class="avalanche-list" id="avalanche-list"></div>
+        <span>Your Accounts</span>
+        <span
+          id="acct-count"
+          style="color: var(--ink-muted); font-weight: 400; letter-spacing: 0"
+          >0 accounts</span
+        >
+      </div>
+      <div class="account-list" id="account-list"></div>
+    </div>
+
+    <!-- AVALANCHE -->
+    <div class="section-pad" id="avalanche-wrap" style="display: none">
+      <div class="section-title">Debt Avalanche Strategy</div>
+      <div class="avalanche-card">
+        <div class="av-title">Highest Rate First</div>
+        <div class="av-desc">
+          Pay minimums everywhere. Put every extra dollar toward the highest
+          APR. Saves the most interest.
+        </div>
+        <div class="av-list" id="avalanche-list"></div>
       </div>
     </div>
 
-    <footer>
-      <a href="index.html" class="footer-logo">M Finance</a>
-      <p>&copy; 2026 M Finance. All rights reserved.</p>
-    </footer>
+    <!-- FAB -->
+    <button class="fab" onclick="openModal()" aria-label="Add account">
+      +
+    </button>
 
-    <div
-      class="modal-overlay"
-      id="modal-overlay"
-      onclick="closeModalOutside(event)"
-    >
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="bn-item">
+        <div class="bn-icon">🏠</div>
+        <div class="bn-label">Home</div>
+      </a>
+      <button class="bn-item active" onclick="">
+        <div class="bn-icon">💳</div>
+        <div class="bn-label">Cards</div>
+      </button>
+      <a href="savings.html" class="bn-item">
+        <div class="bn-icon">💰</div>
+        <div class="bn-label">Savings</div>
+      </a>
+      <a href="home-calculator.html" class="bn-item">
+        <div class="bn-icon">🏦</div>
+        <div class="bn-label">Loans</div>
+      </a>
+      <a href="loan-calculator.html" class="bn-item">
+        <div class="bn-icon">🧮</div>
+        <div class="bn-label">Calc</div>
+      </a>
+    </nav>
+
+    <!-- MODAL (bottom sheet) -->
+    <div class="modal-overlay" id="modal-overlay" onclick="closeOutside(event)">
       <div class="modal">
-        <h2 id="modal-title">Add an Account</h2>
+        <div class="modal-handle"></div>
+        <h2 id="modal-title">Add Account</h2>
         <div class="type-toggle">
           <button
             type="button"
             class="mode-btn active"
             id="type-btn-card"
-            onclick="setEntryType('card')"
+            onclick="setType('card')"
           >
-            <span style="display: block; margin-bottom: 3px">💳</span>Credit
-            Card
+            <span style="display: block; margin-bottom: 3px; font-size: 1.1rem"
+              >💳</span
+            >Credit Card
           </button>
           <button
             type="button"
             class="mode-btn"
             id="type-btn-auto"
-            onclick="setEntryType('auto')"
+            onclick="setType('auto')"
           >
-            <span style="display: block; margin-bottom: 3px">🚗</span>Auto Loan
+            <span style="display: block; margin-bottom: 3px; font-size: 1.1rem"
+              >🚗</span
+            >Auto Loan
           </button>
           <button
             type="button"
             class="mode-btn personal-btn"
             id="type-btn-personal"
-            onclick="setEntryType('personal')"
+            onclick="setType('personal')"
           >
-            <span style="display: block; margin-bottom: 3px">🏦</span>Personal
-            Loan
+            <span style="display: block; margin-bottom: 3px; font-size: 1.1rem"
+              >🏦</span
+            >Personal
           </button>
         </div>
         <div class="form-group">
-          <label id="f-name-label">Card Name</label
-          ><input
+          <label id="f-name-lbl">Card Name</label>
+          <input
             type="text"
             id="f-name"
             placeholder="e.g. Navy Federal Cash Rewards"
+            autocomplete="off"
           />
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label id="f-issuer-label">Issuer / Bank</label
-            ><select id="f-issuer">
-              <option value="navy">Navy Federal Credit Union</option>
+            <label id="f-issuer-lbl">Issuer</label>
+            <select id="f-issuer">
+              <option value="navy">Navy Federal</option>
               <option value="capital">Capital One</option>
-              <option value="paypal">PayPal / Synchrony</option>
-              <option value="amex">American Express</option>
+              <option value="paypal">PayPal/Synchrony</option>
+              <option value="amex">Amex</option>
               <option value="discover">Discover</option>
               <option value="auto">Auto Lender</option>
-              <option value="personal">Personal Loan Lender</option>
+              <option value="personal">Personal Lender</option>
               <option value="custom">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label>Last 4 / Ref # (optional)</label
-            ><input type="text" id="f-last4" placeholder="0000" maxlength="4" />
+            <label>Last 4 (opt.)</label>
+            <input
+              type="number"
+              id="f-last4"
+              placeholder="0000"
+              maxlength="4"
+            />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>Current Balance ($)</label
-            ><input
+            <label>Balance ($)</label>
+            <input
               type="number"
               id="f-balance"
               placeholder="2500"
               min="0"
               step="0.01"
-              oninput="updateDownPaymentPreview()"
+              oninput="updateDP()"
             />
           </div>
-          <div class="form-group" id="limit-group">
-            <label id="f-limit-label">Credit Limit ($)</label
-            ><input
-              type="number"
-              id="f-limit"
-              placeholder="5000"
-              min="0"
-              step="1"
-            />
+          <div class="form-group">
+            <label id="f-limit-lbl">Credit Limit ($)</label>
+            <input type="number" id="f-limit" placeholder="5000" min="0" />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label>APR (%)</label
-            ><input
+            <label>APR (%)</label>
+            <input
               type="number"
               id="f-apr"
               placeholder="22.99"
               min="0"
               max="100"
               step="0.01"
-              oninput="updateDownPaymentPreview()"
+              oninput="updateDP()"
             />
           </div>
-          <div class="form-group" id="min-group">
-            <label id="f-min-label">Min. Monthly Payment ($)</label
-            ><input
-              type="number"
-              id="f-min"
-              placeholder="Auto (2% of balance)"
-              min="0"
-              step="0.01"
-            />
+          <div class="form-group">
+            <label id="f-min-lbl">Min Payment ($)</label>
+            <input type="number" id="f-min" placeholder="Auto" min="0" />
           </div>
         </div>
-        <div class="form-group" id="term-group" style="display: none">
-          <label>Remaining Term (months)</label
-          ><input
+        <div class="form-group" id="term-grp" style="display: none">
+          <label>Remaining Term (months)</label>
+          <input
             type="number"
             id="f-term"
             placeholder="48"
             min="1"
             max="360"
-            step="1"
-            oninput="updateDownPaymentPreview()"
+            oninput="updateDP()"
           />
         </div>
-        <div class="form-group" id="downpayment-group" style="display: none">
+        <div class="form-group" id="dp-grp" style="display: none">
           <label
             >Down Payment ($)
             <span
@@ -1415,38 +1453,38 @@
                 font-weight: 400;
                 text-transform: none;
                 letter-spacing: 0;
-                color: var(--muted);
+                color: var(--ink-muted);
               "
               >optional</span
             ></label
-          ><input
+          >
+          <input
             type="number"
-            id="f-downpayment"
+            id="f-dp"
             placeholder="0"
             min="0"
-            step="1"
-            oninput="updateDownPaymentPreview()"
+            oninput="updateDP()"
           />
         </div>
         <div class="dp-preview" id="dp-preview" style="display: none">
           <div class="dp-preview-title">Down Payment Impact</div>
           <div class="dp-preview-grid">
             <div>
-              <div class="dp-stat-lbl">Amount Financed</div>
+              <div class="dp-stat-lbl">Financed</div>
               <div class="dp-stat-val" id="dp-financed">—</div>
             </div>
             <div>
-              <div class="dp-stat-lbl">Monthly Payment</div>
+              <div class="dp-stat-lbl">Monthly</div>
               <div
                 class="dp-stat-val"
                 id="dp-monthly"
-                style="color: var(--accent)"
+                style="color: var(--gold)"
               >
                 —
               </div>
             </div>
             <div>
-              <div class="dp-stat-lbl">Interest Saved</div>
+              <div class="dp-stat-lbl">Int. Saved</div>
               <div
                 class="dp-stat-val"
                 id="dp-saved"
@@ -1457,9 +1495,9 @@
             </div>
           </div>
         </div>
-        <div class="form-group" id="purpose-group" style="display: none">
-          <label>Loan Purpose (optional)</label
-          ><input
+        <div class="form-group" id="purpose-grp" style="display: none">
+          <label>Purpose (opt.)</label>
+          <input
             type="text"
             id="f-purpose"
             placeholder="e.g. Debt consolidation"
@@ -1467,7 +1505,7 @@
         </div>
         <div class="modal-actions">
           <button class="btn-cancel" onclick="closeModal()">Cancel</button>
-          <button class="btn-save" id="btn-save-main" onclick="saveCard()">
+          <button class="btn-save" id="btn-save" onclick="saveCard()">
             Save Account
           </button>
         </div>
@@ -1475,19 +1513,22 @@
     </div>
 
     <script>
-      const STORAGE_KEY = "mfinance_cards_v1",
-        SAVINGS_KEY = "mfinance_savings_v1";
+      const SK = "mfinance_cards_v1",
+        SAVK = "mfinance_savings_v1";
       let cards = [],
-        currentEntryType = "card";
+        entryType = "card",
+        editId = null;
+
+      const $ = (id) => document.getElementById(id);
       function loadCards() {
         try {
-          cards = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch (e) {
+          cards = JSON.parse(localStorage.getItem(SK)) || [];
+        } catch {
           cards = [];
         }
       }
       function saveCards() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+        localStorage.setItem(SK, JSON.stringify(cards));
       }
       function uid() {
         return Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -1502,60 +1543,65 @@
           })
         );
       }
-      function fmtShort(n) {
+      function fmtS(n) {
         if (n >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M";
         if (n >= 1000) return "$" + (n / 1000).toFixed(1) + "K";
         return "$" + Math.round(n);
       }
-      function monthsToPayoff(balance, apr, minPayment) {
-        if (!balance || balance <= 0) return 0;
-        const r = apr / 100 / 12;
-        if (r === 0)
-          return minPayment > 0 ? Math.ceil(balance / minPayment) : 9999;
-        if (minPayment <= balance * r) return 9999;
-        return Math.ceil(
-          -Math.log(1 - (balance * r) / minPayment) / Math.log(1 + r),
-        );
+      function getSavings() {
+        try {
+          return (JSON.parse(localStorage.getItem(SAVK)) || []).reduce(
+            (s, e) => s + (e.amount || 0),
+            0,
+          );
+        } catch {
+          return 0;
+        }
       }
-      function loanMonthlyPayment(principal, apr, termMonths) {
+
+      function monthsToPayoff(bal, apr, pmt) {
+        if (!bal || bal <= 0) return 0;
         const r = apr / 100 / 12;
-        if (r === 0) return principal / termMonths;
-        return (
-          (principal * r * Math.pow(1 + r, termMonths)) /
-          (Math.pow(1 + r, termMonths) - 1)
-        );
+        if (r === 0) return pmt > 0 ? Math.ceil(bal / pmt) : 9999;
+        if (pmt <= bal * r) return 9999;
+        return Math.ceil(-Math.log(1 - (bal * r) / pmt) / Math.log(1 + r));
       }
-      function calcTotalInterest(bal, annualApr, payment) {
-        if (!bal || bal <= 0 || !payment || payment <= 0) return 0;
-        const r = annualApr / 100 / 12;
+      function loanPmt(p, apr, n) {
+        const r = apr / 100 / 12;
+        if (r === 0) return p / n;
+        return (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+      }
+      function calcInt(bal, apr, pmt) {
+        if (!bal || bal <= 0 || !pmt || pmt <= 0) return 0;
+        const r = apr / 100 / 12;
         let b = bal,
-          interest = 0,
-          guard = 0;
-        while (b > 0.005 && guard++ < 1200) {
+          int = 0,
+          g = 0;
+        while (b > 0.005 && g++ < 1200) {
           const ic = b * r;
-          interest += ic;
-          b = b + ic - payment;
+          int += ic;
+          b = b + ic - pmt;
           if (b < 0) b = 0;
         }
-        return guard >= 1200 ? 0 : Math.max(0, interest);
+        return g >= 1200 ? 0 : Math.max(0, int);
       }
-      function calcTotalInterestSim(bal, annualApr, monthly) {
-        if (!bal || bal <= 0 || !monthly || monthly <= 0) return Infinity;
-        const r = annualApr / 100 / 12;
-        if (r > 0 && monthly <= bal * r) return Infinity;
+      function calcIntSim(bal, apr, mo) {
+        if (!bal || bal <= 0 || !mo || mo <= 0) return Infinity;
+        const r = apr / 100 / 12;
+        if (r > 0 && mo <= bal * r) return Infinity;
         let b = bal,
-          interest = 0,
-          guard = 0;
-        while (b > 0.005 && guard++ < 2400) {
+          int = 0,
+          g = 0;
+        while (b > 0.005 && g++ < 2400) {
           const ic = b * r;
-          interest += ic;
-          b = b + ic - monthly;
+          int += ic;
+          b = b + ic - mo;
           if (b < 0) b = 0;
         }
-        return guard >= 2400 ? Infinity : Math.max(0, interest);
+        return g >= 2400 ? Infinity : Math.max(0, int);
       }
       function payoffDate(months) {
-        if (months >= 9999) return "Never (increase payment)";
+        if (months >= 9999) return "Never";
         const d = new Date();
         d.setMonth(d.getMonth() + months);
         return d.toLocaleDateString("en-US", {
@@ -1563,10 +1609,10 @@
           year: "numeric",
         });
       }
-      function utilClass(pct) {
+      function utilCls(pct) {
         return pct < 30 ? "low" : pct < 60 ? "mid" : "high";
       }
-      function issuerColor(issuer, type) {
+      function issuerColor(iss, type) {
         if (type === "personal") return "personal";
         return (
           {
@@ -1578,495 +1624,368 @@
             auto: "auto",
             personal: "personal",
             custom: "custom",
-          }[issuer] || "custom"
+          }[iss] || "custom"
         );
       }
-      function issuerLabel(issuer) {
+      function issuerLabel(iss) {
         return (
           {
-            navy: "Navy Federal Credit Union",
+            navy: "Navy Federal",
             capital: "Capital One",
-            paypal: "PayPal / Synchrony",
+            paypal: "PayPal/Synchrony",
             amex: "American Express",
             discover: "Discover",
             auto: "Auto Lender",
-            personal: "Personal Loan Lender",
+            personal: "Personal Lender",
             custom: "Other",
-          }[issuer] || "Other"
+          }[iss] || "Other"
         );
       }
-      function getTotalSavings() {
-        try {
-          return (JSON.parse(localStorage.getItem(SAVINGS_KEY)) || []).reduce(
-            (s, e) => s + (e.amount || 0),
-            0,
-          );
-        } catch (e) {
-          return 0;
-        }
+      function getMin(c) {
+        const bal = c.balance || 0,
+          apr = c.apr || 0,
+          term = c.term || 60,
+          isLoan = c.type === "auto" || c.type === "personal";
+        const rawMin = c.min || 0;
+        if (isLoan) return rawMin || loanPmt(bal, apr, term);
+        const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0;
+        return rawMin > 0 && rawMin < bal ? rawMin : autoMin;
       }
 
-      function updateDownPaymentPreview() {
-        const isLoan =
-          currentEntryType === "auto" || currentEntryType === "personal";
-        if (!isLoan) return;
-        const balance =
-            parseFloat(document.getElementById("f-balance").value) || 0,
-          apr = parseFloat(document.getElementById("f-apr").value) || 0,
-          term = parseInt(document.getElementById("f-term").value) || 0,
-          dp = parseFloat(document.getElementById("f-downpayment").value) || 0;
-        const preview = document.getElementById("dp-preview");
-        if (!balance || !apr || !term) {
-          preview.style.display = "none";
-          return;
-        }
-        const financed = Math.max(0, balance - dp),
-          monthlyNoDp = loanMonthlyPayment(balance, apr, term),
-          monthlyWith =
-            dp > 0 ? loanMonthlyPayment(financed, apr, term) : monthlyNoDp,
-          intNoDp = calcTotalInterest(balance, apr, monthlyNoDp),
-          intWith =
-            dp > 0 ? calcTotalInterest(financed, apr, monthlyWith) : intNoDp;
-        document.getElementById("dp-financed").textContent = fmt(financed);
-        document.getElementById("dp-monthly").textContent = fmt(monthlyWith);
-        document.getElementById("dp-saved").textContent =
-          dp > 0 ? fmt(Math.max(0, intNoDp - intWith)) : "$0";
-        preview.style.display = "block";
-      }
-      function setEntryType(type) {
-        currentEntryType = type;
-        ["card", "auto", "personal"].forEach((t) =>
-          document
-            .getElementById("type-btn-" + t)
-            .classList.toggle("active", t === type),
-        );
-        const isAuto = type === "auto",
-          isPersonal = type === "personal",
-          isLoan = isAuto || isPersonal;
-        document.getElementById("f-name-label").textContent = isLoan
-          ? "Loan Name"
-          : "Card Name";
-        document.getElementById("f-name").placeholder = isPersonal
-          ? "e.g. SoFi Personal Loan"
-          : isAuto
-            ? "e.g. Toyota Camry Loan"
-            : "e.g. Navy Federal Cash Rewards";
-        document.getElementById("f-issuer-label").textContent = isLoan
-          ? "Lender"
-          : "Issuer / Bank";
-        document.getElementById("f-issuer").value = isPersonal
-          ? "personal"
-          : isAuto
-            ? "auto"
-            : "navy";
-        document.getElementById("f-limit-label").textContent = isLoan
-          ? "Original Loan Amount ($)"
-          : "Credit Limit ($)";
-        document.getElementById("f-limit").placeholder = isPersonal
-          ? "15000"
-          : isAuto
-            ? "25000"
-            : "5000";
-        document.getElementById("f-min-label").textContent = isLoan
-          ? "Monthly Payment ($)"
-          : "Min. Monthly Payment ($)";
-        document.getElementById("f-apr").placeholder = isPersonal
-          ? "11.99"
-          : isAuto
-            ? "7.5"
-            : "22.99";
-        document.getElementById("term-group").style.display = isLoan
-          ? "block"
-          : "none";
-        document.getElementById("downpayment-group").style.display = isLoan
-          ? "block"
-          : "none";
-        document.getElementById("purpose-group").style.display = isPersonal
-          ? "block"
-          : "none";
-        if (!isLoan)
-          document.getElementById("dp-preview").style.display = "none";
-        document
-          .getElementById("btn-save-main")
-          .classList.toggle("personal-save", isPersonal);
-        updateDownPaymentPreview();
-      }
       function render() {
-        renderSummary();
-        renderNetWorth();
+        renderHero();
+        renderNW();
         renderCards();
         renderAvalanche();
       }
-      function renderSummary() {
-        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0),
-          totalLimit = cards.reduce((s, c) => s + (c.limit || 0), 0);
-        const totalMin = cards.reduce((s, c) => {
-          const bal = c.balance || 0;
-          if (c.type === "auto" || c.type === "personal")
-            return (
-              s + (c.min || loanMonthlyPayment(bal, c.apr || 0, c.term || 60))
-            );
-          const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0,
-            rawMin = c.min || 0;
-          return s + (rawMin > 0 && rawMin < bal ? rawMin : autoMin);
-        }, 0);
-        const weightedApr =
-            totalDebt > 0
-              ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
-                totalDebt
-              : 0,
-          util = totalLimit > 0 ? (totalDebt / totalLimit) * 100 : 0;
-        document.getElementById("sum-debt").textContent = fmtShort(totalDebt);
-        document.getElementById("sum-min").textContent = fmtShort(totalMin);
-        document.getElementById("sum-apr").textContent =
-          weightedApr.toFixed(1) + "%";
-        document.getElementById("sum-limit").textContent = fmtShort(totalLimit);
-        document.getElementById("sum-cards").textContent =
-          cards.length + " account" + (cards.length !== 1 ? "s" : "");
-        document.getElementById("sum-util").textContent =
-          util.toFixed(0) + "% utilized";
+
+      function renderHero() {
+        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0);
+        const totalMin = cards.reduce((s, c) => s + getMin(c), 0);
+        const totalLimit = cards.reduce((s, c) => s + (c.limit || 0), 0);
+        const wAPR =
+          totalDebt > 0
+            ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
+              totalDebt
+            : 0;
+        const util = totalLimit > 0 ? (totalDebt / totalLimit) * 100 : 0;
+        const savings = getSavings();
+
+        const heroEl = $("hero-amount");
+        heroEl.textContent = fmtS(totalDebt);
+        heroEl.className = "hero-amount" + (totalDebt === 0 ? " zero" : "");
+        $("hero-sub").textContent =
+          cards.length +
+          " account" +
+          (cards.length !== 1 ? "s" : "") +
+          " · " +
+          fmt(totalMin) +
+          "/mo minimum";
+        $("pill-apr").textContent = wAPR.toFixed(1) + "%";
+        const utilEl = $("pill-util");
+        utilEl.textContent = util.toFixed(0) + "%";
+        utilEl.style.color =
+          util < 30 ? "var(--green)" : util < 60 ? "var(--gold)" : "var(--red)";
+        $("pill-limit").textContent = fmtS(totalLimit);
+        const nw = savings - totalDebt;
+        const nwPill = $("pill-nw");
+        nwPill.textContent = (nw >= 0 ? "+" : "") + fmtS(nw);
+        nwPill.style.color =
+          nw > 0 ? "var(--green)" : nw < 0 ? "var(--red)" : "var(--ink-muted)";
       }
-      function renderNetWorth() {
-        const savings = getTotalSavings(),
-          totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0),
-          netWorth = savings - totalDebt;
-        const nwEl = document.getElementById("nw-value");
-        nwEl.textContent = (netWorth >= 0 ? "+" : "") + fmt(netWorth);
+
+      function renderNW() {
+        const savings = getSavings();
+        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0);
+        const nw = savings - totalDebt;
+        const nwEl = $("nw-val");
+        nwEl.textContent = (nw >= 0 ? "+" : "") + fmt(nw);
         nwEl.className =
-          "nw-value " +
-          (netWorth > 0 ? "positive" : netWorth < 0 ? "negative" : "neutral");
-        document.getElementById("nw-savings").textContent = fmt(savings);
-        document.getElementById("nw-debt").textContent = fmt(totalDebt);
-        const subEl = document.getElementById("nw-sub");
-        if (!savings && !totalDebt)
-          subEl.textContent =
-            "Add accounts & savings to see your full picture.";
-        else if (netWorth >= 0)
-          subEl.textContent =
-            "Your savings exceed your debt — strong position.";
-        else
-          subEl.textContent =
-            "Your debt exceeds savings by " + fmt(Math.abs(netWorth)) + ".";
-        const total = savings + totalDebt,
-          savPct = total > 0 ? (savings / total) * 100 : 0,
-          dbtPct = total > 0 ? (totalDebt / total) * 100 : 0;
-        document.getElementById("nw-bar-savings").style.width =
-          savPct.toFixed(1) + "%";
-        document.getElementById("nw-bar-debt").style.width =
-          dbtPct.toFixed(1) + "%";
-        document.getElementById("nw-bar-savings-pct").textContent =
-          "Savings " + savPct.toFixed(0) + "%";
-        document.getElementById("nw-bar-debt-pct").textContent =
-          "Debt " + dbtPct.toFixed(0) + "%";
-        initPayoffSlider(totalDebt, totalDebt > 0);
-        document.getElementById("nw-notice").style.display =
-          savings > 0 ? "none" : "flex";
+          "nw-main-val " + (nw > 0 ? "pos" : nw < 0 ? "neg" : "zero");
+        $("nw-savings").textContent = fmt(savings);
+        $("nw-debt").textContent = fmt(totalDebt);
+        const tot = savings + totalDebt;
+        const sp = tot > 0 ? (savings / tot) * 100 : 0,
+          dp = tot > 0 ? (totalDebt / tot) * 100 : 0;
+        $("nw-bar-sav").style.width = sp.toFixed(1) + "%";
+        $("nw-bar-dbt").style.width = dp.toFixed(1) + "%";
+        $("nw-bar-sav-lbl").textContent = "Savings " + sp.toFixed(0) + "%";
+        $("nw-bar-dbt-lbl").textContent = "Debt " + dp.toFixed(0) + "%";
+        initSlider(totalDebt);
       }
-      function initPayoffSlider(totalDebt, hasDebt) {
-        const weightedApr =
+
+      function initSlider(totalDebt) {
+        const wAPR =
           totalDebt > 0
             ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
               totalDebt
             : 20;
-        const totalMin = cards.reduce((s, c) => {
-          const bal = c.balance || 0;
-          if (c.type === "auto" || c.type === "personal")
-            return (
-              s + (c.min || loanMonthlyPayment(bal, c.apr || 0, c.term || 60))
-            );
-          const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0,
-            rawMin = c.min || 0;
-          return s + (rawMin > 0 && rawMin < bal ? rawMin : autoMin);
-        }, 0);
-        const minDaily = Math.max(1, Math.ceil(totalMin / 30.4)),
-          daily1yr =
-            totalDebt > 0
-              ? Math.ceil(loanMonthlyPayment(totalDebt, weightedApr, 12) / 30.4)
-              : 30,
-          daily2yr =
-            totalDebt > 0
-              ? Math.ceil(loanMonthlyPayment(totalDebt, weightedApr, 24) / 30.4)
-              : 15,
-          sliderMax = Math.max(300, daily1yr * 2);
-        const slider = document.getElementById("psc-slider");
-        slider.min = 1;
-        slider.max = sliderMax;
-        slider.value = minDaily;
-        const presetsEl = document.getElementById("psc-presets");
-        presetsEl.innerHTML = "";
-        if (hasDebt)
+        const totalMin = cards.reduce((s, c) => s + getMin(c), 0);
+        const minD = Math.max(1, Math.ceil(totalMin / 30.4));
+        const d2yr =
+          totalDebt > 0 ? Math.ceil(loanPmt(totalDebt, wAPR, 24) / 30.4) : 15;
+        const d1yr =
+          totalDebt > 0 ? Math.ceil(loanPmt(totalDebt, wAPR, 12) / 30.4) : 30;
+        const slMax = Math.max(300, d1yr * 2);
+        const sl = $("pp-slider");
+        sl.min = 1;
+        sl.max = slMax;
+        sl.value = minD;
+        const pre = $("pp-presets");
+        pre.innerHTML = "";
+        if (totalDebt > 0) {
           [
-            { label: "Min payments", val: minDaily },
-            { label: "2-yr payoff", val: daily2yr },
-            { label: "1-yr payoff", val: daily1yr },
+            { l: "Min", v: minD },
+            { l: "2-yr", v: d2yr },
+            { l: "1-yr", v: d1yr },
           ].forEach((p) => {
             const btn = document.createElement("button");
-            btn.className = "psc-preset-btn";
-            btn.textContent = p.label + " · $" + p.val + "/day";
+            btn.className = "pp-preset";
+            btn.textContent = "$" + p.v + "/day · " + p.l;
             btn.onclick = () => {
-              slider.value = Math.min(p.val, sliderMax);
-              updatePayoffSlider(totalDebt, weightedApr);
+              sl.value = Math.min(p.v, slMax);
+              updateSlider(totalDebt, wAPR);
             };
-            presetsEl.appendChild(btn);
+            pre.appendChild(btn);
           });
-        slider.oninput = () => updatePayoffSlider(totalDebt, weightedApr);
-        updatePayoffSlider(totalDebt, weightedApr);
+        }
+        sl.oninput = () => updateSlider(totalDebt, wAPR);
+        updateSlider(totalDebt, wAPR);
       }
-      function onSliderInput() {
-        const totalDebt = cards.reduce((s, c) => s + (c.balance || 0), 0),
-          weightedApr =
-            totalDebt > 0
-              ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
-                totalDebt
-              : 20;
-        updatePayoffSlider(totalDebt, weightedApr);
+
+      function onSlider() {
+        const td = cards.reduce((s, c) => s + (c.balance || 0), 0);
+        const wAPR =
+          td > 0
+            ? cards.reduce((s, c) => s + (c.apr || 0) * (c.balance || 0), 0) /
+              td
+            : 20;
+        updateSlider(td, wAPR);
       }
-      function updatePayoffSlider(totalDebt, weightedApr) {
-        const daily = parseFloat(document.getElementById("psc-slider").value),
+
+      function updateSlider(totalDebt, wAPR) {
+        const daily = parseFloat($("pp-slider").value),
           monthly = daily * 30.4;
-        document.getElementById("psc-daily-val").textContent =
-          "$" +
-          daily.toLocaleString("en-US", {
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 2,
-          }) +
-          "/day";
+        $("pp-daily").textContent = "$" + daily + "/day";
         if (!totalDebt) {
-          ["psc-months", "psc-interest", "psc-total"].forEach(
-            (id) => (document.getElementById(id).textContent = "—"),
-          );
-          document.getElementById("psc-date").textContent =
-            "Add accounts to calculate";
-          document.getElementById("psc-interest-sub").textContent = "";
-          document.getElementById("psc-total-sub").textContent = "";
+          $("pp-months").textContent =
+            $("pp-interest").textContent =
+            $("pp-total").textContent =
+              "—";
           return;
         }
-        const months = monthsToPayoff(totalDebt, weightedApr, monthly),
-          interest = calcTotalInterestSim(totalDebt, weightedApr, monthly),
-          total = isFinite(interest) ? totalDebt + interest : Infinity;
-        const mEl = document.getElementById("psc-months"),
-          dEl = document.getElementById("psc-date");
+        const months = monthsToPayoff(totalDebt, wAPR, monthly);
+        const interest = calcIntSim(totalDebt, wAPR, monthly);
+        const mEl = $("pp-months");
         if (months >= 9999 || !isFinite(interest)) {
           mEl.textContent = "Never";
           mEl.style.color = "var(--red)";
-          dEl.textContent = "Payment too low";
+          $("pp-interest").textContent = "∞";
+          $("pp-total").textContent = "∞";
         } else {
-          mEl.textContent = months + " mo";
+          mEl.textContent = months + "mo";
           mEl.style.color =
             months <= 12
               ? "var(--green)"
               : months <= 36
-                ? "var(--accent)"
+                ? "var(--gold)"
                 : "var(--red)";
-          const d = new Date();
-          d.setMonth(d.getMonth() + months);
-          dEl.textContent =
-            d.toLocaleDateString("en-US", { month: "short", year: "numeric" }) +
-            " · " +
-            (months / 12).toFixed(1) +
-            " yrs";
-        }
-        const iEl = document.getElementById("psc-interest"),
-          isEl = document.getElementById("psc-interest-sub");
-        if (!isFinite(interest)) {
-          iEl.textContent = "∞";
-          iEl.style.color = "var(--red)";
-          isEl.textContent = "Interest exceeds payment";
-        } else {
-          const ratio = interest / totalDebt;
+          const iEl = $("pp-interest");
           iEl.textContent = "$" + Math.round(interest).toLocaleString();
           iEl.style.color =
-            ratio < 0.1
+            interest / totalDebt < 0.1
               ? "var(--green)"
-              : ratio < 0.4
-                ? "var(--accent)"
+              : interest / totalDebt < 0.4
+                ? "var(--gold)"
                 : "var(--red)";
-          isEl.textContent = Math.round(ratio * 100) + "% of principal";
-        }
-        const tEl = document.getElementById("psc-total"),
-          tsEl = document.getElementById("psc-total-sub");
-        if (!isFinite(total)) {
-          tEl.textContent = "∞";
-          tEl.style.color = "var(--red)";
-          tsEl.textContent = "";
-        } else {
-          tEl.textContent = "$" + Math.round(total).toLocaleString();
-          tEl.style.color = "var(--text)";
-          tsEl.textContent = "$" + Math.round(monthly).toLocaleString() + "/mo";
-        }
-        if (isFinite(interest) && total > 0) {
-          const pPct = Math.round((totalDebt / total) * 100);
-          document.getElementById("psc-bar-p").style.width = pPct + "%";
-          document.getElementById("psc-bar-i").style.width = 100 - pPct + "%";
-          document.getElementById("psc-bar-p-lbl").textContent =
-            "$" + Math.round(totalDebt).toLocaleString() + " principal";
-          document.getElementById("psc-bar-i-lbl").textContent =
-            "$" + Math.round(interest).toLocaleString() + " interest";
+          $("pp-total").textContent =
+            "$" + Math.round(totalDebt + interest).toLocaleString();
         }
       }
+
       function renderCards() {
-        const grid = document.getElementById("cards-grid");
+        const list = $("account-list");
+        $("acct-count").textContent =
+          cards.length + " account" + (cards.length !== 1 ? "s" : "");
         if (!cards.length) {
-          grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><div class="empty-icon">💳</div><h3>No accounts yet</h3><p>Add a credit card, auto loan, or personal loan to start tracking.</p><button class="btn-add" onclick="openModal()" style="margin:0 auto">+ Add Your First Account</button></div>`;
+          list.innerHTML = `<div class="empty"><div class="empty-icon">💳</div><h3>No accounts yet</h3><p>Add your first card or loan to start tracking.</p><button class="btn-save" onclick="openModal()" style="display:block;width:100%;border-radius:12px">Add Account</button></div>`;
           return;
         }
         const sorted = [...cards].sort((a, b) => (b.apr || 0) - (a.apr || 0));
         const firstId = sorted[0]?.id,
           secondId = sorted[1]?.id;
-        grid.innerHTML = cards
-          .map((c) => {
-            const isAuto = c.type === "auto",
-              isPersonal = c.type === "personal",
-              isLoan = isAuto || isPersonal;
-            const balance = c.balance || 0,
-              limit = c.limit || 0,
-              apr = c.apr || 0,
-              term = c.term || 60;
-            const autoMin = balance > 0 ? Math.max(25, balance * 0.02) : 0,
-              rawMin = c.min || 0;
-            const monthlyPayment = isLoan
-              ? rawMin || loanMonthlyPayment(balance, apr, term)
-              : rawMin > 0 && rawMin < balance
-                ? rawMin
-                : autoMin;
-            const util = limit > 0 ? (balance / limit) * 100 : 0,
-              months = monthsToPayoff(balance, apr, monthlyPayment),
-              payDate = payoffDate(months),
-              monthlyInt = balance * (apr / 100 / 12),
-              last4 = c.last4 ? " ···· " + c.last4 : "";
-            let badge =
-              balance > 0
-                ? c.id === firstId
-                  ? `<span class="priority-badge pay-first">Pay First</span>`
-                  : c.id === secondId
-                    ? `<span class="priority-badge pay-next">Pay Next</span>`
-                    : `<span class="priority-badge good-standing">On Track</span>`
-                : `<span class="priority-badge good-standing">Paid Off</span>`;
-            let barHtml = isLoan
-              ? `<div style="margin-bottom:5px;font-size:0.66rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted)">Loan Progress</div><div class="util-bar-wrap"><div class="util-bar ${isPersonal ? "purple" : "low"}" style="width:${Math.min((((c.origTerm || term) - term) / (c.origTerm || term)) * 100, 100).toFixed(1)}%"></div></div>`
-              : limit > 0
-                ? `<div class="util-bar-wrap"><div class="util-bar ${utilClass(util)}" style="width:${Math.min(util, 100).toFixed(1)}%"></div></div>`
-                : '<div style="margin-bottom:14px"></div>';
-            const typeIcon = isPersonal
-              ? "Personal Loan · "
-              : isAuto
-                ? "Auto Loan · "
-                : "";
-            const purposeTag =
-              isPersonal && c.purpose
-                ? `<div class="purpose-tag">${c.purpose}</div>`
-                : "";
-            const aprClass = isPersonal ? "purple" : "red",
-              thirdLbl = isLoan ? "Months Left" : "Monthly Int.",
-              thirdVal = isLoan
-                ? months < 9999
-                  ? months + " mo"
-                  : "∞"
-                : fmt(monthlyInt),
-              thirdClass = isPersonal ? "purple" : isAuto ? "" : "red";
-            const totalInterest =
-                balance > 0 && monthlyPayment > 0
-                  ? calcTotalInterest(balance, apr, monthlyPayment)
-                  : 0,
-              interestPct =
-                balance > 0
-                  ? Math.min((totalInterest / balance) * 100, 999)
-                  : 0,
-              interestBarW = Math.min(
-                (totalInterest / (balance + totalInterest)) * 100,
-                100,
-              );
-            const interestColor = isPersonal
-              ? "var(--purple)"
-              : isAuto
-                ? "var(--green)"
-                : interestPct > 50
-                  ? "var(--red)"
-                  : interestPct > 25
-                    ? "var(--accent)"
-                    : "var(--green)";
-            const dpBadge =
-              c.downpayment > 0
-                ? `<div style="margin-top:3px;font-size:0.66rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.06em">↓ ${fmt(c.downpayment)} down</div>`
-                : "";
-            return `<div class="card-item"><div class="card-visual ${issuerColor(c.issuer, c.type)}"></div><div class="card-body">
-      <div class="card-header-row"><div><div class="card-name">${c.name || (isPersonal ? "Personal Loan" : isAuto ? "Auto Loan" : "Unnamed Card")}${last4}</div><div class="card-issuer">${typeIcon}${issuerLabel(c.issuer)}</div>${purposeTag}${dpBadge}</div>
-      <div class="card-actions"><button class="icon-btn" onclick="openModal('${c.id}')" title="Edit">✎</button><button class="icon-btn delete" onclick="deleteCard('${c.id}')" title="Delete">✕</button></div></div>
-      <div class="balance-row"><div class="balance-amount">${fmtShort(balance)}</div>${limit > 0 ? `<div class="balance-of">${isLoan ? "original " : "of "}${fmtShort(limit)}</div>` : ""}</div>
-      ${barHtml}
-      <div class="stats-row">
-        <div class="stat-box"><div class="stat-lbl">APR</div><div class="stat-val ${aprClass}">${apr}%</div></div>
-        <div class="stat-box"><div class="stat-lbl">${isLoan ? "Payment" : "Min. Payment"}</div><div class="stat-val">${fmt(monthlyPayment)}</div></div>
-        <div class="stat-box"><div class="stat-lbl">${thirdLbl}</div><div class="stat-val ${thirdClass}">${thirdVal}</div></div>
+        list.innerHTML = "";
+        cards.forEach((c, idx) => {
+          const isAuto = c.type === "auto",
+            isPersonal = c.type === "personal",
+            isLoan = isAuto || isPersonal;
+          const bal = c.balance || 0,
+            limit = c.limit || 0,
+            apr = c.apr || 0,
+            term = c.term || 60;
+          const pmt = getMin(c);
+          const util = limit > 0 ? (bal / limit) * 100 : 0;
+          const months = monthsToPayoff(bal, apr, pmt);
+          const monthlyInt = bal * (apr / 100 / 12);
+          const totalInt = bal > 0 && pmt > 0 ? calcInt(bal, apr, pmt) : 0;
+          const intPct = bal > 0 ? (totalInt / bal) * 100 : 0;
+          const intBarW = Math.min((totalInt / (bal + totalInt)) * 100, 100);
+          const last4 = c.last4 ? " ···· " + c.last4 : "";
+          const color = issuerColor(c.issuer, c.type);
+          const intColor = isPersonal
+            ? "var(--purple)"
+            : isAuto
+              ? "var(--green)"
+              : intPct > 50
+                ? "var(--red)"
+                : intPct > 25
+                  ? "var(--gold)"
+                  : "var(--green)";
+
+          let badge = "";
+          if (bal <= 0)
+            badge = `<span class="priority-badge pb-done">Paid Off</span>`;
+          else if (c.id === firstId)
+            badge = `<span class="priority-badge pb-first">⚡ Pay First</span>`;
+          else if (c.id === secondId)
+            badge = `<span class="priority-badge pb-next">Pay Next</span>`;
+          else badge = `<span class="priority-badge pb-ok">On Track</span>`;
+
+          const purposeTag =
+            isPersonal && c.purpose
+              ? `<span class="purpose-tag">${c.purpose}</span>`
+              : "";
+          const dpBadge =
+            c.downpayment > 0
+              ? `<span style="font-size:0.65rem;color:var(--green);font-weight:600">↓ ${fmt(c.downpayment)} down</span>`
+              : "";
+
+          const thirdLbl = isLoan
+            ? "Months Left"
+            : isPersonal
+              ? "Months Left"
+              : "Monthly Int.";
+          const thirdVal = isLoan
+            ? months < 9999
+              ? months + " mo"
+              : "∞"
+            : fmt(monthlyInt);
+          const thirdCls = isPersonal ? "purple" : isAuto ? "green" : "red";
+
+          let progressBar = "";
+          if (isLoan) {
+            const prog = Math.min(
+              (((c.origTerm || term) - term) / (c.origTerm || term)) * 100,
+              100,
+            );
+            progressBar = `<div style="margin-bottom:4px;font-size:0.6rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted)">Loan Progress</div><div class="util-track"><div class="util-fill ${isPersonal ? "purple" : "low"}" style="width:${prog.toFixed(1)}%"></div></div>`;
+          } else if (limit > 0) {
+            progressBar = `<div class="util-track"><div class="util-fill ${utilCls(util)}" style="width:${Math.min(util, 100).toFixed(1)}%"></div></div>`;
+          } else {
+            progressBar = '<div style="margin-bottom:10px"></div>';
+          }
+
+          const el = document.createElement("div");
+          el.className = "acct-card";
+          el.style.animationDelay = idx * 0.06 + "s";
+          el.innerHTML = `
+      <div class="acct-stripe ${color}"></div>
+      <div class="acct-main">
+        <div class="acct-top">
+          <div>
+            <div class="acct-name">${c.name || "Unnamed"}${last4}</div>
+            <div class="acct-issuer">${isPersonal ? "Personal · " : isAuto ? "Auto · " : ""}${issuerLabel(c.issuer)}</div>
+            <div class="acct-badge-row">${purposeTag}${dpBadge}</div>
+          </div>
+          <div class="acct-actions">
+            <button class="icon-btn" onclick="openModal('${c.id}')" aria-label="Edit">✎</button>
+            <button class="icon-btn del" onclick="delCard('${c.id}')" aria-label="Delete">✕</button>
+          </div>
+        </div>
+        <div class="acct-balance">${fmtS(bal)}</div>
+        <div class="acct-of">${limit > 0 ? (isLoan ? "of original " : "of ") + fmtS(limit) : ""}</div>
+        ${progressBar}
+        <div class="acct-stats">
+          <div class="stat-cell"><div class="stat-cell-lbl">APR</div><div class="stat-cell-val ${isPersonal ? "purple" : "red"}">${apr}%</div></div>
+          <div class="stat-cell"><div class="stat-cell-lbl">${isLoan ? "Payment" : "Min. Due"}</div><div class="stat-cell-val">${fmt(pmt)}</div></div>
+          <div class="stat-cell"><div class="stat-cell-lbl">${thirdLbl}</div><div class="stat-cell-val ${thirdCls}">${thirdVal}</div></div>
+        </div>
+        ${
+          bal > 0 && months < 9999
+            ? `<div class="int-breakdown">
+          <div class="int-bk-header"><span class="int-bk-label">Total Interest</span><span class="int-bk-val" style="color:${intColor}">${fmt(totalInt)}</span></div>
+          <div class="int-bar"><div class="int-bar-p" style="width:${100 - intBarW}%"></div><div class="int-bar-i" style="width:${intBarW}%;background:${intColor}"></div></div>
+          <div class="int-bar-legend"><span>Principal ${fmt(bal)}</span><span style="color:${intColor}">Interest ${fmt(totalInt)}</span></div>
+        </div>`
+            : ""
+        }
       </div>
-      ${balance > 0 && months < 9999 ? `<div class="interest-breakdown"><div class="interest-breakdown-header"><span class="interest-lbl">Total Interest Cost</span><span class="interest-amount" style="color:${interestColor}">${fmt(totalInterest)}</span></div><div class="interest-bar-track"><div class="interest-bar-principal" style="width:${100 - interestBarW}%"></div><div class="interest-bar-interest" style="width:${interestBarW}%;background:${interestColor}"></div></div><div class="interest-bar-legend"><span>Principal ${fmt(balance)}</span><span style="color:${interestColor}">Interest ${fmt(totalInterest)}</span></div></div>` : ""}
-      <div class="payoff-row"><div>${badge}</div><div style="text-align:right"><div class="payoff-label">${isLoan ? "Payoff date" : "Payoff at min"}</div><div class="payoff-value">${balance > 0 ? payDate : "—"}</div></div></div>
-    </div></div>`;
-          })
-          .join("");
+      <div class="acct-footer">
+        <div>${badge}</div>
+        <div class="acct-payoff-info">
+          <div class="apf-label">${isLoan ? "Payoff date" : "Payoff at min"}</div>
+          <div class="apf-val">${bal > 0 ? payoffDate(months) : "—"}</div>
+        </div>
+      </div>`;
+          list.appendChild(el);
+        });
       }
+
       function renderAvalanche() {
-        const section = document.getElementById("avalanche-section");
-        if (!cards.some((c) => (c.balance || 0) > 0) || !cards.length) {
-          section.style.display = "none";
+        const wrap = $("avalanche-wrap");
+        const active = cards.filter((c) => (c.balance || 0) > 0);
+        if (!active.length) {
+          wrap.style.display = "none";
           return;
         }
-        section.style.display = "block";
-        const sorted = [...cards]
-          .filter((c) => (c.balance || 0) > 0)
-          .sort((a, b) => (b.apr || 0) - (a.apr || 0));
-        document.getElementById("avalanche-list").innerHTML = sorted
+        wrap.style.display = "block";
+        const sorted = [...active].sort((a, b) => (b.apr || 0) - (a.apr || 0));
+        $("avalanche-list").innerHTML = sorted
           .map((c, i) => {
-            const isLoan = c.type === "auto" || c.type === "personal",
-              bal = c.balance || 0,
-              apr = c.apr || 0,
-              term = c.term || 60;
-            const autoMin = bal > 0 ? Math.max(25, bal * 0.02) : 0,
-              rawMin = c.min || 0;
-            const payment = isLoan
-              ? rawMin || loanMonthlyPayment(bal, apr, term)
-              : rawMin > 0 && rawMin < bal
-                ? rawMin
-                : autoMin;
-            const months = monthsToPayoff(bal, apr, payment);
-            return `<div class="av-row"><div class="av-rank ${i === 0 ? "first" : ""}">${i + 1}</div><div class="av-name">${c.name || "Unnamed"}</div><div class="av-apr">${c.apr || 0}% APR</div><div class="av-balance">${fmtShort(c.balance || 0)}</div><div class="av-action">${i === 0 ? "<strong>Pay extra here</strong>Highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>to pay off`}</div></div>`;
+            const months = monthsToPayoff(
+              c.balance || 0,
+              c.apr || 0,
+              getMin(c),
+            );
+            return `<div class="av-row">
+      <div class="av-rank ${i === 0 ? "first" : ""}">${i + 1}</div>
+      <div class="av-info">
+        <div class="av-name">${c.name || "Unnamed"}</div>
+        <div class="av-sub">${c.apr || 0}% APR</div>
+      </div>
+      <div class="av-right">
+        <div class="av-bal">${fmtS(c.balance || 0)}</div>
+        <div class="av-action">${i === 0 ? "<strong>Pay extra here</strong>highest interest" : `<strong>${months < 9999 ? months + " mo" : "∞"}</strong>to payoff`}</div>
+      </div>
+    </div>`;
           })
           .join("");
       }
-      let editingId = null;
+
+      // ── MODAL ──────────────────────────────────────────────────────────────────
       function openModal(id) {
-        editingId = id || null;
-        document.getElementById("modal-title").textContent = id
-          ? "Edit Account"
-          : "Add an Account";
+        editId = id || null;
+        $("modal-title").textContent = id ? "Edit Account" : "Add Account";
         if (id) {
           const c = cards.find((x) => x.id === id);
           if (c) {
-            setEntryType(c.type || "card");
-            document.getElementById("f-name").value = c.name || "";
-            document.getElementById("f-issuer").value =
-              c.issuer ||
-              (c.type === "auto"
-                ? "auto"
-                : c.type === "personal"
-                  ? "personal"
-                  : "custom");
-            document.getElementById("f-last4").value = c.last4 || "";
-            document.getElementById("f-balance").value = c.balance || "";
-            document.getElementById("f-limit").value = c.limit || "";
-            document.getElementById("f-apr").value = c.apr || "";
-            document.getElementById("f-min").value = c.min || "";
+            setType(c.type || "card");
+            $("f-name").value = c.name || "";
+            $("f-issuer").value = c.issuer || "custom";
+            $("f-last4").value = c.last4 || "";
+            $("f-balance").value = c.balance || "";
+            $("f-limit").value = c.limit || "";
+            $("f-apr").value = c.apr || "";
+            $("f-min").value = c.min || "";
             if (c.type === "auto" || c.type === "personal") {
-              document.getElementById("f-term").value = c.term || "";
-              document.getElementById("f-downpayment").value =
-                c.downpayment || "";
+              $("f-term").value = c.term || "";
+              $("f-dp").value = c.downpayment || "";
             }
-            if (c.type === "personal")
-              document.getElementById("f-purpose").value = c.purpose || "";
-            updateDownPaymentPreview();
+            if (c.type === "personal") $("f-purpose").value = c.purpose || "";
+            updateDP();
           }
         } else {
-          setEntryType("card");
+          setType("card");
           [
             "f-name",
             "f-last4",
@@ -2075,70 +1994,139 @@
             "f-apr",
             "f-min",
             "f-term",
-            "f-downpayment",
+            "f-dp",
             "f-purpose",
           ].forEach((fid) => {
-            const el = document.getElementById(fid);
+            const el = $(fid);
             if (el) el.value = "";
           });
-          document.getElementById("dp-preview").style.display = "none";
+          $("dp-preview").style.display = "none";
         }
-        document.getElementById("modal-overlay").classList.add("open");
+        $("modal-overlay").classList.add("open");
+        document.body.style.overflow = "hidden";
       }
       function closeModal() {
-        document.getElementById("modal-overlay").classList.remove("open");
-        editingId = null;
+        $("modal-overlay").classList.remove("open");
+        document.body.style.overflow = "";
+        editId = null;
       }
-      function closeModalOutside(e) {
-        if (e.target === document.getElementById("modal-overlay")) closeModal();
+      function closeOutside(e) {
+        if (e.target === $("modal-overlay")) closeModal();
       }
-      function saveCard() {
-        const name = document.getElementById("f-name").value.trim();
-        if (!name) {
-          document.getElementById("f-name").focus();
+
+      function setType(type) {
+        entryType = type;
+        ["card", "auto", "personal"].forEach((t) =>
+          $("type-btn-" + t).classList.toggle("active", t === type),
+        );
+        const isLoan = type === "auto" || type === "personal",
+          isP = type === "personal";
+        $("f-name-lbl").textContent = isLoan ? "Loan Name" : "Card Name";
+        $("f-name").placeholder = isP
+          ? "e.g. SoFi Personal Loan"
+          : type === "auto"
+            ? "e.g. Toyota Camry Loan"
+            : "e.g. Navy Federal Cash Rewards";
+        $("f-issuer-lbl").textContent = isLoan ? "Lender" : "Issuer";
+        $("f-issuer").value = isP
+          ? "personal"
+          : type === "auto"
+            ? "auto"
+            : "navy";
+        $("f-limit-lbl").textContent = isLoan
+          ? "Original Amount ($)"
+          : "Credit Limit ($)";
+        $("f-limit").placeholder = isP
+          ? "15000"
+          : type === "auto"
+            ? "25000"
+            : "5000";
+        $("f-min-lbl").textContent = isLoan
+          ? "Monthly Payment ($)"
+          : "Min. Payment ($)";
+        $("f-apr").placeholder = isP
+          ? "11.99"
+          : type === "auto"
+            ? "7.5"
+            : "22.99";
+        $("term-grp").style.display = isLoan ? "block" : "none";
+        $("dp-grp").style.display = isLoan ? "block" : "none";
+        $("purpose-grp").style.display = isP ? "block" : "none";
+        $("btn-save").classList.toggle("personal-save", isP);
+        if (!isLoan) $("dp-preview").style.display = "none";
+        updateDP();
+      }
+
+      function updateDP() {
+        const isLoan = entryType === "auto" || entryType === "personal";
+        if (!isLoan) return;
+        const bal = parseFloat($("f-balance").value) || 0,
+          apr = parseFloat($("f-apr").value) || 0,
+          term = parseInt($("f-term").value) || 0,
+          dp = parseFloat($("f-dp").value) || 0;
+        const prev = $("dp-preview");
+        if (!bal || !apr || !term) {
+          prev.style.display = "none";
           return;
         }
-        const isAuto = currentEntryType === "auto",
-          isPersonal = currentEntryType === "personal",
-          isLoan = isAuto || isPersonal;
-        const termVal = parseInt(document.getElementById("f-term").value) || 60,
-          dp = parseFloat(document.getElementById("f-downpayment").value) || 0;
-        const card = {
-          id: editingId || uid(),
-          type: currentEntryType,
+        const financed = Math.max(0, bal - dp);
+        const moNoDp = loanPmt(bal, apr, term),
+          moWith = dp > 0 ? loanPmt(financed, apr, term) : moNoDp;
+        const intNoDp = calcInt(bal, apr, moNoDp),
+          intWith = dp > 0 ? calcInt(financed, apr, moWith) : intNoDp;
+        $("dp-financed").textContent = fmt(financed);
+        $("dp-monthly").textContent = fmt(moWith);
+        $("dp-saved").textContent =
+          dp > 0 ? fmt(Math.max(0, intNoDp - intWith)) : "$0";
+        prev.style.display = "block";
+      }
+
+      function saveCard() {
+        const name = $("f-name").value.trim();
+        if (!name) {
+          $("f-name").focus();
+          return;
+        }
+        const isLoan = entryType === "auto" || entryType === "personal";
+        const term = parseInt($("f-term").value) || 60,
+          dp = parseFloat($("f-dp").value) || 0;
+        const c = {
+          id: editId || uid(),
+          type: entryType,
           name,
-          issuer: document.getElementById("f-issuer").value,
-          last4: document.getElementById("f-last4").value.trim(),
-          balance: parseFloat(document.getElementById("f-balance").value) || 0,
-          limit: parseFloat(document.getElementById("f-limit").value) || 0,
-          apr: parseFloat(document.getElementById("f-apr").value) || 0,
-          min: parseFloat(document.getElementById("f-min").value) || 0,
+          issuer: $("f-issuer").value,
+          last4: $("f-last4").value.trim(),
+          balance: parseFloat($("f-balance").value) || 0,
+          limit: parseFloat($("f-limit").value) || 0,
+          apr: parseFloat($("f-apr").value) || 0,
+          min: parseFloat($("f-min").value) || 0,
         };
         if (isLoan) {
-          card.balance = Math.max(0, card.balance - dp);
-          card.downpayment = dp;
-          card.term = termVal;
-          if (editingId) {
-            const ex = cards.find((c) => c.id === editingId);
-            card.origTerm = ex?.origTerm || termVal;
-          } else card.origTerm = termVal;
+          c.balance = Math.max(0, c.balance - dp);
+          c.downpayment = dp;
+          c.term = term;
+          if (editId) {
+            const ex = cards.find((x) => x.id === editId);
+            c.origTerm = ex?.origTerm || term;
+          } else c.origTerm = term;
         }
-        if (isPersonal)
-          card.purpose = document.getElementById("f-purpose").value.trim();
-        if (editingId) {
-          const idx = cards.findIndex((c) => c.id === editingId);
-          if (idx > -1) cards[idx] = card;
-        } else cards.push(card);
+        if (entryType === "personal") c.purpose = $("f-purpose").value.trim();
+        if (editId) {
+          const i = cards.findIndex((x) => x.id === editId);
+          if (i > -1) cards[i] = c;
+        } else cards.push(c);
         saveCards();
         closeModal();
         render();
       }
-      function deleteCard(id) {
+
+      function delCard(id) {
         if (!confirm("Remove this account?")) return;
         cards = cards.filter((c) => c.id !== id);
         saveCards();
         render();
       }
+
       loadCards();
       render();
     </script>

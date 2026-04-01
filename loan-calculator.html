@@ -2,13 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
     <title>Loan Calculator — M Finance</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <style>
+      :root {
+        --bg: #f2f2f2;
+        --surface: #ffffff;
+        --surf2: #f8f8f8;
+        --border: #d8d8d8;
+        --bord2: #bbbbbb;
+        --ink: #111111;
+        --muted: #555555;
+        --muted2: #888888;
+        --accent: #8a6a30;
+        --acc-dim: rgba(138, 106, 48, 0.08);
+        --green: #1a6b3c;
+        --grn-dim: rgba(26, 107, 60, 0.07);
+        --red: #b91c1c;
+        --red-dim: rgba(185, 28, 28, 0.07);
+        --nav-h: 56px;
+        --bot-h: 64px;
+        --r: 12px;
+      }
       *,
       *::before,
       *::after {
@@ -16,133 +38,112 @@
         margin: 0;
         padding: 0;
       }
-      :root {
-        --bg: #f2f2f2;
-        --surface: #ffffff;
-        --surface2: #f8f8f8;
-        --border: #d8d8d8;
-        --border-strong: #bbbbbb;
-        --text: #111111;
-        --muted: #555555;
-        --accent: #8a6a30;
-        --accent-dim: rgba(138, 106, 48, 0.08);
-        --red: #b91c1c;
-        --green: #1a6b3c;
+      html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
       }
       body {
         background: var(--bg);
-        color: var(--text);
+        color: var(--ink);
         font-family: "DM Sans", sans-serif;
         min-height: 100vh;
+        padding-bottom: calc(var(--bot-h)+20px);
+        -webkit-font-smoothing: antialiased;
         font-size: 15px;
         line-height: 1.5;
       }
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 60px;
-        height: 64px;
-        background: #fff;
-        border-bottom: 1px solid var(--border);
+
+      .top-nav {
         position: sticky;
         top: 0;
-        z-index: 100;
+        z-index: 200;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        height: var(--nav-h);
       }
       .nav-logo {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.35rem;
+        font-size: 1.25rem;
         font-weight: 600;
         color: var(--accent);
         text-decoration: none;
         letter-spacing: 0.04em;
       }
-      .nav-links {
-        display: flex;
-        gap: 0;
-        list-style: none;
-      }
-      .nav-links li a {
-        display: block;
-        padding: 0 18px;
-        height: 64px;
-        line-height: 64px;
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        text-decoration: none;
-        border-bottom: 2px solid transparent;
-        transition:
-          color 0.15s,
-          border-color 0.15s;
-      }
-      .nav-links li a:hover {
-        color: var(--text);
-        border-bottom-color: var(--border-strong);
-      }
-      .nav-links li a.active {
-        color: var(--accent);
-        border-bottom-color: var(--accent);
-      }
 
-      .page-hero {
-        text-align: center;
-        padding: 52px 40px 40px;
-        background: #fff;
+      .hero {
+        background: var(--surface);
         border-bottom: 1px solid var(--border);
+        padding: 20px 16px 16px;
+        text-align: center;
       }
-      .section-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
+      .hero-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 12px;
+        margin-bottom: 6px;
       }
-      .page-hero h1 {
+      .hero h1 {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.2rem, 5vw, 3.8rem);
+        font-size: 2.2rem;
         font-weight: 600;
-        margin-bottom: 10px;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 4px;
       }
-      .page-hero p {
+      .hero-sub {
+        font-size: 0.82rem;
         color: var(--muted);
-        font-size: 0.9rem;
-        max-width: 400px;
-        margin: 0 auto;
       }
 
-      .calculator-wrapper {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 40px 60px;
+      /* Mode toggle */
+      .mode-toggle {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 32px;
-        align-items: start;
+        gap: 10px;
+        padding: 14px 16px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
       }
-      .inputs-panel {
-        background: #fff;
+      .mode-btn {
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-top: 3px solid var(--accent);
-        border-radius: 6px;
-        padding: 36px 32px;
+        border-radius: var(--r);
+        color: var(--muted);
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 14px 10px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .inputs-panel h2 {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 28px;
-        color: var(--text);
+      .mode-btn .mi {
+        display: block;
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+      .mode-btn.active {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff;
+      }
+
+      /* Inputs */
+      .inputs-wrap {
+        padding: 14px 16px;
       }
       .input-group {
-        margin-bottom: 24px;
+        margin-bottom: 18px;
       }
       .input-group label {
         display: block;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -171,29 +172,27 @@
       input[type="number"],
       input[type="text"] {
         width: 100%;
-        background: var(--surface2);
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 13px 18px 13px 32px;
+        border-radius: var(--r);
+        padding: 16px 18px 16px 36px;
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
         outline: none;
+        -webkit-appearance: none;
         transition:
           border-color 0.15s,
           box-shadow 0.15s;
         -moz-appearance: textfield;
       }
-      input[type="number"]::-webkit-inner-spin-button,
-      input[type="number"]::-webkit-outer-spin-button {
+      input[type="number"]::-webkit-inner-spin-button {
         -webkit-appearance: none;
       }
-      input[type="number"]:focus,
-      input[type="text"]:focus {
+      input[type="number"]:focus {
         border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-dim);
-        background: #fff;
+        box-shadow: 0 0 0 3px var(--acc-dim);
       }
       .no-prefix {
         padding-left: 18px;
@@ -209,23 +208,25 @@
       }
       input[type="range"] {
         width: 100%;
-        height: 2px;
+        height: 4px;
         appearance: none;
+        -webkit-appearance: none;
         background: var(--border);
         outline: none;
-        border-radius: 2px;
+        border-radius: 3px;
         cursor: pointer;
-        margin-top: 8px;
+        margin-top: 10px;
       }
       input[type="range"]::-webkit-slider-thumb {
         appearance: none;
-        width: 16px;
-        height: 16px;
+        -webkit-appearance: none;
+        width: 26px;
+        height: 26px;
         border-radius: 50%;
         background: var(--accent);
         cursor: pointer;
-        border: 2px solid #fff;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        border: 3px solid var(--surface);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
       }
       .range-labels {
         display: flex;
@@ -237,72 +238,78 @@
       }
       .rate-display {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
         margin-bottom: 4px;
       }
 
-      .mode-toggle {
+      /* Loan type toggle */
+      .loan-type-toggle {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 8px;
-        margin-bottom: 28px;
+        margin-top: 4px;
       }
-      .mode-btn {
-        padding: 12px 8px;
+      .lt-btn {
+        padding: 12px 6px;
         border: 1px solid var(--border);
-        background: var(--surface2);
+        background: var(--surf2);
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.76rem;
+        font-size: 0.78rem;
         font-weight: 500;
-        letter-spacing: 0.04em;
-        border-radius: 4px;
+        border-radius: var(--r);
         cursor: pointer;
-        transition: all 0.15s;
         text-align: center;
-        line-height: 1.4;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .mode-btn .mode-icon {
-        display: block;
-        font-size: 1rem;
-        margin-bottom: 3px;
-      }
-      .mode-btn:hover {
-        border-color: var(--border-strong);
-        color: var(--text);
-        background: #fff;
-      }
-      .mode-btn.active {
+      .lt-btn.active {
         border-color: var(--accent);
-        background: var(--accent);
-        color: #fff;
+        background: var(--acc-dim);
+        color: var(--accent);
       }
 
+      .input-error {
+        border-color: var(--red) !important;
+        box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1) !important;
+      }
+      .error-msg {
+        color: var(--red);
+        font-size: 0.74rem;
+        font-weight: 500;
+        margin-top: 6px;
+        display: none;
+      }
+      .error-msg.visible {
+        display: block;
+      }
+
+      /* Reverse result */
       .reverse-result {
-        background: var(--surface2);
+        background: var(--surf2);
         border: 1px solid var(--border);
         border-left: 3px solid var(--green);
-        border-radius: 4px;
-        padding: 20px;
-        margin-top: 4px;
+        border-radius: 0 var(--r) var(--r) 0;
+        padding: 16px;
+        margin-top: 8px;
         display: none;
       }
       .reverse-result.visible {
         display: block;
       }
       .rev-label {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--green);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
       .rev-value {
         font-family: "Cormorant Garamond", serif;
-        font-size: 2.4rem;
+        font-size: 2rem;
         font-weight: 600;
         color: var(--green);
         line-height: 1;
@@ -324,68 +331,37 @@
         display: block;
       }
 
-      .loan-type-toggle {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        margin-top: 4px;
-      }
-      .loan-type-btn {
-        padding: 9px 8px;
-        border: 1px solid var(--border);
-        background: var(--surface2);
-        color: var(--muted);
-        font-family: "DM Sans", sans-serif;
-        font-size: 0.76rem;
-        font-weight: 500;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.15s;
-        text-align: center;
-      }
-      .loan-type-btn:hover {
-        border-color: var(--border-strong);
-        color: var(--text);
-        background: #fff;
-      }
-      .loan-type-btn.active {
-        border-color: var(--accent);
-        background: var(--accent);
-        color: #fff;
-      }
-
-      .results-panel {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
+      /* Results */
+      .results-wrap {
+        padding: 0 16px;
       }
       .monthly-hero {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--border);
         border-top: 3px solid var(--accent);
-        border-radius: 6px;
-        padding: 36px 32px;
+        border-radius: var(--r);
+        padding: 24px;
         text-align: center;
+        margin-bottom: 12px;
       }
       .monthly-label {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
         font-weight: 600;
         letter-spacing: 0.15em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .monthly-amount {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2.8rem, 5vw, 4rem);
+        font-size: 3.5rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
         line-height: 1;
-        margin-bottom: 8px;
-        transition: all 0.3s;
+        margin-bottom: 6px;
       }
       .monthly-sub {
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         color: var(--muted);
         font-weight: 500;
       }
@@ -393,65 +369,67 @@
       .breakdown-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 12px;
+        gap: 10px;
+        margin-bottom: 12px;
       }
-      .breakdown-box {
-        background: #fff;
+      .bkd-box {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 20px 16px;
+        border-radius: var(--r);
+        padding: 16px;
       }
-      .breakdown-box .b-label {
-        font-size: 0.68rem;
+      .bkd-label {
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
-      .breakdown-box .b-value {
+      .bkd-value {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
       }
-      .breakdown-box.highlight .b-value {
+      .bkd-box.highlight .bkd-value {
         color: var(--red);
       }
 
       .amort-section {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 22px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 16px;
       }
       .amort-title {
-        font-size: 0.72rem;
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 14px;
-      }
-      .amort-bar-wrap {
-        height: 8px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        overflow: hidden;
         margin-bottom: 12px;
       }
-      .amort-bar-principal {
+      .amort-bar-wrap {
+        height: 10px;
+        background: var(--surf2);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+      .amort-bar-p {
         height: 100%;
         background: var(--accent);
-        border-radius: 4px;
+        border-radius: 6px;
         transition: width 0.5s ease;
       }
       .amort-legend {
         display: flex;
-        gap: 24px;
+        gap: 20px;
       }
-      .legend-item {
+      .leg-item {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -459,64 +437,68 @@
         color: var(--muted);
         font-weight: 500;
       }
-      .legend-dot {
+      .leg-dot {
         width: 10px;
         height: 10px;
         border-radius: 50%;
       }
-      .dot-principal {
-        background: var(--accent);
-      }
-      .dot-interest {
-        background: var(--red);
-      }
 
-      .schedule-section {
-        max-width: 1100px;
-        margin: 0 auto 80px;
-        padding: 0 60px;
+      /* Schedule */
+      .schedule-wrap {
+        padding: 0 16px 20px;
       }
-      .schedule-section h2 {
+      .schedule-title {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         font-weight: 600;
-        margin-bottom: 16px;
-        color: var(--text);
+        color: var(--ink);
+        margin-bottom: 14px;
       }
-      .schedule-table {
+      .tbl-scroll {
+        overflow-x: auto;
+      }
+      table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 0.86rem;
       }
-      .schedule-table th {
-        text-align: left;
-        font-size: 0.68rem;
+      thead th {
+        font-size: 0.64rem;
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--muted);
-        padding: 10px 14px;
+        text-align: right;
+        padding: 10px 10px;
         border-bottom: 2px solid var(--border);
+        background: var(--surf2);
+        white-space: nowrap;
       }
-      .schedule-table td {
-        padding: 12px 14px;
+      thead th:first-child {
+        text-align: left;
+      }
+      tbody td {
+        font-size: 0.8rem;
+        text-align: right;
+        padding: 10px;
         border-bottom: 1px solid var(--border);
-        color: var(--text);
-        transition: background 0.15s;
+        color: var(--ink);
       }
-      .schedule-table tr:hover td {
-        background: var(--surface2);
+      tbody td:first-child {
+        text-align: left;
       }
-      .schedule-table td.interest-cell {
+      tbody td.int-cell {
         color: var(--red);
         font-weight: 500;
+      }
+      tbody tr:hover td {
+        background: var(--surf2);
       }
       .show-more-btn {
         display: block;
         width: 100%;
-        margin-top: 12px;
-        padding: 12px;
-        background: #fff;
+        margin-top: 10px;
+        padding: 14px;
+        background: var(--surface);
         border: 1px solid var(--border);
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
@@ -525,293 +507,291 @@
         letter-spacing: 0.08em;
         text-transform: uppercase;
         cursor: pointer;
-        border-radius: 4px;
-        transition: all 0.15s;
-      }
-      .show-more-btn:hover {
-        border-color: var(--accent);
-        color: var(--accent);
-      }
-      .input-error {
-        border-color: var(--red) !important;
-        box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.1) !important;
-      }
-      .error-msg {
-        color: var(--red);
-        font-size: 0.74rem;
-        font-weight: 500;
-        margin-top: 6px;
-        display: none;
-      }
-      .error-msg.visible {
-        display: block;
+        border-radius: var(--r);
+        -webkit-tap-highlight-color: transparent;
       }
 
-      footer {
+      /* Bottom nav */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--surface);
         border-top: 1px solid var(--border);
-        padding: 22px 60px;
+        height: var(--bot-h);
         display: flex;
-        justify-content: space-between;
+        align-items: flex-start;
+        padding-top: 8px;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .bn-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        background: #fff;
-      }
-      .footer-logo {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--accent);
+        gap: 3px;
         text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        border: none;
+        background: transparent;
+        padding: 0;
       }
-      footer p {
-        font-size: 0.78rem;
+      .bn-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+      .bn-lbl {
+        font-size: 0.55rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         color: var(--muted);
       }
-      @media (max-width: 900px) {
-        nav {
-          padding: 0 20px;
-        }
-        .calculator-wrapper {
-          grid-template-columns: 1fr;
-          padding: 24px 20px;
-        }
-        .schedule-section {
-          padding: 0 20px;
-        }
-        .inputs-panel {
-          padding: 28px 20px;
-        }
-        footer {
-          padding: 20px;
-          flex-direction: column;
-          gap: 10px;
-          text-align: center;
-        }
+      .bn-item.active .bn-lbl {
+        color: var(--accent);
+      }
+
+      .sec-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 8px 16px 20px;
       }
     </style>
   </head>
   <body>
-    <nav>
+    <nav class="top-nav">
       <a href="index.html" class="nav-logo">M Finance</a>
-      <ul class="nav-links">
-        <li><a href="index.html#cards">Credit</a></li>
-        <li><a href="savings.html">Savings</a></li>
-        <li><a href="home-calculator.html" class="active">Loan</a></li>
-        <li><a href="loan-calculator.html">Calculator</a></li>
-      </ul>
+      <span style="font-size: 0.7rem; color: var(--muted); font-weight: 500"
+        >Calculator</span
+      >
     </nav>
-    <section class="page-hero">
-      <p class="section-label">M Finance</p>
-      <h1>Loan Calculator</h1>
-      <p>
-        Estimate your monthly payments and total interest before you borrow.
-      </p>
-    </section>
 
-    <div class="calculator-wrapper">
-      <div class="inputs-panel">
-        <h2 id="panel-title">Adjust Your Loan</h2>
-        <div class="mode-toggle">
-          <button
-            class="mode-btn active"
-            id="mode-standard"
-            onclick="setMode('standard')"
-          >
-            <span class="mode-icon">📅</span>Set term → get payment
-          </button>
-          <button
-            class="mode-btn"
-            id="mode-reverse"
-            onclick="setMode('reverse')"
-          >
-            <span class="mode-icon">💰</span>Set payment → get months
-          </button>
-        </div>
-        <div class="input-group">
-          <label>Loan Amount</label>
-          <div class="field-wrap">
-            <input
-              type="number"
-              id="loan-amount"
-              min="100"
-              max="10000000"
-              step="100"
-              value="10000"
-              oninput="calculate()"
-              placeholder="10000"
-            /><span class="field-prefix">$</span>
-          </div>
-          <div class="error-msg" id="amount-error">
-            Please enter a valid amount (min $100)
-          </div>
-          <p class="hint">Enter any exact dollar amount</p>
-        </div>
-        <div class="input-group">
-          <label
-            >Down Payment
-            <span
-              style="font-weight: 400; text-transform: none; letter-spacing: 0"
-              >(Optional)</span
-            ></label
-          >
-          <div class="field-wrap">
-            <input
-              type="number"
-              id="down-payment"
-              min="0"
-              max="10000000"
-              step="100"
-              value=""
-              oninput="calculate()"
-              placeholder="2000"
-            /><span class="field-prefix">$</span>
-          </div>
-          <div class="error-msg" id="down-error">
-            Down payment cannot exceed the loan amount
-          </div>
-          <p class="hint">Subtracted from the financed amount</p>
-        </div>
-        <div class="input-group" id="term-group">
-          <label>Loan Term</label>
-          <div class="field-wrap">
-            <input
-              type="number"
-              id="loan-term"
-              min="1"
-              max="600"
-              step="1"
-              value="36"
-              oninput="calculate()"
-              placeholder="36"
-              class="no-prefix has-suffix"
-              style="padding-left: 18px"
-            /><span class="field-suffix">mo</span>
-          </div>
-          <div class="error-msg" id="term-error">
-            Please enter a term between 1 and 600 months
-          </div>
-          <p class="hint">e.g. 12, 36, 60, 120 months</p>
-        </div>
-        <div class="input-group" id="payment-group" style="display: none">
-          <label>Monthly Payment I Can Afford</label>
-          <div class="field-wrap">
-            <input
-              type="number"
-              id="target-payment"
-              min="1"
-              step="1"
-              value=""
-              oninput="calculate()"
-              placeholder="300"
-            /><span class="field-prefix">$</span>
-          </div>
-          <div class="error-msg" id="payment-error">
-            Payment must exceed monthly interest
-          </div>
-          <p class="hint">Enter your maximum monthly budget</p>
-          <div class="reverse-result" id="reverse-result">
-            <div class="rev-label">Months to Pay Off</div>
-            <div class="rev-value" id="rev-months">—</div>
-            <div class="rev-sub" id="rev-years-sub"></div>
-          </div>
-          <div class="rev-warning" id="rev-warning">
-            Payment too low — does not cover monthly interest. Increase your
-            payment.
-          </div>
-        </div>
-        <div class="input-group">
-          <label>Interest Rate (APR)</label>
-          <div class="rate-display"><span id="display-rate">8</span>%</div>
+    <div class="hero">
+      <div class="hero-tag">M Finance</div>
+      <h1>Loan Calculator</h1>
+      <p class="hero-sub">
+        Estimate payments and total interest before you borrow.
+      </p>
+    </div>
+
+    <!-- MODE TOGGLE -->
+    <div class="mode-toggle">
+      <button
+        class="mode-btn active"
+        id="mode-standard"
+        onclick="setMode('standard')"
+      >
+        <span class="mi">📅</span>Set term → get payment
+      </button>
+      <button class="mode-btn" id="mode-reverse" onclick="setMode('reverse')">
+        <span class="mi">💰</span>Set payment → get months
+      </button>
+    </div>
+
+    <!-- INPUTS -->
+    <div class="inputs-wrap">
+      <div class="input-group">
+        <label>Loan Amount</label>
+        <div class="field-wrap">
           <input
-            type="range"
-            id="interest-rate"
-            min="0.1"
-            max="30"
-            step="0.1"
-            value="8"
+            type="number"
+            id="loan-amount"
+            min="100"
+            max="10000000"
+            step="100"
+            value="10000"
             oninput="calculate()"
+            placeholder="10000"
           />
-          <div class="range-labels"><span>0.1%</span><span>30%</span></div>
+          <span class="field-prefix">$</span>
         </div>
-        <div class="input-group">
-          <label>Loan Type</label>
-          <div class="loan-type-toggle">
-            <button class="loan-type-btn active" onclick="setType(this, 8)">
-              Personal
-            </button>
-            <button class="loan-type-btn" onclick="setType(this, 5)">
-              Auto
-            </button>
-            <button class="loan-type-btn" onclick="setType(this, 15)">
-              Business
-            </button>
-          </div>
+        <div class="error-msg" id="amount-error">
+          Enter a valid amount (min $100)
+        </div>
+        <p class="hint">Enter any exact dollar amount</p>
+      </div>
+
+      <div class="input-group">
+        <label
+          >Down Payment
+          <span
+            style="
+              font-weight: 400;
+              text-transform: none;
+              letter-spacing: 0;
+              color: var(--muted);
+            "
+            >(Optional)</span
+          ></label
+        >
+        <div class="field-wrap">
+          <input
+            type="number"
+            id="down-payment"
+            min="0"
+            max="10000000"
+            step="100"
+            value=""
+            oninput="calculate()"
+            placeholder="2000"
+          />
+          <span class="field-prefix">$</span>
+        </div>
+        <div class="error-msg" id="down-error">
+          Down payment can't exceed the loan amount
+        </div>
+        <p class="hint">Subtracted from the financed amount</p>
+      </div>
+
+      <div class="input-group" id="term-group">
+        <label>Loan Term</label>
+        <div class="field-wrap">
+          <input
+            type="number"
+            id="loan-term"
+            min="1"
+            max="600"
+            step="1"
+            value="36"
+            oninput="calculate()"
+            placeholder="36"
+            class="no-prefix has-suffix"
+            style="padding-left: 18px"
+          />
+          <span class="field-suffix">mo</span>
+        </div>
+        <div class="error-msg" id="term-error">
+          Enter a term between 1–600 months
+        </div>
+        <p class="hint">e.g. 12, 36, 60, 120 months</p>
+      </div>
+
+      <div class="input-group" id="payment-group" style="display: none">
+        <label>Monthly Payment I Can Afford</label>
+        <div class="field-wrap">
+          <input
+            type="number"
+            id="target-payment"
+            min="1"
+            step="1"
+            value=""
+            oninput="calculate()"
+            placeholder="300"
+          />
+          <span class="field-prefix">$</span>
+        </div>
+        <div class="error-msg" id="payment-error">
+          Payment must exceed monthly interest
+        </div>
+        <div class="reverse-result" id="reverse-result">
+          <div class="rev-label">Months to Pay Off</div>
+          <div class="rev-value" id="rev-months">—</div>
+          <div class="rev-sub" id="rev-years-sub"></div>
+        </div>
+        <div class="rev-warning" id="rev-warning">
+          Payment too low — increase it to cover monthly interest.
         </div>
       </div>
-      <div class="results-panel">
-        <div class="monthly-hero">
-          <div class="monthly-label">Monthly Payment</div>
-          <div class="monthly-amount" id="monthly-payment">$0.00</div>
-          <div class="monthly-sub">Estimated based on your inputs</div>
+
+      <div class="input-group">
+        <label>Interest Rate (APR)</label>
+        <div class="rate-display"><span id="display-rate">8</span>%</div>
+        <input
+          type="range"
+          id="interest-rate"
+          min="0.1"
+          max="30"
+          step="0.1"
+          value="8"
+          oninput="calculate()"
+        />
+        <div class="range-labels"><span>0.1%</span><span>30%</span></div>
+      </div>
+
+      <div class="input-group">
+        <label>Loan Type</label>
+        <div class="loan-type-toggle">
+          <button class="lt-btn active" onclick="setType(this, 8)">
+            Personal
+          </button>
+          <button class="lt-btn" onclick="setType(this, 5)">Auto</button>
+          <button class="lt-btn" onclick="setType(this, 15)">Business</button>
         </div>
-        <div class="breakdown-grid">
-          <div class="breakdown-box">
-            <div class="b-label">Amount Financed</div>
-            <div class="b-value" id="total-principal">$0</div>
-          </div>
-          <div class="breakdown-box">
-            <div class="b-label">Down Payment</div>
-            <div class="b-value" id="down-payment-total">$0</div>
-          </div>
-          <div class="breakdown-box highlight">
-            <div class="b-label">Total Interest</div>
-            <div class="b-value" id="total-interest">$0</div>
-          </div>
-          <div class="breakdown-box">
-            <div class="b-label">Total Paid</div>
-            <div class="b-value" id="total-cost">$0</div>
-          </div>
-          <div class="breakdown-box">
-            <div class="b-label">Payoff Date</div>
-            <div class="b-value" id="payoff-date">—</div>
-          </div>
+      </div>
+    </div>
+
+    <div class="sec-divider"></div>
+
+    <!-- RESULTS -->
+    <div class="results-wrap">
+      <div class="monthly-hero">
+        <div class="monthly-label">Monthly Payment</div>
+        <div class="monthly-amount" id="monthly-payment">$0.00</div>
+        <div class="monthly-sub" id="monthly-sub">
+          Estimated based on your inputs
         </div>
-        <div class="amort-section">
-          <div class="amort-title">Principal vs Interest Breakdown</div>
-          <div class="amort-bar-wrap">
-            <div
-              class="amort-bar-principal"
-              id="amort-bar"
-              style="width: 50%"
-            ></div>
+      </div>
+
+      <div class="breakdown-grid">
+        <div class="bkd-box">
+          <div class="bkd-label">Amount Financed</div>
+          <div class="bkd-value" id="total-principal">$0</div>
+        </div>
+        <div class="bkd-box">
+          <div class="bkd-label">Down Payment</div>
+          <div class="bkd-value" id="down-payment-total">$0</div>
+        </div>
+        <div class="bkd-box highlight">
+          <div class="bkd-label">Total Interest</div>
+          <div class="bkd-value" id="total-interest">$0</div>
+        </div>
+        <div class="bkd-box">
+          <div class="bkd-label">Total Paid</div>
+          <div class="bkd-value" id="total-cost">$0</div>
+        </div>
+        <div class="bkd-box" style="grid-column: 1/-1">
+          <div class="bkd-label">Payoff Date</div>
+          <div class="bkd-value" id="payoff-date">—</div>
+        </div>
+      </div>
+
+      <div class="amort-section">
+        <div class="amort-title">Principal vs Interest Breakdown</div>
+        <div class="amort-bar-wrap">
+          <div class="amort-bar-p" id="amort-bar" style="width: 50%"></div>
+        </div>
+        <div class="amort-legend">
+          <div class="leg-item">
+            <div class="leg-dot" style="background: var(--accent)"></div>
+            <span id="principal-pct">— Financed</span>
           </div>
-          <div class="amort-legend">
-            <div class="legend-item">
-              <div class="legend-dot dot-principal"></div>
-              <span id="principal-pct">— Financed</span>
-            </div>
-            <div class="legend-item">
-              <div class="legend-dot dot-interest"></div>
-              <span id="interest-pct">— Interest</span>
-            </div>
+          <div class="leg-item">
+            <div class="leg-dot" style="background: var(--red)"></div>
+            <span id="interest-pct">— Interest</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="schedule-section">
-      <h2>Amortization Schedule</h2>
-      <table class="schedule-table">
-        <thead>
-          <tr>
-            <th>Month</th>
-            <th>Payment</th>
-            <th>Principal</th>
-            <th>Interest</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody id="schedule-body"></tbody>
-      </table>
+    <div class="schedule-wrap">
+      <div class="schedule-title">Amortization Schedule</div>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Mo</th>
+              <th>Payment</th>
+              <th>Principal</th>
+              <th>Interest</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="schedule-body"></tbody>
+        </table>
+      </div>
       <button
         class="show-more-btn"
         id="show-more-btn"
@@ -821,10 +801,29 @@
       </button>
     </div>
 
-    <footer>
-      <a href="index.html" class="footer-logo">M Finance</a>
-      <p>&copy; 2026 M Finance. All rights reserved.</p>
-    </footer>
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="bn-item"
+        ><div class="bn-icon">🏠</div>
+        <div class="bn-lbl">Home</div></a
+      >
+      <a href="my-cards.html" class="bn-item"
+        ><div class="bn-icon">💳</div>
+        <div class="bn-lbl">Cards</div></a
+      >
+      <a href="savings.html" class="bn-item"
+        ><div class="bn-icon">💰</div>
+        <div class="bn-lbl">Savings</div></a
+      >
+      <a href="home-calculator.html" class="bn-item"
+        ><div class="bn-icon">🏦</div>
+        <div class="bn-lbl">Loan</div></a
+      >
+      <button class="bn-item active">
+        <div class="bn-icon">🧮</div>
+        <div class="bn-lbl">Calc</div>
+      </button>
+    </nav>
 
     <script>
       let showAll = false,
@@ -838,92 +837,80 @@
         if (n >= 1000) return "$" + (n / 1000).toFixed(1) + "K";
         return "$" + Math.round(n);
       }
+      const $ = (id) => document.getElementById(id);
+
       function setMode(mode) {
         currentMode = mode;
-        document.getElementById("term-group").style.display =
-          mode === "standard" ? "block" : "none";
-        document.getElementById("payment-group").style.display =
+        $("term-group").style.display = mode === "standard" ? "block" : "none";
+        $("payment-group").style.display =
           mode === "reverse" ? "block" : "none";
-        document
-          .getElementById("mode-standard")
-          .classList.toggle("active", mode === "standard");
-        document
-          .getElementById("mode-reverse")
-          .classList.toggle("active", mode === "reverse");
-        document.getElementById("panel-title").textContent =
-          mode === "standard" ? "Adjust Your Loan" : "How Long Will It Take?";
+        $("mode-standard").classList.toggle("active", mode === "standard");
+        $("mode-reverse").classList.toggle("active", mode === "reverse");
         calculate();
       }
       function setType(btn, rate) {
         document
-          .querySelectorAll(".loan-type-btn")
+          .querySelectorAll(".lt-btn")
           .forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
-        document.getElementById("interest-rate").value = rate;
+        $("interest-rate").value = rate;
         calculate();
       }
-      function updateMonthlySub(financedAmount, downPayment) {
-        const sub = document.querySelector(".monthly-sub");
-        if (financedAmount <= 0 && downPayment > 0) {
+      function updateSub(financed, down) {
+        const sub = $("monthly-sub");
+        if (financed <= 0 && down > 0) {
           sub.textContent = "No financing needed after your down payment";
           return;
         }
-        if (downPayment > 0) {
-          sub.textContent = `Based on ${fmt(financedAmount)} financed after ${fmt(downPayment)} down`;
+        if (down > 0) {
+          sub.textContent = `Based on ${fmt(financed)} financed after ${fmt(down)} down`;
           return;
         }
         sub.textContent = "Estimated based on your inputs";
       }
-      function setBreakdown(P, dp, totalInterest, totalPaid, payoffText) {
-        document.getElementById("total-principal").textContent = fmtShort(P);
-        document.getElementById("down-payment-total").textContent =
-          fmtShort(dp);
-        document.getElementById("total-interest").textContent =
-          fmtShort(totalInterest);
-        document.getElementById("total-cost").textContent = fmtShort(totalPaid);
-        document.getElementById("payoff-date").textContent = payoffText;
+      function setBreakdown(P, dp, totalInt, totalPaid, payoffText) {
+        $("total-principal").textContent = fmtShort(P);
+        $("down-payment-total").textContent = fmtShort(dp);
+        $("total-interest").textContent = fmtShort(totalInt);
+        $("total-cost").textContent = fmtShort(totalPaid);
+        $("payoff-date").textContent = payoffText;
       }
-      function setAmortization(P, totalInterest, totalLoanCost) {
-        if (!totalLoanCost || totalLoanCost <= 0) {
-          document.getElementById("amort-bar").style.width = "0%";
-          document.getElementById("principal-pct").textContent = "0% Financed";
-          document.getElementById("interest-pct").textContent = "0% Interest";
+      function setAmort(P, totalInt, total) {
+        if (!total || total <= 0) {
+          $("amort-bar").style.width = "0%";
+          $("principal-pct").textContent = "0% Financed";
+          $("interest-pct").textContent = "0% Interest";
           return;
         }
-        const fp = ((P / totalLoanCost) * 100).toFixed(1),
-          ip = ((totalInterest / totalLoanCost) * 100).toFixed(1);
-        document.getElementById("amort-bar").style.width = fp + "%";
-        document.getElementById("principal-pct").textContent =
-          fp + "% Financed";
-        document.getElementById("interest-pct").textContent = ip + "% Interest";
+        const fp = ((P / total) * 100).toFixed(1),
+          ip = ((totalInt / total) * 100).toFixed(1);
+        $("amort-bar").style.width = fp + "%";
+        $("principal-pct").textContent = fp + "% Financed";
+        $("interest-pct").textContent = ip + "% Interest";
       }
-      function renderPaidInFull(totalAmount, downPayment) {
-        document.getElementById("reverse-result").classList.remove("visible");
-        document.getElementById("rev-warning").classList.remove("visible");
+      function renderPaidInFull(total, dp) {
+        $("reverse-result").classList.remove("visible");
+        $("rev-warning").classList.remove("visible");
         if (currentMode === "reverse") {
-          document.getElementById("rev-months").textContent = "0 months";
-          document.getElementById("rev-years-sub").textContent =
-            "No financing needed";
-          document.getElementById("reverse-result").classList.add("visible");
+          $("rev-months").textContent = "0 months";
+          $("rev-years-sub").textContent = "No financing needed";
+          $("reverse-result").classList.add("visible");
         }
-        document.getElementById("monthly-payment").textContent = fmt(0);
-        setBreakdown(0, downPayment, 0, totalAmount, "Paid upfront");
-        setAmortization(0, 0, 0);
+        $("monthly-payment").textContent = fmt(0);
+        setBreakdown(0, dp, 0, total, "Paid upfront");
+        setAmort(0, 0, 0);
         fullSchedule = [];
         renderSchedule();
       }
       function calculate() {
-        const amountEl = document.getElementById("loan-amount"),
-          amountErr = document.getElementById("amount-error");
-        const downEl = document.getElementById("down-payment"),
-          downErr = document.getElementById("down-error");
+        const amountEl = $("loan-amount"),
+          amountErr = $("amount-error");
+        const downEl = $("down-payment"),
+          downErr = $("down-error");
         const totalAmount = parseFloat(amountEl.value),
           downPayment = downEl.value === "" ? 0 : parseFloat(downEl.value);
-        const annualRate = parseFloat(
-          document.getElementById("interest-rate").value,
-        );
-        document.getElementById("display-rate").textContent =
-          annualRate.toFixed(1);
+        const annualRate = parseFloat($("interest-rate").value);
+        $("display-rate").textContent = annualRate.toFixed(1);
         if (!totalAmount || totalAmount < 100 || isNaN(totalAmount)) {
           amountEl.classList.add("input-error");
           amountErr.classList.add("visible");
@@ -944,20 +931,19 @@
           downEl.classList.remove("input-error");
           downErr.classList.remove("visible");
         }
-        const financedAmount = Math.max(0, totalAmount - downPayment);
-        updateMonthlySub(financedAmount, downPayment);
-        if (financedAmount === 0) {
+        const financed = Math.max(0, totalAmount - downPayment);
+        updateSub(financed, downPayment);
+        if (financed === 0) {
           renderPaidInFull(totalAmount, downPayment);
           return;
         }
         const r = annualRate / 100 / 12;
-        if (currentMode === "reverse")
-          calculateReverse(financedAmount, r, downPayment);
-        else calculateStandard(financedAmount, r, downPayment);
+        if (currentMode === "reverse") calcReverse(financed, r, downPayment);
+        else calcStandard(financed, r, downPayment);
       }
-      function calculateStandard(P, r, downPayment) {
-        const termEl = document.getElementById("loan-term"),
-          termErr = document.getElementById("term-error");
+      function calcStandard(P, r, dp) {
+        const termEl = $("loan-term"),
+          termErr = $("term-error");
         const n = parseInt(termEl.value);
         if (!n || n < 1 || n > 600 || isNaN(n)) {
           termEl.classList.add("input-error");
@@ -971,23 +957,23 @@
           r === 0
             ? P / n
             : (P * (r * Math.pow(1 + r, n))) / (Math.pow(1 + r, n) - 1);
-        const totalLoanCost = monthly * n,
-          totalInterest = totalLoanCost - P,
-          totalPaid = totalLoanCost + downPayment;
-        document.getElementById("monthly-payment").textContent = fmt(monthly);
+        const totalLoan = monthly * n,
+          totalInt = totalLoan - P,
+          totalPaid = totalLoan + dp;
+        $("monthly-payment").textContent = fmt(monthly);
         const payoff = new Date();
         payoff.setMonth(payoff.getMonth() + n);
         setBreakdown(
           P,
-          downPayment,
-          totalInterest,
+          dp,
+          totalInt,
           totalPaid,
           payoff.toLocaleDateString("en-US", {
             month: "short",
             year: "numeric",
           }),
         );
-        setAmortization(P, totalInterest, totalLoanCost);
+        setAmort(P, totalInt, totalLoan);
         fullSchedule = [];
         let balance = P;
         for (let i = 1; i <= n; i++) {
@@ -1004,41 +990,40 @@
         }
         renderSchedule();
       }
-      function calculateReverse(P, r, downPayment) {
-        const paymentEl = document.getElementById("target-payment"),
-          paymentErr = document.getElementById("payment-error");
-        const reverseResult = document.getElementById("reverse-result"),
-          revWarning = document.getElementById("rev-warning");
-        const M = parseFloat(paymentEl.value);
+      function calcReverse(P, r, dp) {
+        const payEl = $("target-payment"),
+          payErr = $("payment-error");
+        const revRes = $("reverse-result"),
+          revWarn = $("rev-warning");
+        const M = parseFloat(payEl.value);
         if (!M || M <= 0 || isNaN(M)) {
-          paymentEl.classList.remove("input-error");
-          paymentErr.classList.remove("visible");
-          reverseResult.classList.remove("visible");
-          revWarning.classList.remove("visible");
-          document.getElementById("monthly-payment").textContent = fmt(M || 0);
-          document.getElementById("total-principal").textContent = fmtShort(P);
-          document.getElementById("down-payment-total").textContent =
-            fmtShort(downPayment);
+          payEl.classList.remove("input-error");
+          payErr.classList.remove("visible");
+          revRes.classList.remove("visible");
+          revWarn.classList.remove("visible");
+          $("monthly-payment").textContent = fmt(M || 0);
+          $("total-principal").textContent = fmtShort(P);
+          $("down-payment-total").textContent = fmtShort(dp);
           ["total-interest", "total-cost", "payoff-date"].forEach(
-            (id) => (document.getElementById(id).textContent = "—"),
+            (id) => ($(id).textContent = "—"),
           );
-          document.getElementById("amort-bar").style.width = "50%";
-          document.getElementById("principal-pct").textContent = "— Financed";
-          document.getElementById("interest-pct").textContent = "— Interest";
-          document.getElementById("schedule-body").innerHTML = "";
-          document.getElementById("show-more-btn").style.display = "none";
+          $("amort-bar").style.width = "50%";
+          $("principal-pct").textContent = "— Financed";
+          $("interest-pct").textContent = "— Interest";
+          $("schedule-body").innerHTML = "";
+          $("show-more-btn").style.display = "none";
           return;
         }
         if (r > 0 && M <= P * r) {
-          paymentEl.classList.add("input-error");
-          paymentErr.classList.add("visible");
-          reverseResult.classList.remove("visible");
-          revWarning.classList.add("visible");
+          payEl.classList.add("input-error");
+          payErr.classList.add("visible");
+          revRes.classList.remove("visible");
+          revWarn.classList.add("visible");
           return;
         } else {
-          paymentEl.classList.remove("input-error");
-          paymentErr.classList.remove("visible");
-          revWarning.classList.remove("visible");
+          payEl.classList.remove("input-error");
+          payErr.classList.remove("visible");
+          revWarn.classList.remove("visible");
         }
         let n =
           r === 0
@@ -1056,32 +1041,32 @@
             break;
           }
         }
-        const totalInterest = actualTotal - P,
+        const totalInt = actualTotal - P,
           years = Math.floor(n / 12),
           months = n % 12;
-        let yearsSub =
+        let ys =
           years > 0 && months > 0
             ? `${years} yr ${months} mo`
             : years > 0
               ? `${years} year${years > 1 ? "s" : ""}`
               : ` ${months} month${months > 1 ? "s" : ""}`;
-        document.getElementById("rev-months").textContent = n + " months";
-        document.getElementById("rev-years-sub").textContent = yearsSub;
-        reverseResult.classList.add("visible");
-        document.getElementById("monthly-payment").textContent = fmt(M);
+        $("rev-months").textContent = n + " months";
+        $("rev-years-sub").textContent = ys;
+        revRes.classList.add("visible");
+        $("monthly-payment").textContent = fmt(M);
         const payoff = new Date();
         payoff.setMonth(payoff.getMonth() + n);
         setBreakdown(
           P,
-          downPayment,
-          totalInterest,
-          actualTotal + downPayment,
+          dp,
+          totalInt,
+          actualTotal + dp,
           payoff.toLocaleDateString("en-US", {
             month: "short",
             year: "numeric",
           }),
         );
-        setAmortization(P, totalInterest, actualTotal);
+        setAmort(P, totalInt, actualTotal);
         fullSchedule = [];
         balance = P;
         for (let i = 1; i <= n; i++) {
@@ -1102,13 +1087,13 @@
       }
       function renderSchedule() {
         const rows = showAll ? fullSchedule : fullSchedule.slice(0, 6);
-        document.getElementById("schedule-body").innerHTML = rows
+        $("schedule-body").innerHTML = rows
           .map(
             (r) =>
-              `<tr><td>${r.month}</td><td>${fmt(r.payment)}</td><td>${fmt(r.principal)}</td><td class="interest-cell">${fmt(r.interest)}</td><td>${fmt(r.balance)}</td></tr>`,
+              `<tr><td>${r.month}</td><td>${fmt(r.payment)}</td><td>${fmt(r.principal)}</td><td class="int-cell">${fmt(r.interest)}</td><td>${fmt(r.balance)}</td></tr>`,
           )
           .join("");
-        const btn = document.getElementById("show-more-btn");
+        const btn = $("show-more-btn");
         if (fullSchedule.length <= 6) {
           btn.style.display = "none";
           return;

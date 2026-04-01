@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
     <title>Savings — M Finance</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap"
@@ -10,6 +13,29 @@
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <style>
+      :root {
+        --bg: #f2f2f2;
+        --surface: #ffffff;
+        --surf2: #f8f8f8;
+        --border: #d8d8d8;
+        --bord2: #bbbbbb;
+        --ink: #111111;
+        --muted: #555555;
+        --muted2: #888888;
+        --accent: #8a6a30;
+        --acc-dim: rgba(138, 106, 48, 0.08);
+        --green: #1a6b3c;
+        --grn-dim: rgba(26, 107, 60, 0.07);
+        --red: #b91c1c;
+        --red-dim: rgba(185, 28, 28, 0.07);
+        --blue: #1a4a8a;
+        --blu-dim: rgba(26, 74, 138, 0.07);
+        --purple: #5b3f8a;
+        --pur-dim: rgba(91, 63, 138, 0.07);
+        --nav-h: 56px;
+        --bot-h: 64px;
+        --r: 12px;
+      }
       *,
       *::before,
       *::after {
@@ -17,147 +43,104 @@
         margin: 0;
         padding: 0;
       }
-      :root {
-        --bg: #f2f2f2;
-        --surface: #ffffff;
-        --surface2: #f8f8f8;
-        --border: #d8d8d8;
-        --border-strong: #bbbbbb;
-        --text: #111111;
-        --muted: #555555;
-        --muted2: #888888;
-        --accent: #8a6a30;
-        --accent-dim: rgba(138, 106, 48, 0.08);
-        --green: #1a6b3c;
-        --green-dim: rgba(26, 107, 60, 0.07);
-        --red: #b91c1c;
-        --red-dim: rgba(185, 28, 28, 0.07);
-        --blue: #1a4a8a;
-        --blue-dim: rgba(26, 74, 138, 0.07);
-        --purple: #5b3f8a;
-        --purple-dim: rgba(91, 63, 138, 0.07);
+      html {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
       }
       body {
         background: var(--bg);
-        color: var(--text);
+        color: var(--ink);
         font-family: "DM Sans", sans-serif;
         min-height: 100vh;
+        padding-bottom: calc(var(--bot-h)+20px);
+        -webkit-font-smoothing: antialiased;
         font-size: 15px;
         line-height: 1.5;
       }
-      nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 60px;
-        height: 64px;
-        background: #fff;
-        border-bottom: 1px solid var(--border);
+
+      .top-nav {
         position: sticky;
         top: 0;
         z-index: 200;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        height: var(--nav-h);
       }
       .nav-logo {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.35rem;
+        font-size: 1.25rem;
         font-weight: 600;
         color: var(--accent);
         text-decoration: none;
         letter-spacing: 0.04em;
       }
-      .nav-links {
-        display: flex;
-        gap: 0;
-        list-style: none;
-      }
-      .nav-links li a {
-        display: block;
-        padding: 0 18px;
-        height: 64px;
-        line-height: 64px;
-        font-size: 0.78rem;
-        font-weight: 500;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-        text-decoration: none;
-        border-bottom: 2px solid transparent;
-        transition:
-          color 0.15s,
-          border-color 0.15s;
-      }
-      .nav-links li a:hover {
-        color: var(--text);
-        border-bottom-color: var(--border-strong);
-      }
-      .nav-links li a.active {
-        color: var(--accent);
-        border-bottom-color: var(--accent);
-      }
-      .page-hero {
-        text-align: center;
-        padding: 44px 40px 32px;
-        background: #fff;
+
+      /* Hero */
+      .hero {
+        background: var(--surface);
         border-bottom: 1px solid var(--border);
+        padding: 18px 16px 14px;
       }
-      .section-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.2em;
+      .hero-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 10px;
+        margin-bottom: 4px;
       }
-      .page-hero h1 {
+      .hero h1 {
         font-family: "Cormorant Garamond", serif;
-        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-size: 1.9rem;
         font-weight: 600;
-        color: var(--text);
-        margin-bottom: 8px;
+        line-height: 1.1;
+        color: var(--ink);
+        margin-bottom: 3px;
       }
-      .page-hero p {
+      .hero-sub {
+        font-size: 0.8rem;
         color: var(--muted);
-        font-size: 0.9rem;
       }
 
-      .summary-strip {
-        max-width: 1200px;
-        margin: 24px auto;
-        padding: 0 48px;
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 14px;
+      /* Summary scroll */
+      .sum-scroll {
+        display: flex;
+        gap: 10px;
+        padding: 14px 16px;
+        overflow-x: auto;
+        scrollbar-width: none;
       }
-      .sum-card {
-        background: #fff;
+      .sum-scroll::-webkit-scrollbar {
+        display: none;
+      }
+      .sum-pill {
+        flex-shrink: 0;
+        width: 140px;
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 20px 18px;
-        transition:
-          border-color 0.2s,
-          box-shadow 0.2s;
+        border-radius: var(--r);
+        padding: 14px;
       }
-      .sum-card:hover {
-        border-color: var(--border-strong);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      }
-      .sum-card.accent-top {
+      .sum-pill.accent-top {
         border-top: 3px solid var(--green);
       }
       .s-lbl {
-        font-size: 0.68rem;
+        font-size: 0.62rem;
         font-weight: 600;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 8px;
+        margin-bottom: 6px;
       }
       .s-val {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         font-weight: 600;
         line-height: 1;
-        margin-bottom: 3px;
+        margin-bottom: 2px;
       }
       .s-val.green {
         color: var(--green);
@@ -168,294 +151,266 @@
       .s-val.blue {
         color: var(--blue);
       }
-      .s-val.red {
-        color: var(--red);
-      }
       .s-sub {
-        font-size: 0.74rem;
+        font-size: 0.68rem;
         color: var(--muted);
         font-weight: 500;
       }
 
-      .goal-progress-wrap {
-        max-width: 1200px;
-        margin: 0 auto 20px;
-        padding: 0 48px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
+      /* Goal progress */
+      .goal-prog {
+        padding: 0 16px;
+        margin-bottom: 12px;
       }
-      .goal-progress-card {
-        background: #fff;
+      .gp-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 20px 24px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 8px;
       }
-      .gp-header {
+      .gp-hdr {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .gp-title {
-        font-size: 0.84rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--text);
-      }
-      .gp-title.monthly-title {
-        color: var(--purple);
+        color: var(--ink);
       }
       .gp-pct {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 600;
         color: var(--green);
       }
-      .gp-pct.monthly-pct {
+      .gp-pct.mp {
         color: var(--purple);
       }
-      .gp-bar-track {
+      .gp-track {
         height: 6px;
-        background: var(--surface2);
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 4px;
         overflow: hidden;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
-      .gp-bar-fill {
+      .gp-fill {
         height: 100%;
         background: var(--green);
-        border-radius: 3px;
-        transition: width 0.8s ease;
+        border-radius: 4px;
+        transition: width 0.5s;
       }
-      .gp-bar-fill.monthly-fill {
+      .gp-fill.mf {
         background: var(--purple);
       }
-      .gp-legend {
+      .gp-leg {
         display: flex;
         justify-content: space-between;
-        font-size: 0.74rem;
+        font-size: 0.7rem;
         color: var(--muted);
         font-weight: 500;
       }
-      .gp-legend strong {
-        color: var(--text);
+      .gp-leg strong {
+        color: var(--ink);
       }
 
-      .goal-banner-wrap {
-        max-width: 1200px;
-        margin: 0 auto 20px;
-        padding: 0 48px;
+      /* Goal banner */
+      .goal-banner {
+        padding: 0 16px;
+        margin-bottom: 12px;
       }
-      .goal-banner-card {
-        background: #fff;
+      .gb-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
+        border-radius: var(--r);
         overflow: hidden;
       }
-      .goal-banner-tabs {
+      .gb-tabs {
         display: flex;
         border-bottom: 1px solid var(--border);
-        background: var(--surface2);
+        background: var(--surf2);
       }
-      .gbt-tab {
-        padding: 10px 20px;
+      .gb-tab {
+        flex: 1;
+        padding: 10px;
         background: transparent;
         border: none;
-        border-right: 1px solid var(--border);
         border-bottom: 2px solid transparent;
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.76rem;
+        font-size: 0.72rem;
         font-weight: 600;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         cursor: pointer;
-        transition: all 0.15s;
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
         margin-bottom: -1px;
       }
-      .gbt-tab:last-child {
-        border-right: none;
-      }
-      .gbt-tab:hover {
-        color: var(--text);
-        background: #fff;
-      }
-      .gbt-tab.active-yearly {
+      .gb-tab.ay {
         color: var(--accent);
         border-bottom-color: var(--accent);
-        background: #fff;
       }
-      .gbt-tab.active-monthly {
+      .gb-tab.am {
         color: var(--purple);
         border-bottom-color: var(--purple);
-        background: #fff;
       }
-      .goal-banner-body {
-        padding: 20px 24px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
+      .gb-body {
+        padding: 16px;
       }
-      .db-icon {
-        font-size: 1.5rem;
-        flex-shrink: 0;
-      }
-      .db-text {
-        flex: 1;
-        min-width: 140px;
-      }
-      .db-label {
-        font-size: 0.68rem;
+      .gb-label {
+        font-size: 0.65rem;
         font-weight: 600;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--muted);
         margin-bottom: 4px;
       }
-      .db-value {
+      .gb-val {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.8rem;
+        font-size: 2rem;
         font-weight: 600;
         color: var(--accent);
         line-height: 1;
+        margin-bottom: 4px;
       }
-      .db-value.monthly-value {
+      .gb-val.mv {
         color: var(--purple);
       }
-      .db-sub {
+      .gb-sub {
         font-size: 0.76rem;
         color: var(--muted);
-        margin-top: 4px;
+        margin-bottom: 12px;
         font-weight: 500;
       }
-      .db-chips {
+      .gb-chips {
         display: flex;
-        gap: 8px;
+        gap: 6px;
         flex-wrap: wrap;
       }
-      .db-chip {
-        background: var(--surface2);
+      .gb-chip {
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 6px;
         padding: 5px 12px;
-        font-size: 0.74rem;
+        font-size: 0.72rem;
         color: var(--muted);
         font-weight: 500;
       }
-      .db-chip strong {
-        color: var(--text);
+      .gb-chip strong {
+        color: var(--ink);
       }
 
-      .main-wrap {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 48px 80px;
-        display: grid;
-        grid-template-columns: 1fr 340px;
-        gap: 24px;
-        align-items: start;
+      /* Section */
+      .sec {
+        padding: 0 16px;
+        margin-bottom: 12px;
       }
-      .left-col {
+      .sec-hdr {
         display: flex;
-        flex-direction: column;
-        gap: 20px;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
       }
-      .chart-section {
-        background: #fff;
+      .sec-title {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      /* Chart */
+      .chart-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 24px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 12px;
       }
       .chart-hdr {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
       }
       .chart-hdr h3 {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
         text-transform: uppercase;
         letter-spacing: 0.06em;
       }
       .chart-tabs {
         display: flex;
         gap: 4px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .chart-tabs::-webkit-scrollbar {
+        display: none;
       }
       .chart-tab {
-        padding: 5px 12px;
-        background: var(--surface2);
+        flex-shrink: 0;
+        padding: 5px 10px;
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 6px;
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.74rem;
+        font-size: 0.7rem;
         font-weight: 500;
         cursor: pointer;
-        transition: all 0.15s;
+        -webkit-tap-highlight-color: transparent;
       }
       .chart-tab.active {
         background: var(--accent);
         border-color: var(--accent);
         color: #fff;
       }
-      .chart-canvas-wrap {
+      .chart-wrap {
         position: relative;
-        height: 240px;
+        height: 220px;
       }
-      .log-section {
-        background: #fff;
+
+      /* Log */
+      .log-card {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 24px;
+        border-radius: var(--r);
+        overflow: hidden;
       }
       .log-hdr {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
+        padding: 14px 16px;
         border-bottom: 1px solid var(--border);
       }
       .log-hdr h3 {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
         text-transform: uppercase;
         letter-spacing: 0.06em;
       }
       .log-list {
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        max-height: 320px;
-        overflow-y: auto;
-      }
-      .log-list::-webkit-scrollbar {
-        width: 4px;
-      }
-      .log-list::-webkit-scrollbar-track {
-        background: transparent;
-      }
-      .log-list::-webkit-scrollbar-thumb {
-        background: var(--border);
-        border-radius: 2px;
       }
       .log-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 10px 12px;
-        background: var(--surface2);
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        transition: border-color 0.15s;
-        animation: fadeUp 0.3s ease;
+        gap: 10px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+        animation: slideUp 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
       }
-      @keyframes fadeUp {
+      @keyframes slideUp {
         from {
           opacity: 0;
           transform: translateY(8px);
@@ -465,116 +420,118 @@
           transform: translateY(0);
         }
       }
-      .log-item:hover {
-        border-color: var(--border-strong);
+      .log-item:last-child {
+        border-bottom: none;
       }
       .log-freq {
-        font-size: 0.64rem;
+        font-size: 0.6rem;
         font-weight: 600;
-        padding: 2px 8px;
-        border-radius: 2px;
-        letter-spacing: 0.06em;
+        padding: 3px 8px;
+        border-radius: 5px;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         flex-shrink: 0;
       }
-      .freq-daily {
-        background: var(--blue-dim);
+      .fd {
+        background: var(--blu-dim);
         color: var(--blue);
         border: 1px solid rgba(26, 74, 138, 0.2);
       }
-      .freq-weekly {
-        background: var(--accent-dim);
+      .fw {
+        background: var(--acc-dim);
         color: var(--accent);
         border: 1px solid rgba(138, 106, 48, 0.2);
       }
-      .freq-biweekly {
-        background: var(--purple-dim);
+      .fb {
+        background: var(--pur-dim);
         color: var(--purple);
         border: 1px solid rgba(91, 63, 138, 0.15);
       }
-      .freq-monthly {
-        background: var(--green-dim);
+      .fm {
+        background: var(--grn-dim);
         color: var(--green);
         border: 1px solid rgba(26, 107, 60, 0.2);
       }
-      .freq-onetime {
-        background: var(--surface2);
+      .fo {
+        background: var(--surf2);
         color: var(--muted);
         border: 1px solid var(--border);
       }
       .log-info {
         flex: 1;
+        min-width: 0;
       }
       .log-name {
         font-size: 0.86rem;
         font-weight: 600;
-        color: var(--text);
+        color: var(--ink);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .log-meta {
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         color: var(--muted);
-        margin-top: 1px;
       }
-      .log-amount {
+      .log-amt {
         font-family: "Cormorant Garamond", serif;
-        font-size: 1.05rem;
+        font-size: 1rem;
         font-weight: 600;
         color: var(--green);
+        flex-shrink: 0;
       }
       .log-del {
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         background: transparent;
         border: 1px solid transparent;
-        border-radius: 3px;
+        border-radius: 6px;
         color: var(--muted);
         font-size: 0.78rem;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: all 0.15s;
         flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
       }
-      .log-del:hover {
+      .log-del:active {
         border-color: var(--red);
         color: var(--red);
       }
       .log-empty {
         text-align: center;
-        padding: 32px 20px;
+        padding: 28px 16px;
         color: var(--muted);
         font-size: 0.86rem;
       }
 
-      .right-col {
-        position: sticky;
-        top: 80px;
-      }
+      /* Add panel — bottom sheet style */
       .add-panel {
-        background: #fff;
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 24px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 12px;
       }
       .add-panel h3 {
-        font-size: 0.9rem;
+        font-size: 0.82rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--text);
-        margin-bottom: 20px;
-        padding-bottom: 12px;
+        color: var(--ink);
+        margin-bottom: 14px;
+        padding-bottom: 10px;
         border-bottom: 1px solid var(--border);
       }
       .form-group {
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .form-group label {
         display: block;
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         font-weight: 600;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--muted);
         margin-bottom: 6px;
@@ -582,17 +539,16 @@
       .form-group input,
       .form-group select {
         width: 100%;
-        background: var(--surface2);
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 10px 12px;
+        border-radius: var(--r);
+        padding: 14px 14px;
         font-family: "DM Sans", sans-serif;
-        font-size: 0.9rem;
-        color: var(--text);
+        font-size: 1rem;
+        color: var(--ink);
         outline: none;
-        transition:
-          border-color 0.15s,
-          box-shadow 0.15s;
+        -webkit-appearance: none;
+        transition: border-color 0.15s;
         -moz-appearance: textfield;
       }
       .form-group input::-webkit-inner-spin-button {
@@ -601,7 +557,6 @@
       .form-group input:focus,
       .form-group select:focus {
         border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-dim);
       }
       .freq-grid {
         display: grid;
@@ -609,21 +564,18 @@
         gap: 6px;
       }
       .freq-btn {
-        padding: 8px;
-        background: var(--surface2);
+        padding: 10px 6px;
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 10px;
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
         font-size: 0.76rem;
         font-weight: 500;
         cursor: pointer;
         text-align: center;
-        transition: all 0.15s;
-      }
-      .freq-btn:hover {
-        border-color: var(--border-strong);
-        color: var(--text);
+        transition: all 0.12s;
+        -webkit-tap-highlight-color: transparent;
       }
       .freq-btn.active {
         background: var(--green);
@@ -632,72 +584,73 @@
       }
       .btn-add-income {
         width: 100%;
-        padding: 12px;
+        padding: 16px;
         background: var(--green);
         border: none;
-        border-radius: 4px;
+        border-radius: var(--r);
         color: #fff;
         font-family: "DM Sans", sans-serif;
-        font-size: 0.84rem;
+        font-size: 0.9rem;
         font-weight: 600;
         letter-spacing: 0.04em;
         cursor: pointer;
-        transition: opacity 0.15s;
         margin-top: 4px;
+        -webkit-tap-highlight-color: transparent;
       }
-      .btn-add-income:hover {
-        opacity: 0.88;
+      .btn-add-income:active {
+        opacity: 0.85;
       }
 
-      .goal-section {
-        background: #fff;
+      /* Goal section */
+      .goal-sec {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 22px;
-        margin-top: 16px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 12px;
       }
-      .goal-section-hdr {
+      .goal-sec-hdr {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
         border-bottom: 1px solid var(--border);
       }
-      .goal-section-hdr h4 {
-        font-size: 0.9rem;
+      .goal-sec-hdr h4 {
+        font-size: 0.82rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--text);
+        color: var(--ink);
       }
       .goal-type-tabs {
         display: flex;
         gap: 4px;
-        background: var(--surface2);
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 3px;
+        border-radius: 6px;
         padding: 3px;
       }
-      .goal-type-btn {
-        padding: 4px 12px;
+      .gtt-btn {
+        padding: 5px 12px;
         background: transparent;
         border: none;
-        border-radius: 2px;
+        border-radius: 4px;
         color: var(--muted);
         font-family: "DM Sans", sans-serif;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         font-weight: 600;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.05em;
         text-transform: uppercase;
         cursor: pointer;
-        transition: all 0.15s;
+        -webkit-tap-highlight-color: transparent;
       }
-      .goal-type-btn.active-yearly {
+      .gtt-btn.ay {
         background: var(--accent);
         color: #fff;
       }
-      .goal-type-btn.active-monthly {
+      .gtt-btn.am {
         background: var(--purple);
         color: #fff;
       }
@@ -711,388 +664,316 @@
         margin-bottom: 0;
       }
       .btn-set-goal {
-        padding: 10px 14px;
-        background: var(--surface2);
+        padding: 14px;
+        background: var(--surf2);
         border: 1px solid var(--border);
-        border-radius: 4px;
-        color: var(--text);
+        border-radius: var(--r);
+        color: var(--ink);
         font-family: "DM Sans", sans-serif;
         font-size: 0.8rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.15s;
+        -webkit-tap-highlight-color: transparent;
         white-space: nowrap;
-      }
-      .btn-set-goal:hover {
-        border-color: var(--border-strong);
-        background: #fff;
       }
       .active-goals {
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
-        margin-top: 12px;
+        margin-top: 10px;
       }
-      .active-goal-chip {
+      .ag-chip {
         display: flex;
         align-items: center;
-        gap: 6px;
+        gap: 5px;
         padding: 4px 10px;
-        border-radius: 2px;
-        font-size: 0.72rem;
+        border-radius: 5px;
+        font-size: 0.7rem;
         font-weight: 600;
       }
-      .active-goal-chip.yearly-chip {
-        background: var(--accent-dim);
+      .ag-chip.yc {
+        background: var(--acc-dim);
         border: 1px solid rgba(138, 106, 48, 0.2);
         color: var(--accent);
       }
-      .active-goal-chip.monthly-chip {
-        background: var(--purple-dim);
+      .ag-chip.mc {
+        background: var(--pur-dim);
         border: 1px solid rgba(91, 63, 138, 0.15);
         color: var(--purple);
       }
-      .goal-chip-clear {
+      .gc-clear {
         background: none;
         border: none;
         color: inherit;
         opacity: 0.6;
         cursor: pointer;
-        font-size: 0.72rem;
+        font-size: 0.7rem;
         padding: 0;
-        line-height: 1;
-        transition: opacity 0.15s;
-      }
-      .goal-chip-clear:hover {
-        opacity: 1;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .insights-section {
-        background: #fff;
+      /* Insights */
+      .insights-sec {
+        background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 6px;
-        padding: 22px;
-        margin-top: 16px;
+        border-radius: var(--r);
+        padding: 16px;
+        margin-bottom: 12px;
       }
-      .insights-section h4 {
-        font-size: 0.9rem;
+      .insights-sec h4 {
+        font-size: 0.82rem;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        color: var(--text);
-        margin-bottom: 14px;
-        padding-bottom: 12px;
+        color: var(--ink);
+        margin-bottom: 12px;
+        padding-bottom: 10px;
         border-bottom: 1px solid var(--border);
       }
-      .insight-item {
+      .ins-item {
         display: flex;
         gap: 10px;
         align-items: flex-start;
         padding: 8px 0;
         border-bottom: 1px solid var(--border);
       }
-      .insight-item:last-child {
+      .ins-item:last-child {
         border-bottom: none;
         padding-bottom: 0;
       }
-      .insight-dot {
+      .ins-dot {
         width: 6px;
         height: 6px;
         border-radius: 50%;
         flex-shrink: 0;
         margin-top: 7px;
       }
-      .insight-dot.green {
+      .ins-dot.green {
         background: var(--green);
       }
-      .insight-dot.accent {
+      .ins-dot.accent {
         background: var(--accent);
       }
-      .insight-dot.blue {
+      .ins-dot.blue {
         background: var(--blue);
       }
-      .insight-dot.red {
+      .ins-dot.red {
         background: var(--red);
       }
-      .insight-dot.purple {
+      .ins-dot.purple {
         background: var(--purple);
       }
-      .insight-text {
+      .ins-text {
         font-size: 0.8rem;
         color: var(--muted);
         line-height: 1.55;
       }
-      .insight-text strong {
-        color: var(--text);
+      .ins-text strong {
+        color: var(--ink);
         font-weight: 600;
       }
 
-      footer {
+      /* Bottom nav */
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        background: var(--surface);
         border-top: 1px solid var(--border);
-        padding: 22px 60px;
+        height: var(--bot-h);
         display: flex;
-        justify-content: space-between;
+        align-items: flex-start;
+        padding-top: 8px;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .bn-item {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        background: #fff;
-      }
-      .footer-logo {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: var(--accent);
+        gap: 3px;
         text-decoration: none;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        border: none;
+        background: transparent;
+        padding: 0;
       }
-      footer p {
-        font-size: 0.78rem;
+      .bn-icon {
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+      .bn-lbl {
+        font-size: 0.55rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
         color: var(--muted);
       }
-      @media (max-width: 1000px) {
-        .summary-strip {
-          grid-template-columns: repeat(3, 1fr);
-        }
-        .main-wrap {
-          grid-template-columns: 1fr;
-        }
-        .right-col {
-          position: static;
-        }
-      }
-      @media (max-width: 700px) {
-        nav {
-          padding: 0 20px;
-        }
-        .summary-strip {
-          grid-template-columns: 1fr 1fr;
-          padding: 0 20px;
-        }
-        .goal-progress-wrap,
-        .goal-banner-wrap,
-        .main-wrap {
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-        footer {
-          padding: 20px;
-          flex-direction: column;
-          gap: 8px;
-          text-align: center;
-        }
+      .bn-item.active .bn-lbl {
+        color: var(--accent);
       }
     </style>
   </head>
   <body>
-    <nav>
+    <nav class="top-nav">
       <a href="index.html" class="nav-logo">M Finance</a>
-      <ul class="nav-links">
-        <li><a href="index.html#cards">Credit</a></li>
-        <li><a href="savings.html">Savings</a></li>
-        <li><a href="home-calculator.html" class="active">Loan</a></li>
-        <li><a href="loan-calculator.html">Calculator</a></li>
-      </ul>
+      <span style="font-size: 0.7rem; color: var(--muted); font-weight: 500"
+        >Savings</span
+      >
     </nav>
-    <section class="page-hero">
-      <p class="section-label">Income &amp; Savings</p>
-      <h1>My Savings</h1>
-      <p>
-        Track every paycheck, project your year-end total, and stay on target.
-      </p>
-    </section>
 
-    <div class="summary-strip">
-      <div class="sum-card accent-top">
+    <div class="hero">
+      <div class="hero-tag">Income &amp; Savings</div>
+      <h1>My Savings</h1>
+      <p class="hero-sub">Track every paycheck and stay on target.</p>
+    </div>
+
+    <!-- SUMMARY STRIP -->
+    <div class="sum-scroll">
+      <div class="sum-pill accent-top">
         <div class="s-lbl">Saved So Far</div>
         <div class="s-val green" id="sum-saved">$0</div>
         <div class="s-sub" id="sum-entries">0 entries</div>
       </div>
-      <div class="sum-card">
+      <div class="sum-pill">
         <div class="s-lbl">This Month</div>
         <div class="s-val accent" id="sum-month">$0</div>
         <div class="s-sub">current month</div>
       </div>
-      <div class="sum-card">
-        <div class="s-lbl">Projected Year-End</div>
+      <div class="sum-pill">
+        <div class="s-lbl">Yr-End Proj.</div>
         <div class="s-val blue" id="sum-projected">$0</div>
         <div class="s-sub">at current pace</div>
       </div>
-      <div class="sum-card">
-        <div class="s-lbl">Avg. Per Month</div>
+      <div class="sum-pill">
+        <div class="s-lbl">Avg/Month</div>
         <div class="s-val" id="sum-avg">$0</div>
         <div class="s-sub">monthly average</div>
       </div>
-      <div class="sum-card">
-        <div class="s-lbl">Active Goals</div>
+      <div class="sum-pill">
+        <div class="s-lbl">Goals</div>
         <div class="s-val accent" id="sum-goal">—</div>
         <div class="s-sub" id="sum-goal-sub">not set</div>
       </div>
     </div>
 
-    <div
-      class="goal-progress-wrap"
-      id="goal-progress-wrap"
-      style="display: none"
-    >
-      <div
-        class="goal-progress-card"
-        id="yearly-progress-card"
-        style="display: none"
-      >
-        <div class="gp-header">
-          <div class="gp-title">Year-End Goal Progress</div>
-          <div class="gp-pct" id="gp-pct-yearly">0%</div>
+    <!-- GOAL PROGRESS -->
+    <div class="goal-prog" id="goal-prog" style="display: none">
+      <div class="gp-card" id="gp-yearly" style="display: none">
+        <div class="gp-hdr">
+          <span class="gp-title">Year-End Goal</span
+          ><span class="gp-pct" id="gp-pct-y">0%</span>
         </div>
-        <div class="gp-bar-track">
-          <div class="gp-bar-fill" id="gp-bar-yearly" style="width: 0%"></div>
+        <div class="gp-track">
+          <div class="gp-fill" id="gp-bar-y" style="width: 0%"></div>
         </div>
-        <div class="gp-legend">
-          <span>Saved: <strong id="gp-saved-yearly">$0</strong></span
-          ><span>Remaining: <strong id="gp-remaining-yearly">$0</strong></span
-          ><span>Goal: <strong id="gp-goal-yearly">$0</strong></span>
+        <div class="gp-leg">
+          <span>Saved: <strong id="gp-saved-y">$0</strong></span
+          ><span>Left: <strong id="gp-rem-y">$0</strong></span
+          ><span>Goal: <strong id="gp-goal-y">$0</strong></span>
         </div>
       </div>
-      <div
-        class="goal-progress-card"
-        id="monthly-progress-card"
-        style="display: none"
-      >
-        <div class="gp-header">
-          <div class="gp-title monthly-title">This Month's Goal Progress</div>
-          <div class="gp-pct monthly-pct" id="gp-pct-monthly">0%</div>
+      <div class="gp-card" id="gp-monthly" style="display: none">
+        <div class="gp-hdr">
+          <span class="gp-title" style="color: var(--purple)"
+            >This Month's Goal</span
+          ><span class="gp-pct mp" id="gp-pct-m">0%</span>
         </div>
-        <div class="gp-bar-track">
-          <div
-            class="gp-bar-fill monthly-fill"
-            id="gp-bar-monthly"
-            style="width: 0%"
-          ></div>
+        <div class="gp-track">
+          <div class="gp-fill mf" id="gp-bar-m" style="width: 0%"></div>
         </div>
-        <div class="gp-legend">
-          <span>This Month: <strong id="gp-saved-monthly">$0</strong></span
-          ><span>Remaining: <strong id="gp-remaining-monthly">$0</strong></span
-          ><span>Goal: <strong id="gp-goal-monthly">$0</strong></span>
+        <div class="gp-leg">
+          <span>This Mo: <strong id="gp-saved-m">$0</strong></span
+          ><span>Left: <strong id="gp-rem-m">$0</strong></span
+          ><span>Goal: <strong id="gp-goal-m">$0</strong></span>
         </div>
       </div>
     </div>
 
-    <div class="goal-banner-wrap" id="goal-banner-wrap" style="display: none">
-      <div class="goal-banner-card">
-        <div class="goal-banner-tabs" id="goal-banner-tabs">
-          <button
-            class="gbt-tab active-yearly"
-            id="gbt-yearly"
-            onclick="switchBanner('yearly')"
-          >
+    <!-- GOAL BANNER -->
+    <div class="goal-banner" id="goal-banner" style="display: none">
+      <div class="gb-card">
+        <div class="gb-tabs" id="gb-tabs">
+          <button class="gb-tab ay" id="gbt-y" onclick="switchBanner('yearly')">
             Yearly Goal
           </button>
-          <button
-            class="gbt-tab"
-            id="gbt-monthly"
-            onclick="switchBanner('monthly')"
-          >
+          <button class="gb-tab" id="gbt-m" onclick="switchBanner('monthly')">
             Monthly Goal
           </button>
         </div>
-        <div class="goal-banner-body" id="banner-yearly">
-          <div class="db-icon">🎯</div>
-          <div class="db-text">
-            <div class="db-label">Daily Income Required — Year-End Goal</div>
-            <div class="db-value" id="db-daily-yearly">$0/day</div>
-            <div class="db-sub" id="db-sub-yearly">
-              based on remaining days in the year
+        <div id="banner-y" class="gb-body">
+          <div class="gb-label">Daily Required — Year-End</div>
+          <div class="gb-val" id="db-daily-y">$0/day</div>
+          <div class="gb-sub" id="db-sub-y">—</div>
+          <div class="gb-chips">
+            <div class="gb-chip">Weekly: <strong id="db-wk-y">$0</strong></div>
+            <div class="gb-chip">
+              Biweekly: <strong id="db-bwk-y">$0</strong>
             </div>
-          </div>
-          <div class="db-chips">
-            <div class="db-chip">
-              Weekly: <strong id="db-weekly-yearly">$0</strong>
-            </div>
-            <div class="db-chip">
-              Biweekly: <strong id="db-biweekly-yearly">$0</strong>
-            </div>
-            <div class="db-chip">
-              Monthly: <strong id="db-monthly-yearly">$0</strong>
-            </div>
+            <div class="gb-chip">Monthly: <strong id="db-mo-y">$0</strong></div>
           </div>
         </div>
-        <div class="goal-banner-body" id="banner-monthly" style="display: none">
-          <div class="db-icon">📅</div>
-          <div class="db-text">
-            <div class="db-label">Daily Income Required — Monthly Goal</div>
-            <div class="db-value monthly-value" id="db-daily-monthly">
-              $0/day
+        <div id="banner-m" class="gb-body" style="display: none">
+          <div class="gb-label">Daily Required — Monthly Goal</div>
+          <div class="gb-val mv" id="db-daily-m">$0/day</div>
+          <div class="gb-sub" id="db-sub-m">—</div>
+          <div class="gb-chips">
+            <div class="gb-chip">Weekly: <strong id="db-wk-m">$0</strong></div>
+            <div class="gb-chip">
+              Days left: <strong id="db-days-m">0</strong>
             </div>
-            <div class="db-sub" id="db-sub-monthly">
-              based on remaining days this month
-            </div>
-          </div>
-          <div class="db-chips">
-            <div class="db-chip">
-              Weekly: <strong id="db-weekly-monthly">$0</strong>
-            </div>
-            <div class="db-chip">
-              Remaining days: <strong id="db-days-monthly">0</strong>
-            </div>
-            <div class="db-chip">
-              Month total needed: <strong id="db-total-monthly">$0</strong>
+            <div class="gb-chip">
+              Month total: <strong id="db-tot-m">$0</strong>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="main-wrap">
-      <div class="left-col">
-        <div class="chart-section">
-          <div class="chart-hdr">
-            <h3>Savings Overview</h3>
-            <div class="chart-tabs">
-              <button
-                class="chart-tab active"
-                onclick="switchChart('cumulative', this)"
-              >
-                Cumulative
-              </button>
-              <button class="chart-tab" onclick="switchChart('monthly', this)">
-                By Month
-              </button>
-              <button
-                class="chart-tab"
-                onclick="switchChart('frequency', this)"
-              >
-                By Source
-              </button>
-            </div>
-          </div>
-          <div class="chart-canvas-wrap"><canvas id="main-chart"></canvas></div>
-        </div>
-        <div class="log-section">
-          <div class="log-hdr">
-            <h3>Income Log</h3>
-            <span
-              style="font-size: 0.76rem; color: var(--muted); font-weight: 500"
-              id="log-count"
-              >0 entries</span
+    <!-- CHART -->
+    <div class="sec">
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <h3>Overview</h3>
+          <div class="chart-tabs">
+            <button
+              class="chart-tab active"
+              onclick="switchChart('cumulative', this)"
             >
-          </div>
-          <div class="log-list" id="log-list">
-            <div class="log-empty">
-              No income entries yet. Add your first paycheck →
-            </div>
+              Cumulative
+            </button>
+            <button class="chart-tab" onclick="switchChart('monthly', this)">
+              By Month
+            </button>
+            <button class="chart-tab" onclick="switchChart('frequency', this)">
+              By Source
+            </button>
           </div>
         </div>
+        <div class="chart-wrap"><canvas id="main-chart"></canvas></div>
       </div>
-      <div class="right-col">
-        <div class="add-panel">
-          <h3>Add Income</h3>
-          <div class="form-group">
-            <label>Source / Label</label
-            ><input
-              type="text"
-              id="f-name"
-              placeholder="e.g. Paycheck, Freelance"
-            />
-          </div>
-          <div class="form-group">
-            <label>Amount ($)</label
-            ><input
+    </div>
+
+    <!-- ADD INCOME -->
+    <div class="sec">
+      <div class="sec-title" style="margin-bottom: 10px">Add Income</div>
+      <div class="add-panel">
+        <div class="form-group">
+          <label>Source / Label</label>
+          <input
+            type="text"
+            id="f-name"
+            placeholder="e.g. Paycheck, Freelance"
+            autocomplete="off"
+          />
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
+          <div class="form-group" style="margin-bottom: 0">
+            <label>Amount ($)</label>
+            <input
               type="number"
               id="f-amount"
               placeholder="1500"
@@ -1100,131 +981,177 @@
               step="0.01"
             />
           </div>
-          <div class="form-group">
-            <label>Date</label><input type="date" id="f-date" />
+          <div class="form-group" style="margin-bottom: 0">
+            <label>Date</label>
+            <input type="date" id="f-date" />
           </div>
-          <div class="form-group">
-            <label>Frequency</label>
-            <div class="freq-grid">
-              <button
-                class="freq-btn"
-                id="freq-daily"
-                onclick="setFreq('daily')"
-              >
-                Daily
-              </button>
-              <button
-                class="freq-btn active"
-                id="freq-weekly"
-                onclick="setFreq('weekly')"
-              >
-                Weekly
-              </button>
-              <button
-                class="freq-btn"
-                id="freq-biweekly"
-                onclick="setFreq('biweekly')"
-              >
-                Biweekly
-              </button>
-              <button
-                class="freq-btn"
-                id="freq-monthly"
-                onclick="setFreq('monthly')"
-              >
-                Monthly
-              </button>
-              <button
-                class="freq-btn"
-                id="freq-onetime"
-                onclick="setFreq('onetime')"
-                style="grid-column: 1/-1"
-              >
-                One-Time
-              </button>
-            </div>
-          </div>
-          <button class="btn-add-income" onclick="addEntry()">
-            + Add Income
-          </button>
         </div>
-        <div class="goal-section">
-          <div class="goal-section-hdr">
-            <h4>Set a Goal</h4>
-            <div class="goal-type-tabs">
-              <button
-                class="goal-type-btn active-yearly"
-                id="gtype-yearly"
-                onclick="switchGoalType('yearly')"
-              >
-                Yearly
-              </button>
-              <button
-                class="goal-type-btn"
-                id="gtype-monthly"
-                onclick="switchGoalType('monthly')"
-              >
-                Monthly
-              </button>
-            </div>
+        <div class="form-group" style="margin-top: 14px">
+          <label>Frequency</label>
+          <div class="freq-grid">
+            <button class="freq-btn" id="freq-daily" onclick="setFreq('daily')">
+              Daily
+            </button>
+            <button
+              class="freq-btn active"
+              id="freq-weekly"
+              onclick="setFreq('weekly')"
+            >
+              Weekly
+            </button>
+            <button
+              class="freq-btn"
+              id="freq-biweekly"
+              onclick="setFreq('biweekly')"
+            >
+              Biweekly
+            </button>
+            <button
+              class="freq-btn"
+              id="freq-monthly"
+              onclick="setFreq('monthly')"
+            >
+              Monthly
+            </button>
+            <button
+              class="freq-btn"
+              id="freq-onetime"
+              onclick="setFreq('onetime')"
+              style="grid-column: 1/-1"
+            >
+              One-Time
+            </button>
           </div>
-          <div id="goal-yearly-panel">
-            <div class="goal-row">
-              <div class="form-group">
-                <label>Year-End Target ($)</label
-                ><input
-                  type="number"
-                  id="f-goal-yearly"
-                  placeholder="50000"
-                  min="0"
-                  step="100"
-                />
-              </div>
-              <button class="btn-set-goal" onclick="setGoal('yearly')">
-                Set
-              </button>
-            </div>
-          </div>
-          <div id="goal-monthly-panel" style="display: none">
-            <div class="goal-row">
-              <div class="form-group">
-                <label>Monthly Target ($)</label
-                ><input
-                  type="number"
-                  id="f-goal-monthly"
-                  placeholder="5000"
-                  min="0"
-                  step="100"
-                />
-              </div>
-              <button class="btn-set-goal" onclick="setGoal('monthly')">
-                Set
-              </button>
-            </div>
-          </div>
-          <div class="active-goals" id="active-goals"></div>
         </div>
-        <div class="insights-section">
-          <h4>Insights</h4>
-          <div id="insights-list">
-            <div class="insight-item">
-              <div class="insight-dot accent"></div>
-              <div class="insight-text">
-                Add your income entries to see personalized insights.
-              </div>
+        <button class="btn-add-income" onclick="addEntry()">
+          + Add Income
+        </button>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div class="sec">
+      <div class="sec-hdr">
+        <div class="sec-title">Income Log</div>
+        <span
+          style="font-size: 0.72rem; color: var(--muted); font-weight: 500"
+          id="log-count"
+          >0 entries</span
+        >
+      </div>
+      <div class="log-card">
+        <div class="log-list" id="log-list">
+          <div class="log-empty">
+            No income entries yet. Add your first paycheck above.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SET GOAL -->
+    <div class="sec">
+      <div class="sec-title" style="margin-bottom: 10px">Set a Goal</div>
+      <div class="goal-sec">
+        <div class="goal-sec-hdr">
+          <h4>Savings Target</h4>
+          <div class="goal-type-tabs">
+            <button
+              class="gtt-btn ay"
+              id="gtype-y"
+              onclick="switchGoalType('yearly')"
+            >
+              Yearly
+            </button>
+            <button
+              class="gtt-btn"
+              id="gtype-m"
+              onclick="switchGoalType('monthly')"
+            >
+              Monthly
+            </button>
+          </div>
+        </div>
+        <div id="goal-y-panel">
+          <div class="goal-row">
+            <div class="form-group">
+              <label>Year-End Target ($)</label
+              ><input
+                type="number"
+                id="f-goal-y"
+                placeholder="50000"
+                min="0"
+                step="100"
+              />
+            </div>
+            <button class="btn-set-goal" onclick="setGoal('yearly')">
+              Set
+            </button>
+          </div>
+        </div>
+        <div id="goal-m-panel" style="display: none">
+          <div class="goal-row">
+            <div class="form-group">
+              <label>Monthly Target ($)</label
+              ><input
+                type="number"
+                id="f-goal-m"
+                placeholder="5000"
+                min="0"
+                step="100"
+              />
+            </div>
+            <button class="btn-set-goal" onclick="setGoal('monthly')">
+              Set
+            </button>
+          </div>
+        </div>
+        <div class="active-goals" id="active-goals"></div>
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="sec">
+      <div class="sec-title" style="margin-bottom: 10px">Insights</div>
+      <div class="insights-sec">
+        <div id="insights-list">
+          <div class="ins-item">
+            <div class="ins-dot accent"></div>
+            <div class="ins-text">
+              Add income entries to see personalized insights.
             </div>
           </div>
         </div>
       </div>
     </div>
-    <footer>
-      <a href="index.html" class="footer-logo">M Finance</a>
-      <p>&copy; 2026 M Finance. All rights reserved.</p>
-    </footer>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottom-nav">
+      <a href="index.html" class="bn-item"
+        ><div class="bn-icon">🏠</div>
+        <div class="bn-lbl">Home</div></a
+      >
+      <a href="my-cards.html" class="bn-item"
+        ><div class="bn-icon">💳</div>
+        <div class="bn-lbl">Cards</div></a
+      >
+      <button class="bn-item active">
+        <div class="bn-icon">💰</div>
+        <div class="bn-lbl">Savings</div>
+      </button>
+      <a href="home-calculator.html" class="bn-item"
+        ><div class="bn-icon">🏦</div>
+        <div class="bn-lbl">Loan</div></a
+      >
+      <a href="loan-calculator.html" class="bn-item"
+        ><div class="bn-icon">🧮</div>
+        <div class="bn-lbl">Calc</div></a
+      >
+    </nav>
+
     <script>
-      const STORAGE_KEY = "mfinance_savings_v1",
-        GOAL_YEAR_KEY = "mfinance_savings_goal_v1",
-        GOAL_MON_KEY = "mfinance_savings_goal_monthly_v1";
+      const SK = "mfinance_savings_v1",
+        GYK = "mfinance_savings_goal_v1",
+        GMK = "mfinance_savings_goal_monthly_v1";
       let entries = [],
         yearGoal = 0,
         monthlyGoal = 0,
@@ -1232,29 +1159,29 @@
         currentChart = "cumulative",
         chartInstance = null,
         currentGoalType = "yearly",
-        activeBannerView = "yearly";
+        activeBanner = "yearly";
+      const $ = (id) => document.getElementById(id);
       function load() {
         try {
-          entries = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        } catch (e) {
+          entries = JSON.parse(localStorage.getItem(SK)) || [];
+        } catch {
           entries = [];
         }
         try {
-          yearGoal = parseFloat(localStorage.getItem(GOAL_YEAR_KEY)) || 0;
-        } catch (e) {
+          yearGoal = parseFloat(localStorage.getItem(GYK)) || 0;
+        } catch {
           yearGoal = 0;
         }
         try {
-          monthlyGoal = parseFloat(localStorage.getItem(GOAL_MON_KEY)) || 0;
-        } catch (e) {
+          monthlyGoal = parseFloat(localStorage.getItem(GMK)) || 0;
+        } catch {
           monthlyGoal = 0;
         }
-        if (yearGoal) document.getElementById("f-goal-yearly").value = yearGoal;
-        if (monthlyGoal)
-          document.getElementById("f-goal-monthly").value = monthlyGoal;
+        if (yearGoal) $("f-goal-y").value = yearGoal;
+        if (monthlyGoal) $("f-goal-m").value = monthlyGoal;
       }
       function save() {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+        localStorage.setItem(SK, JSON.stringify(entries));
       }
       function uid() {
         return Date.now().toString(36) + Math.random().toString(36).slice(2);
@@ -1280,109 +1207,101 @@
           })
         );
       }
-      const FREQ_LABEL = {
+      const FL = {
         daily: "Daily",
         weekly: "Weekly",
         biweekly: "Biweekly",
         monthly: "Monthly",
         onetime: "One-Time",
       };
-      const FREQ_CLASS = {
-        daily: "freq-daily",
-        weekly: "freq-weekly",
-        biweekly: "freq-biweekly",
-        monthly: "freq-monthly",
-        onetime: "freq-onetime",
+      const FC = {
+        daily: "fd",
+        weekly: "fw",
+        biweekly: "fb",
+        monthly: "fm",
+        onetime: "fo",
       };
+
       function setFreq(f) {
         currentFreq = f;
         ["daily", "weekly", "biweekly", "monthly", "onetime"].forEach((x) =>
-          document
-            .getElementById("freq-" + x)
-            .classList.toggle("active", x === f),
+          $("freq-" + x).classList.toggle("active", x === f),
         );
       }
-      function switchGoalType(type) {
-        currentGoalType = type;
-        document.getElementById("goal-yearly-panel").style.display =
-          type === "yearly" ? "block" : "none";
-        document.getElementById("goal-monthly-panel").style.display =
-          type === "monthly" ? "block" : "none";
-        document.getElementById("gtype-yearly").className =
-          "goal-type-btn" + (type === "yearly" ? " active-yearly" : "");
-        document.getElementById("gtype-monthly").className =
-          "goal-type-btn" + (type === "monthly" ? " active-monthly" : "");
+      function switchGoalType(t) {
+        currentGoalType = t;
+        $("goal-y-panel").style.display = t === "yearly" ? "block" : "none";
+        $("goal-m-panel").style.display = t === "monthly" ? "block" : "none";
+        $("gtype-y").className = "gtt-btn" + (t === "yearly" ? " ay" : "");
+        $("gtype-m").className = "gtt-btn" + (t === "monthly" ? " am" : "");
       }
-      function switchBanner(view) {
-        activeBannerView = view;
-        document.getElementById("banner-yearly").style.display =
-          view === "yearly" ? "flex" : "none";
-        document.getElementById("banner-monthly").style.display =
-          view === "monthly" ? "flex" : "none";
-        document.getElementById("gbt-yearly").className =
-          "gbt-tab" + (view === "yearly" ? " active-yearly" : "");
-        document.getElementById("gbt-monthly").className =
-          "gbt-tab" + (view === "monthly" ? " active-monthly" : "");
+      function switchBanner(v) {
+        activeBanner = v;
+        $("banner-y").style.display = v === "yearly" ? "block" : "none";
+        $("banner-m").style.display = v === "monthly" ? "block" : "none";
+        $("gbt-y").className = "gb-tab" + (v === "yearly" ? " ay" : "");
+        $("gbt-m").className = "gb-tab" + (v === "monthly" ? " am" : "");
       }
+
       function addEntry() {
-        const name = document.getElementById("f-name").value.trim() || "Income";
-        const amount = parseFloat(document.getElementById("f-amount").value);
+        const name = $("f-name").value.trim() || "Income";
+        const amount = parseFloat($("f-amount").value);
         const date =
-          document.getElementById("f-date").value ||
-          new Date().toISOString().split("T")[0];
+          $("f-date").value || new Date().toISOString().split("T")[0];
         if (!amount || amount <= 0) {
-          document.getElementById("f-amount").focus();
+          $("f-amount").focus();
           return;
         }
         entries.push({ id: uid(), name, amount, date, freq: currentFreq });
         save();
         render();
-        document.getElementById("f-name").value = "";
-        document.getElementById("f-amount").value = "";
-        document.getElementById("f-date").value = "";
+        $("f-name").value = "";
+        $("f-amount").value = "";
+        $("f-date").value = new Date().toISOString().split("T")[0];
       }
       function deleteEntry(id) {
         entries = entries.filter((e) => e.id !== id);
         save();
         render();
       }
-      function setGoal(type) {
-        if (type === "yearly") {
-          const g = parseFloat(document.getElementById("f-goal-yearly").value);
+      function setGoal(t) {
+        if (t === "yearly") {
+          const g = parseFloat($("f-goal-y").value);
           if (!g || g <= 0) return;
           yearGoal = g;
-          localStorage.setItem(GOAL_YEAR_KEY, g);
+          localStorage.setItem(GYK, g);
         } else {
-          const g = parseFloat(document.getElementById("f-goal-monthly").value);
+          const g = parseFloat($("f-goal-m").value);
           if (!g || g <= 0) return;
           monthlyGoal = g;
-          localStorage.setItem(GOAL_MON_KEY, g);
+          localStorage.setItem(GMK, g);
         }
         render();
       }
-      function clearGoal(type) {
-        if (type === "yearly") {
+      function clearGoal(t) {
+        if (t === "yearly") {
           yearGoal = 0;
-          localStorage.removeItem(GOAL_YEAR_KEY);
-          document.getElementById("f-goal-yearly").value = "";
+          localStorage.removeItem(GYK);
+          $("f-goal-y").value = "";
         } else {
           monthlyGoal = 0;
-          localStorage.removeItem(GOAL_MON_KEY);
-          document.getElementById("f-goal-monthly").value = "";
+          localStorage.removeItem(GMK);
+          $("f-goal-m").value = "";
         }
         render();
       }
+
       function totalSaved() {
         return entries.reduce((s, e) => s + e.amount, 0);
       }
       function thisMonthTotal() {
-        const now = new Date();
+        const n = new Date();
         return entries
           .filter((e) => {
             const d = new Date(e.date + "T12:00:00");
             return (
-              d.getFullYear() === now.getFullYear() &&
-              d.getMonth() === now.getMonth()
+              d.getFullYear() === n.getFullYear() &&
+              d.getMonth() === n.getMonth()
             );
           })
           .reduce((s, e) => s + e.amount, 0);
@@ -1391,11 +1310,11 @@
         if (!entries.length) return 0;
         const dates = entries.map((e) => new Date(e.date + "T12:00:00"));
         const minDate = new Date(Math.min(...dates));
-        const now = new Date();
+        const n = new Date();
         const months = Math.max(
           1,
-          (now.getFullYear() - minDate.getFullYear()) * 12 +
-            now.getMonth() -
+          (n.getFullYear() - minDate.getFullYear()) * 12 +
+            n.getMonth() -
             minDate.getMonth() +
             1,
         );
@@ -1403,176 +1322,146 @@
       }
       function projectedYearEnd() {
         const avg = avgPerMonth(),
-          now = new Date();
-        const monthsLeft =
+          n = new Date();
+        const ml =
           12 -
-          now.getMonth() -
+          n.getMonth() -
           1 +
           (1 -
-            now.getDate() /
-              new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate());
-        return totalSaved() + avg * monthsLeft;
+            n.getDate() /
+              new Date(n.getFullYear(), n.getMonth() + 1, 0).getDate());
+        return totalSaved() + avg * ml;
       }
-      function daysLeftInYear() {
-        const now = new Date();
+      function daysLeftYear() {
+        const n = new Date();
         return Math.max(
           1,
-          Math.ceil((new Date(now.getFullYear(), 11, 31) - now) / 86400000),
+          Math.ceil((new Date(n.getFullYear(), 11, 31) - n) / 86400000),
         );
       }
-      function daysLeftInMonth() {
-        const now = new Date();
+      function daysLeftMonth() {
+        const n = new Date();
         return Math.max(
           1,
-          new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate() -
-            now.getDate() +
+          new Date(n.getFullYear(), n.getMonth() + 1, 0).getDate() -
+            n.getDate() +
             1,
         );
       }
-      function dailyRequiredYearly() {
+      function dailyY() {
         return !yearGoal
           ? 0
-          : Math.max(0, yearGoal - totalSaved()) / daysLeftInYear();
+          : Math.max(0, yearGoal - totalSaved()) / daysLeftYear();
       }
-      function dailyRequiredMonthly() {
+      function dailyM() {
         return !monthlyGoal
           ? 0
-          : Math.max(0, monthlyGoal - thisMonthTotal()) / daysLeftInMonth();
+          : Math.max(0, monthlyGoal - thisMonthTotal()) / daysLeftMonth();
       }
+
       function render() {
         const total = totalSaved(),
           monthly = thisMonthTotal(),
           avg = avgPerMonth(),
-          projected = projectedYearEnd(),
-          dailyY = dailyRequiredYearly(),
-          dailyM = dailyRequiredMonthly();
+          proj = projectedYearEnd(),
+          dy = dailyY(),
+          dm = dailyM();
         const bothGoals = yearGoal && monthlyGoal,
           eitherGoal = yearGoal || monthlyGoal;
-        document.getElementById("sum-saved").textContent = fmt(total);
-        document.getElementById("sum-entries").textContent =
+        $("sum-saved").textContent = fmt(total);
+        $("sum-entries").textContent =
           entries.length + " entr" + (entries.length === 1 ? "y" : "ies");
-        document.getElementById("sum-month").textContent = fmt(monthly);
-        document.getElementById("sum-projected").textContent = fmt(projected);
-        document.getElementById("sum-avg").textContent = fmt(avg);
+        $("sum-month").textContent = fmt(monthly);
+        $("sum-projected").textContent = fmt(proj);
+        $("sum-avg").textContent = fmt(avg);
         if (eitherGoal) {
           if (bothGoals) {
-            document.getElementById("sum-goal").textContent = fmt(yearGoal);
-            document.getElementById("sum-goal-sub").textContent =
-              "yr · " + fmt(monthlyGoal) + "/mo";
+            $("sum-goal").textContent = fmt(yearGoal);
+            $("sum-goal-sub").textContent = "yr · " + fmt(monthlyGoal) + "/mo";
           } else if (yearGoal) {
-            document.getElementById("sum-goal").textContent = fmt(yearGoal);
-            document.getElementById("sum-goal-sub").textContent =
+            $("sum-goal").textContent = fmt(yearGoal);
+            $("sum-goal-sub").textContent =
               total >= yearGoal
                 ? "Goal reached!"
                 : fmt(yearGoal - total) + " to go";
           } else {
-            document.getElementById("sum-goal").textContent = fmt(monthlyGoal);
-            document.getElementById("sum-goal-sub").textContent =
+            $("sum-goal").textContent = fmt(monthlyGoal);
+            $("sum-goal-sub").textContent =
               monthly >= monthlyGoal
                 ? "Month done!"
-                : fmt(monthlyGoal - monthly) + " left this month";
+                : fmt(monthlyGoal - monthly) + " left";
           }
         } else {
-          document.getElementById("sum-goal").textContent = "—";
-          document.getElementById("sum-goal-sub").textContent = "not set";
+          $("sum-goal").textContent = "—";
+          $("sum-goal-sub").textContent = "not set";
         }
-        document.getElementById("goal-progress-wrap").style.display = eitherGoal
-          ? "flex"
-          : "none";
+        // Goal progress
+        $("goal-prog").style.display = eitherGoal ? "block" : "none";
         if (yearGoal) {
-          document.getElementById("yearly-progress-card").style.display =
-            "block";
+          $("gp-yearly").style.display = "block";
           const pct = Math.min((total / yearGoal) * 100, 100);
-          document.getElementById("gp-pct-yearly").textContent =
-            pct.toFixed(1) + "%";
-          document.getElementById("gp-bar-yearly").style.width = pct + "%";
-          document.getElementById("gp-saved-yearly").textContent = fmt(total);
-          document.getElementById("gp-remaining-yearly").textContent = fmt(
-            Math.max(0, yearGoal - total),
-          );
-          document.getElementById("gp-goal-yearly").textContent = fmt(yearGoal);
-        } else {
-          document.getElementById("yearly-progress-card").style.display =
-            "none";
-        }
+          $("gp-pct-y").textContent = pct.toFixed(1) + "%";
+          $("gp-bar-y").style.width = pct + "%";
+          $("gp-saved-y").textContent = fmt(total);
+          $("gp-rem-y").textContent = fmt(Math.max(0, yearGoal - total));
+          $("gp-goal-y").textContent = fmt(yearGoal);
+        } else $("gp-yearly").style.display = "none";
         if (monthlyGoal) {
-          document.getElementById("monthly-progress-card").style.display =
-            "block";
-          const pctM = Math.min((monthly / monthlyGoal) * 100, 100);
-          document.getElementById("gp-pct-monthly").textContent =
-            pctM.toFixed(1) + "%";
-          document.getElementById("gp-bar-monthly").style.width = pctM + "%";
-          document.getElementById("gp-saved-monthly").textContent =
-            fmt(monthly);
-          document.getElementById("gp-remaining-monthly").textContent = fmt(
-            Math.max(0, monthlyGoal - monthly),
-          );
-          document.getElementById("gp-goal-monthly").textContent =
-            fmt(monthlyGoal);
-        } else {
-          document.getElementById("monthly-progress-card").style.display =
-            "none";
-        }
-        const bannerWrap = document.getElementById("goal-banner-wrap"),
-          tabsEl = document.getElementById("goal-banner-tabs");
+          $("gp-monthly").style.display = "block";
+          const pm = Math.min((monthly / monthlyGoal) * 100, 100);
+          $("gp-pct-m").textContent = pm.toFixed(1) + "%";
+          $("gp-bar-m").style.width = pm + "%";
+          $("gp-saved-m").textContent = fmt(monthly);
+          $("gp-rem-m").textContent = fmt(Math.max(0, monthlyGoal - monthly));
+          $("gp-goal-m").textContent = fmt(monthlyGoal);
+        } else $("gp-monthly").style.display = "none";
+        // Banner
+        const bwrap = $("goal-banner");
         if (eitherGoal) {
-          bannerWrap.style.display = "block";
-          tabsEl.style.display = bothGoals ? "flex" : "none";
-          if (!bothGoals) activeBannerView = yearGoal ? "yearly" : "monthly";
-          switchBanner(activeBannerView);
+          bwrap.style.display = "block";
+          $("gb-tabs").style.display = bothGoals ? "flex" : "none";
+          if (!bothGoals) activeBanner = yearGoal ? "yearly" : "monthly";
+          switchBanner(activeBanner);
           if (yearGoal) {
-            document.getElementById("db-daily-yearly").textContent =
-              fmt(dailyY) + "/day";
-            document.getElementById("db-sub-yearly").textContent =
-              daysLeftInYear() +
-              " days remaining in " +
-              new Date().getFullYear();
-            document.getElementById("db-weekly-yearly").textContent = fmt(
-              dailyY * 7,
-            );
-            document.getElementById("db-biweekly-yearly").textContent = fmt(
-              dailyY * 14,
-            );
-            document.getElementById("db-monthly-yearly").textContent = fmt(
-              dailyY * 30.44,
-            );
+            $("db-daily-y").textContent = fmt(dy) + "/day";
+            $("db-sub-y").textContent =
+              daysLeftYear() + " days left in " + new Date().getFullYear();
+            $("db-wk-y").textContent = fmt(dy * 7);
+            $("db-bwk-y").textContent = fmt(dy * 14);
+            $("db-mo-y").textContent = fmt(dy * 30.44);
           }
           if (monthlyGoal) {
-            const daysM = daysLeftInMonth();
-            document.getElementById("db-daily-monthly").textContent =
-              fmt(dailyM) + "/day";
-            document.getElementById("db-sub-monthly").textContent =
-              daysM +
-              " days remaining in " +
+            const dm2 = daysLeftMonth();
+            $("db-daily-m").textContent = fmt(dm) + "/day";
+            $("db-sub-m").textContent =
+              dm2 +
+              " days left in " +
               new Date().toLocaleDateString("en-US", { month: "long" });
-            document.getElementById("db-weekly-monthly").textContent = fmt(
-              dailyM * 7,
-            );
-            document.getElementById("db-days-monthly").textContent =
-              daysM + " days";
-            document.getElementById("db-total-monthly").textContent =
-              fmt(monthlyGoal);
+            $("db-wk-m").textContent = fmt(dm * 7);
+            $("db-days-m").textContent = dm2 + " days";
+            $("db-tot-m").textContent = fmt(monthlyGoal);
           }
-        } else {
-          bannerWrap.style.display = "none";
-        }
-        const chipsEl = document.getElementById("active-goals");
-        let html = "";
+        } else bwrap.style.display = "none";
+        // Active goal chips
+        let ch = "";
         if (yearGoal)
-          html += `<div class="active-goal-chip yearly-chip">${fmt(yearGoal)} yearly <button class="goal-chip-clear" onclick="clearGoal('yearly')">✕</button></div>`;
+          ch += `<div class="ag-chip yc">${fmt(yearGoal)} yearly <button class="gc-clear" onclick="clearGoal('yearly')">✕</button></div>`;
         if (monthlyGoal)
-          html += `<div class="active-goal-chip monthly-chip">${fmt(monthlyGoal)}/mo <button class="goal-chip-clear" onclick="clearGoal('monthly')">✕</button></div>`;
-        chipsEl.innerHTML = html;
+          ch += `<div class="ag-chip mc">${fmt(monthlyGoal)}/mo <button class="gc-clear" onclick="clearGoal('monthly')">✕</button></div>`;
+        $("active-goals").innerHTML = ch;
         renderLog();
         renderChart();
-        renderInsights(total, monthly, avg, projected, dailyY, dailyM);
+        renderInsights(total, monthly, avg, proj, dy, dm);
       }
+
       function renderLog() {
-        const list = document.getElementById("log-list");
-        document.getElementById("log-count").textContent =
+        const lc = $("log-count");
+        lc.textContent =
           entries.length + " entr" + (entries.length === 1 ? "y" : "ies");
+        const list = $("log-list");
         if (!entries.length) {
-          list.innerHTML = `<div class="log-empty">No income entries yet. Add your first paycheck →</div>`;
+          list.innerHTML =
+            '<div class="log-empty">No income entries yet. Add your first paycheck above.</div>';
           return;
         }
         const sorted = [...entries].sort(
@@ -1581,15 +1470,16 @@
         list.innerHTML = sorted
           .map((e) => {
             const d = new Date(e.date + "T12:00:00");
-            const dateStr = d.toLocaleDateString("en-US", {
+            const ds = d.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
               year: "numeric",
             });
-            return `<div class="log-item"><span class="log-freq ${FREQ_CLASS[e.freq] || "freq-onetime"}">${FREQ_LABEL[e.freq] || "One-Time"}</span><div class="log-info"><div class="log-name">${e.name}</div><div class="log-meta">${dateStr}</div></div><div class="log-amount">${fmtFull(e.amount)}</div><button class="log-del" onclick="deleteEntry('${e.id}')">✕</button></div>`;
+            return `<div class="log-item"><span class="log-freq ${FC[e.freq] || "fo"}">${FL[e.freq] || "One-Time"}</span><div class="log-info"><div class="log-name">${e.name}</div><div class="log-meta">${ds}</div></div><div class="log-amt">${fmtFull(e.amount)}</div><button class="log-del" onclick="deleteEntry('${e.id}')">✕</button></div>`;
           })
           .join("");
       }
+
       function switchChart(type, btn) {
         currentChart = type;
         document
@@ -1599,7 +1489,7 @@
         renderChart();
       }
       function renderChart() {
-        const ctx = document.getElementById("main-chart").getContext("2d");
+        const ctx = $("main-chart").getContext("2d");
         if (chartInstance) {
           chartInstance.destroy();
           chartInstance = null;
@@ -1615,7 +1505,7 @@
               labels: {
                 color: MUTED,
                 font: { family: "DM Sans", size: 11, weight: "500" },
-                padding: 16,
+                padding: 14,
                 boxWidth: 10,
               },
             },
@@ -1703,21 +1593,21 @@
             );
             data.push(running);
           });
-          const datasets = [
+          const ds = [
             {
-              label: "Cumulative Savings",
+              label: "Cumulative",
               data,
               borderColor: "#1a6b3c",
               backgroundColor: "rgba(26,107,60,0.05)",
               fill: true,
               tension: 0.3,
-              pointRadius: 3,
+              pointRadius: 2,
               pointBackgroundColor: "#1a6b3c",
               pointBorderWidth: 0,
             },
           ];
           if (yearGoal)
-            datasets.push({
+            ds.push({
               label: "Year Goal",
               data: Array(labels.length).fill(yearGoal),
               borderColor: "rgba(138,106,48,0.6)",
@@ -1727,7 +1617,7 @@
               fill: false,
             });
           if (monthlyGoal)
-            datasets.push({
+            ds.push({
               label: "Month Goal",
               data: Array(labels.length).fill(monthlyGoal),
               borderColor: "rgba(91,63,138,0.5)",
@@ -1738,7 +1628,7 @@
             });
           chartInstance = new Chart(ctx, {
             type: "line",
-            data: { labels, datasets },
+            data: { labels, datasets: ds },
             options: {
               ...baseOpts,
               plugins: {
@@ -1748,7 +1638,7 @@
                   labels: {
                     color: MUTED,
                     font: { family: "DM Sans", size: 11, weight: "500" },
-                    padding: 16,
+                    padding: 12,
                     boxWidth: 10,
                   },
                 },
@@ -1756,16 +1646,16 @@
             },
           });
         } else if (currentChart === "monthly") {
-          const monthMap = {};
+          const mm = {};
           entries.forEach((e) => {
             const d = new Date(e.date + "T12:00:00");
-            const key =
+            const k =
               d.getFullYear() +
               "-" +
               (d.getMonth() + 1).toString().padStart(2, "0");
-            monthMap[key] = (monthMap[key] || 0) + e.amount;
+            mm[k] = (mm[k] || 0) + e.amount;
           });
-          const keys = Object.keys(monthMap).sort();
+          const keys = Object.keys(mm).sort();
           const labels = keys.map((k) => {
             const [y, m] = k.split("-");
             return new Date(y, m - 1, 1).toLocaleDateString("en-US", {
@@ -1773,19 +1663,18 @@
               year: "2-digit",
             });
           });
-          const data = keys.map((k) => monthMap[k]);
-          const datasets = [
+          const ds = [
             {
-              label: "Monthly Income",
-              data,
+              label: "Monthly",
+              data: keys.map((k) => mm[k]),
               backgroundColor: "rgba(138,106,48,0.55)",
               borderColor: "#8a6a30",
               borderWidth: 1,
-              borderRadius: 3,
+              borderRadius: 4,
             },
           ];
           if (monthlyGoal)
-            datasets.push({
+            ds.push({
               type: "line",
               label: "Month Goal",
               data: Array(keys.length).fill(monthlyGoal),
@@ -1797,7 +1686,7 @@
             });
           chartInstance = new Chart(ctx, {
             type: "bar",
-            data: { labels, datasets },
+            data: { labels, datasets: ds },
             options: {
               ...baseOpts,
               plugins: {
@@ -1807,7 +1696,7 @@
                   labels: {
                     color: MUTED,
                     font: { family: "DM Sans", size: 11, weight: "500" },
-                    padding: 16,
+                    padding: 12,
                     boxWidth: 10,
                   },
                 },
@@ -1815,12 +1704,12 @@
             },
           });
         } else {
-          const freqMap = {};
+          const fm = {};
           entries.forEach((e) => {
-            freqMap[e.freq] = (freqMap[e.freq] || 0) + e.amount;
+            fm[e.freq] = (fm[e.freq] || 0) + e.amount;
           });
-          const labels = Object.keys(freqMap).map((k) => FREQ_LABEL[k] || k),
-            data = Object.values(freqMap);
+          const labels = Object.keys(fm).map((k) => FL[k] || k),
+            data = Object.values(fm);
           const colors = [
             "rgba(26,74,138,0.7)",
             "rgba(138,106,48,0.7)",
@@ -1852,7 +1741,7 @@
                   labels: {
                     color: MUTED,
                     font: { family: "DM Sans", size: 11, weight: "500" },
-                    padding: 14,
+                    padding: 12,
                     boxWidth: 10,
                   },
                 },
@@ -1861,81 +1750,78 @@
           });
         }
       }
-      function renderInsights(total, monthly, avg, projected, dailyY, dailyM) {
-        const list = document.getElementById("insights-list");
+
+      function renderInsights(total, monthly, avg, proj, dy, dm) {
+        const list = $("insights-list");
         if (!entries.length) {
-          list.innerHTML = `<div class="insight-item"><div class="insight-dot accent"></div><div class="insight-text">Add your income entries to see personalized insights.</div></div>`;
+          list.innerHTML =
+            '<div class="ins-item"><div class="ins-dot accent"></div><div class="ins-text">Add income entries to see personalized insights.</div></div>';
           return;
         }
-        const insights = [],
-          now = new Date(),
-          dayOfYear = Math.floor(
-            (now - new Date(now.getFullYear(), 0, 0)) / 86400000,
-          );
+        const ins = [],
+          n = new Date(),
+          doy = Math.floor((n - new Date(n.getFullYear(), 0, 0)) / 86400000);
         if (yearGoal) {
-          const onTrack = projected >= yearGoal;
-          insights.push({
+          const onTrack = proj >= yearGoal;
+          ins.push({
             dot: onTrack ? "green" : "red",
             text: onTrack
-              ? `At current pace you're <strong>on track</strong> to save ${fmt(projected)} this year — ${fmt(projected - yearGoal)} above goal.`
-              : `At current pace you'll end at <strong>${fmt(projected)}</strong>, ${fmt(yearGoal - projected)} short of your ${fmt(yearGoal)} goal.`,
+              ? `On track to save <strong>${fmt(proj)}</strong> — ${fmt(proj - yearGoal)} above goal.`
+              : `At current pace you'll end at <strong>${fmt(proj)}</strong>, ${fmt(yearGoal - proj)} short of ${fmt(yearGoal)}.`,
           });
-          insights.push({
+          ins.push({
             dot: "accent",
-            text: `Need <strong>${fmt(dailyY)}/day</strong> (${fmt(dailyY * 7)}/week) to reach your ${fmt(yearGoal)} year-end goal.`,
+            text: `Need <strong>${fmt(dy)}/day</strong> (${fmt(dy * 7)}/week) for ${fmt(yearGoal)} year-end goal.`,
           });
         }
         if (monthlyGoal) {
-          const daysM = daysLeftInMonth(),
-            onTrackM = monthly >= monthlyGoal;
-          insights.push({
-            dot: onTrackM ? "green" : "purple",
-            text: onTrackM
-              ? `This month you've <strong>hit</strong> your ${fmt(monthlyGoal)} monthly goal — ${fmt(monthly - monthlyGoal)} over target.`
-              : `Need <strong>${fmt(dailyM)}/day</strong> for the next ${daysM} day${daysM === 1 ? "" : "s"} to hit your ${fmt(monthlyGoal)}/month goal.`,
+          const dm2 = daysLeftMonth(),
+            ok = monthly >= monthlyGoal;
+          ins.push({
+            dot: ok ? "green" : "purple",
+            text: ok
+              ? `Month goal <strong>hit</strong> — ${fmt(monthly - monthlyGoal)} over target.`
+              : `Need <strong>${fmt(dm)}/day</strong> for ${dm2} more days to hit ${fmt(monthlyGoal)}/month.`,
           });
         }
-        const monthMap = {};
+        const mm = {};
         entries.forEach((e) => {
           const d = new Date(e.date + "T12:00:00");
-          const key = d.toLocaleDateString("en-US", {
+          const k = d.toLocaleDateString("en-US", {
             month: "short",
             year: "numeric",
           });
-          monthMap[key] = (monthMap[key] || 0) + e.amount;
+          mm[k] = (mm[k] || 0) + e.amount;
         });
-        const bestMonth = Object.entries(monthMap).sort(
-          (a, b) => b[1] - a[1],
-        )[0];
-        if (bestMonth)
-          insights.push({
+        const best = Object.entries(mm).sort((a, b) => b[1] - a[1])[0];
+        if (best)
+          ins.push({
             dot: "blue",
-            text: `Best month: <strong>${bestMonth[0]}</strong> with ${fmt(bestMonth[1])} saved.`,
+            text: `Best month: <strong>${best[0]}</strong> with ${fmt(best[1])} saved.`,
           });
         if (monthly > avg * 1.1)
-          insights.push({
+          ins.push({
             dot: "green",
-            text: `This month (${fmt(monthly)}) is <strong>${((monthly / avg - 1) * 100).toFixed(0)}% above</strong> your monthly average of ${fmt(avg)}.`,
+            text: `This month (${fmt(monthly)}) is <strong>${((monthly / avg - 1) * 100).toFixed(0)}% above</strong> average.`,
           });
         else if (monthly < avg * 0.9 && avg > 0)
-          insights.push({
+          ins.push({
             dot: "red",
-            text: `This month (${fmt(monthly)}) is <strong>below</strong> your monthly average of ${fmt(avg)}.`,
+            text: `This month (${fmt(monthly)}) is <strong>below</strong> your ${fmt(avg)} average.`,
           });
-        insights.push({
+        ins.push({
           dot: "accent",
-          text: `Average daily savings this year: <strong>${fmt(total / dayOfYear)}/day</strong> over ${dayOfYear} days.`,
+          text: `Average daily this year: <strong>${fmt(total / doy)}/day</strong> over ${doy} days.`,
         });
-        list.innerHTML = insights
+        list.innerHTML = ins
           .map(
             (i) =>
-              `<div class="insight-item"><div class="insight-dot ${i.dot}"></div><div class="insight-text">${i.text}</div></div>`,
+              `<div class="ins-item"><div class="ins-dot ${i.dot}"></div><div class="ins-text">${i.text}</div></div>`,
           )
           .join("");
       }
-      document.getElementById("f-date").value = new Date()
-        .toISOString()
-        .split("T")[0];
+
+      $("f-date").value = new Date().toISOString().split("T")[0];
       load();
       render();
     </script>
